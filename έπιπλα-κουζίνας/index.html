@@ -1,31 +1,28 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a//dev/null b/έπιπλα-κουζίνας/index.html
-index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c382c3eb9c 100644
---- a//dev/null
-+++ b/έπιπλα-κουζίνας/index.html
-@@ -0,0 +1,279 @@
+(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
+*** Begin Patch
+*** Add File: epipla-kouzinas/index.html
 +<!doctype html>
 +<html lang="el">
 +<head>
 +  <meta charset="utf-8">
++  <meta http-equiv="x-ua-compatible" content="IE=edge">
 +  <meta name="viewport" content="width=device-width,initial-scale=1">
++  <meta name="theme-color" content="#5D4E37">
 +  <title>Έπιπλα Κουζίνας | Aggelopoulos Carpentry</title>
 +  <meta name="description" content="Μελέτη, κατασκευή και τοποθέτηση ποιοτικών επίπλων κουζίνας από την Aggelopoulos Carpentry στο Περιστέρι. Εξειδικευμένες λύσεις κουζίνας με εργονομία, αισθητική και εγγυημένη αντοχή.">
-+  <link rel="canonical" href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">
++  <!-- canonical σε ASCII slug για σταθερό hosting· κρατάμε και alternate στο ελληνικό URL -->
++  <link rel="canonical" href="https://aggelopouloscarpentry.com/epipla-kouzinas/">
++  <link rel="alternate" hreflang="el" href="https://aggelopouloscarpentry.com/%CE%AD%CF%80%CE%B9%CF%80%CE%BB%CE%B1-%CE%BA%CE%BF%CF%85%CE%B6%CE%AF%CE%BD%CE%B1%CF%82/">
 +  <meta property="og:title" content="Έπιπλα Κουζίνας με Υπογραφή Aggelopoulos">
 +  <meta property="og:description" content="Custom κουζίνες, ντουλάπια και πάγκοι προσαρμοσμένοι στον χώρο σας. Ζητήστε δωρεάν μέτρηση και δείτε πραγματικά έργα.">
 +  <meta property="og:type" content="website">
-+  <meta property="og:url" content="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">
-+  <meta property="og:image" content="https://aggelopouloscarpentry.com/assets/og-kitchen.jpg">
++  <meta property="og:url" content="https://aggelopouloscarpentry.com/epipla-kouzinas/">
++  <meta property="og:image" content="/assets/og-kitchen.jpg">
 +  <style>
-+    :root{
-+      --accent:#5D4E37;
-+      --ink:#111;
-+      --muted:#6b6b6b;
-+      --bg:#f7f8fb;
-+      --card:#fff;
-+    }
++    /* --- RESET / THEME --- */
++    :root{--accent:#5D4E37;--ink:#111;--muted:#6b6b6b;--bg:#f7f8fb;--card:#fff}
 +    *{box-sizing:border-box}
++    html,body{height:100%;overflow-x:hidden} /* FIX: αποφυγή οριζόντιου scroll σε iOS/100vw */
 +    body{margin:0;font:16px/1.65 "Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;color:var(--ink);background:var(--bg)}
 +    img{display:block;width:100%;height:auto}
 +    a{color:inherit;text-decoration:none;transition:opacity .18s ease}
@@ -34,18 +31,25 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +    .btn:hover{transform:translateY(-2px);box-shadow:0 18px 32px rgba(93,78,55,.2)}
 +    .pill{border-radius:999px;border:1px solid rgba(93,78,55,.25);padding:10px 16px;font-weight:700;background:#fff}
 +    .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-+    header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid rgba(93,78,55,.12);backdrop-filter:saturate(140%) blur(6px)}
++    header{position:sticky;top:0;z-index:20;background:#fffE; /* ημιδιαφανές */
++      border-bottom:1px solid rgba(93,78,55,.12);backdrop-filter:saturate(140%) blur(6px)}
 +    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px}
 +    .logo img{height:52px;width:auto}
 +    nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 +    .crumbs{font-size:.95rem;color:var(--muted);display:flex;align-items:center;gap:8px;margin:0 0 12px}
 +    .crumbs a{color:var(--muted)}
-+    .hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-+    .hero .inner{min-height:clamp(280px,46vh,520px);display:flex;align-items:center;justify-content:center;padding:48px 20px;background:linear-gradient(0deg,rgba(0,0,0,.68),rgba(0,0,0,.68)),url("https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;text-align:center;color:#fff}
-+    .hero .content{max-width:980px;padding:0 16px}
++    /* --- HERO --- */
++    .hero{background:var(--accent)}
++    /* FIX: αντί για 100vw+negative margins, full-bleed με shadow‑container */
++    .hero .inner{min-height:clamp(280px,46vh,520px);display:flex;align-items:center;justify-content:center;padding:48px 20px;background:
++      linear-gradient(0deg,rgba(0,0,0,.68),rgba(0,0,0,.68)),
++      url("https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
++      text-align:center;color:#fff}
++    .hero .content{max-width:980px;padding:0 16px;margin:0 auto}
 +    .hero h1{margin:10px 0 12px;font-size:clamp(30px,4.2vw,50px);line-height:1.08;font-weight:900}
 +    .hero p{margin:0 auto 22px;max-width:840px;font-size:clamp(16px,2.4vw,20px)}
 +    .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
++    /* --- MAIN --- */
 +    main{padding:48px 0 64px}
 +    h2{font-size:clamp(26px,3.4vw,38px);margin:0 0 12px;font-weight:900;text-align:center;color:var(--ink)}
 +    p.lead{max-width:820px;margin:0 auto 26px;text-align:center;color:var(--muted);font-size:clamp(16px,2.2vw,20px)}
@@ -81,7 +85,6 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +      .wrap{padding:0 16px}
 +      .gallery-grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 +    }
-+
 +    @media(max-width:620px){
 +      nav{justify-content:flex-end}
 +      .hero .cta .btn{width:100%;justify-content:center}
@@ -96,7 +99,9 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +    <a class="logo" href="/"><img src="/assets/logo-dark.png" alt="Aggelopoulos Carpentry – Carpentry Solutions"></a>
 +    <nav>
 +      <a class="pill" href="/#services">Υπηρεσίες</a>
-+      <a class="pill" href="/επικοινωνία/">Επικοινωνία</a>
++      <!-- FIX: link προς ASCII slug -->
++      <a class="pill" href="/epipla-kouzinas/#gallery">Έργα</a>
++      <a class="pill" href="/%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1/">Επικοινωνία</a>
 +      <a class="btn" href="tel:+306936815779" aria-label="Κάλεσε τώρα την Aggelopoulos Carpentry">Κάλεσε Τώρα</a>
 +    </nav>
 +  </div>
@@ -118,7 +123,7 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +        <h1>Έπιπλα Κουζίνας με Υπογραφή Aggelopoulos</h1>
 +        <p>Η κουζίνα είναι ένας από τους σημαντικότερους χώρους του σπιτιού. Σχεδιάζουμε και κατασκευάζουμε κουζίνες που συνδυάζουν λειτουργικότητα, αισθητική και αντοχή, προσαρμοσμένες στο στυλ και τις ανάγκες σας.</p>
 +        <div class="cta">
-+          <a class="btn" href="/επικοινωνία/">Ζητήστε Δωρεάν Μέτρηση</a>
++          <a class="btn" href="/%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1/">Ζητήστε Δωρεάν Μέτρηση</a>
 +          <a class="pill" href="tel:+306936815779">(+30) 693 6815 779</a>
 +        </div>
 +      </div>
@@ -145,7 +150,7 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +        <p>Χρησιμοποιούμε MDF, βακελίτες, compact HPL και μηχανισμούς soft-close από αξιόπιστους οίκους, εξασφαλίζοντας σταθερότητα και μεγάλη διάρκεια ζωής.</p>
 +        <ul>
 +          <li>Επιλογές χρωμάτων και υφών</li>
-+          <li>Ανθεκτικά πάγκος και ποδιές</li>
++          <li>Ανθεκτικοί πάγκοι και ποδιές</li> <!-- FIX: ορθογραφικό -->
 +          <li>Πιστοποιημένες βαφές &amp; βερνίκια</li>
 +        </ul>
 +      </article>
@@ -220,7 +225,7 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +      <h2 style="color:#fff;margin:0">Ζητήστε Προσφορά για την Κουζίνα σας</h2>
 +      <p>Στείλτε μας κατόψεις, φωτογραφίες ή τις προηγούμενες προσφορές σας και θα ετοιμάσουμε μια ολοκληρωμένη πρόταση με εγγύηση ποιότητας Aggelopoulos Carpentry.</p>
 +      <div class="cta-links">
-+        <a class="btn" href="/επικοινωνία/">Φόρμα Επικοινωνίας</a>
++        <a class="btn" href="/%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%AF%CE%B1/">Φόρμα Επικοινωνίας</a>
 +        <a class="pill" href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a>
 +        <a class="pill" href="tel:+306936815779">(+30) 693 6815 779</a>
 +      </div>
@@ -240,49 +245,37 @@ index 0000000000000000000000000000000000000000..6e4e646342b783d2cf7ee4764364c3c3
 +  "@context": "https://schema.org",
 +  "@type": "Service",
 +  "name": "Έπιπλα Κουζίνας Aggelopoulos",
-+  "areaServed": {
-+    "@type": "AdministrativeArea",
-+    "name": "Αττική"
-+  },
++  "areaServed": {"@type": "AdministrativeArea","name": "Αττική"},
 +  "provider": {
 +    "@type": "LocalBusiness",
 +    "name": "Aggelopoulos Carpentry",
 +    "telephone": "+30 693 6815 779",
 +    "email": "basilisangelopoulos1965@gmail.com",
-+    "address": {
-+      "@type": "PostalAddress",
-+      "streetAddress": "Χρυσάνθου 58",
-+      "addressLocality": "Περιστέρι",
-+      "postalCode": "12136",
-+      "addressCountry": "GR"
-+    }
++    "address": {"@type": "PostalAddress","streetAddress": "Χρυσάνθου 58","addressLocality": "Περιστέρι","postalCode": "12136","addressCountry": "GR"}
 +  },
 +  "description": "Μελέτη, κατασκευή και τοποθέτηση επίπλων κουζίνας με ποιοτικά υλικά, 3D σχεδιασμό και custom λύσεις για κάθε σπίτι.",
 +  "hasOfferCatalog": {
 +    "@type": "OfferCatalog",
 +    "name": "Υπηρεσίες Custom Κουζίνας",
 +    "itemListElement": [
-+      {
-+        "@type": "Offer",
-+        "name": "Σχεδιασμός Κουζίνας",
-+        "description": "Επίσκεψη για μετρήσεις, 3D προτάσεις και επιλογή υλικών."
-+      },
-+      {
-+        "@type": "Offer",
-+        "name": "Κατασκευή Επίπλων Κουζίνας",
-+        "description": "Ντουλάπια, πάγκοι, μηχανισμοί soft-close και ειδικές κατασκευές."
-+      },
-+      {
-+        "@type": "Offer",
-+        "name": "Τοποθέτηση &amp; Παράδοση",
-+        "description": "Επαγγελματική εγκατάσταση και τελικές ρυθμίσεις στον χώρο σας."
-+      }
++      {"@type": "Offer","name": "Σχεδιασμός Κουζίνας","description": "Επίσκεψη για μετρήσεις, 3D προτάσεις και επιλογή υλικών."},
++      {"@type": "Offer","name": "Κατασκευή Επίπλων Κουζίνας","description": "Ντουλάπια, πάγκοι, μηχανισμοί soft-close και ειδικές κατασκευές."},
++      {"@type": "Offer","name": "Τοποθέτηση &amp; Παράδοση","description": "Επαγγελματική εγκατάσταση και τελικές ρυθμίσεις στον χώρο σας."}
 +    ]
 +  }
 +}
 +</script>
 +</body>
 +</html>
- 
++
+*** End Patch
+*** Begin Patch
+*** Add File: %CE%AD%CF%80%CE%B9%CF%80%CE%BB%CE%B1-%CE%BA%CE%BF%CF%85%CE%B6%CE%AF%CE%BD%CE%B1%CF%82/index.html
++<!doctype html>
++<meta charset="utf-8">
++<meta http-equiv="refresh" content="0; url=/epipla-kouzinas/">
++<link rel="canonical" href="/epipla-kouzinas/">
++<!-- Lightweight redirect ώστε να λειτουργεί και το ελληνικό slug σε hosts που δεν υποστηρίζουν unicode paths σωστά. -->
+*** End Patch
 EOF
 )
