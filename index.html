@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – HTML v34 (compact Google reviews + fixed About on mobile) -->
+<!-- Aggelopoulos – HTML v34 (Κουζίνες – compact Google reviews + fixed About on mobile) -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ====== RESET ====== */
@@ -32,7 +32,7 @@ body{background:#fff;color:#111}
 .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
 
-/* ====== SERVICES ====== */
+/* ====== SERVICES (Kitchen-focused) ====== */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .card{background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(93,78,55,.15);box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .card h3{font-size:clamp(20px,2.2vw,26px);text-align:center;margin:0 0 4px}
@@ -50,7 +50,7 @@ body{background:#fff;color:#111}
 .ico svg{width:22px;height:22px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .step h3{margin:0;font-weight:900;font-size:20px}
 
-/* ====== ABOUT ====== */
+/* ====== ABOUT (Kitchen USP) ====== */
 .about{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
 .about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:48px 16px;color:#fff}
 .about h2{margin:0 0 10px;font-size:clamp(22px,3.6vw,40px)}
@@ -73,20 +73,18 @@ body{background:#fff;color:#111}
 
 /* ====== REVIEWS – Google only (COMPACT) ====== */
 .reviews h2{margin:0 0 4px}
-.reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px} /* λιγότερο padding για μικρότερο κουτί */
+.reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px}
 #elfsight-container{max-width:920px;margin:6px auto}
 #elfsight-container > div{height:auto !important}
-/* Ελέγχουμε το injected widget ώστε να μην αφήνει μεγάλο «κενό» */
 #elfsight-container .eapps-widget,
 #elfsight-container [class^="eapps-"],
 #elfsight-container [class*=" eapps-"]{
   min-height:0 !important;
   height:auto !important;
-  max-height:420px !important;   /* desktop clamp */
-  overflow:hidden !important;    /* κόβει το επιπλέον λευκό */
+  max-height:420px !important;
+  overflow:hidden !important;
   border-radius:12px !important;
 }
-/* λίγο πιο «σφιχτό» στα πολύ μεγάλα desktop */
 @media (min-width:1200px){
   #elfsight-container{max-width:860px}
   #elfsight-container .eapps-widget{max-height:380px !important}
@@ -161,22 +159,17 @@ body{background:#fff;color:#111}
   .about .img{order:2;width:100%;border-radius:14px;overflow:hidden;margin:6px 0 2px}
   .about .img img{display:block;width:100% !important;height:auto !important}
 
-/* === REVIEWS: COMPACT MOBILE (hard clamp + no extra padding) === */
-.reviews{padding-top:2px}
-.reviews .gwrap{padding:2px}
-#elfsight-container{max-width:94%;margin:6px auto 0}
-#elfsight-container .eapps-widget{
-  /* Κόβουμε το κενό που δημιουργεί το widget */
-  min-height:0 !important;
-  height:auto !important;
-  max-height:400px !important;   /* ↓ αν θες ακόμη πιο κοντό, βάλε 260px */
-  overflow:hidden !important;
-  border-radius:12px !important;
+  /* === REVIEWS: COMPACT MOBILE === */
+  .reviews{padding-top:2px}
+  .reviews .gwrap{padding:2px}
+  #elfsight-container{max-width:94%;margin:6px auto 0}
+  #elfsight-container .eapps-widget{
+    min-height:0 !important;height:auto !important;max-height:400px !important;overflow:hidden !important;border-radius:12px !important;
+  }
+  #elfsight-container .eapps-widget [style*="height"]{height:auto !important}
+  #elfsight-container .eapps-widget [style*="min-height"]{min-height:0 !important}
+  #elfsight-container .eapps-widget [style*="padding"]{padding:8px !important}
 }
-/* Ακυρώνουμε inline heights/paddings που πετάει το script */
-#elfsight-container .eapps-widget [style*="height"]{height:auto !important}
-#elfsight-container .eapps-widget [style*="min-height"]{min-height:0 !important}
-#elfsight-container .eapps-widget [style*="padding"]{padding:8px !important}
 
 /* Helpers */
 .aggl img{max-width:100%;height:auto}
@@ -184,51 +177,44 @@ body{background:#fff;color:#111}
 </style>
 
 <div class="aggl">
-  <!-- ===== HERO ===== -->
-  <section class="hero" style="--hero-img:url(https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg)">
+  <!-- ===== HERO (ΚΟΥΖΙΝΕΣ) ===== -->
+  <section class="hero" style="--hero-img:url(https://images.unsplash.com/photo-1600585154340-0ef3c08dcdb6?auto=format&fit=crop&w=2000&q=80)">
     <div class="inner"><div class="content">
       <img class="logo" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry — από το 1960">
-      <h1>Ξυλουργικές Λύσεις στην Αθήνα <span class="nb">(Περιστέρι)</span></h1>
-      <p>Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες &amp; Ειδικές Κατασκευές. <strong>Blum &amp; FGV</strong> μηχανισμοί, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/περιστρεφόμενος μύλος), <strong>LED</strong>, <strong>πάγκοι 3–4 εκ.</strong>. <strong>Παράδοση 10–20 ημέρες</strong>.</p>
+      <h1>Έπιπλα Κουζίνας με Υπογραφή <span class="nb">Aggelopoulos</span></h1>
+      <p>Σχεδιασμός, κατασκευή και τοποθέτηση <strong>custom κουζινών</strong> με μηχανισμούς <strong>Blum/FGV</strong>, επιλογές <strong>Gola</strong> ή πόμολο, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong> και <strong>πάγκους 3–4 εκ.</strong></p>
       <div class="cta">
         <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
         <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
       </div>
-      <div class="badge">60+ έτη εμπειρίας • 50+ έργα/έτος • 4.9★ αξιολογήσεις</div>
+      <div class="badge">Premium Custom Kitchens • Παράδοση 10–20 ημέρες</div>
     </div></div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== SERVICES ===== -->
+  <!-- ===== SERVICES (Μόνο κουζίνα) ===== -->
   <section class="wrap" id="services">
-    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Υπηρεσίες Ξυλουργείου</h2>
-    <p style="text-align:center;margin:0 auto 24px;max-width:860px;font-size:clamp(14px,2vw,18px)">Κατασκευάζουμε &amp; τοποθετούμε <a href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">κουζίνες</a>, <a href="https://aggelopouloscarpentry.com/έπιπλα-μπάνιου/">έπιπλα μπάνιου</a>, <a href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">ντουλάπες/υπνοδωμάτιο</a>, <a href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">πόρτες &amp; κουφώματα</a> και <a href="https://aggelopouloscarpentry.com/ειδικές-κατασκευές/">ειδικές κατασκευές</a>.</p>
+    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Υπηρεσίες Κουζίνας</h2>
+    <p style="text-align:center;margin:0 auto 24px;max-width:860px;font-size:clamp(14px,2vw,18px)">
+      Κάθε έργο είναι <strong>100% custom</strong>. Συνδυάζουμε εργονομία, αισθητική και αντοχή για να αξιοποιήσουμε κάθε εκατοστό του χώρου σας.
+    </p>
 
     <div class="svc-grid">
-      <article class="card"><h3>Έπιπλα Κουζίνας</h3><span class="u"></span>
-        <p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong> με φρένο, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας, <strong>LED</strong>, πάγκοι <strong>3–4 εκ.</strong>.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">Δείτε Περισσότερα</a></p>
+      <article class="card"><h3>Μελέτη &amp; Σχεδιασμός</h3><span class="u"></span>
+        <p>Επίσκεψη για μέτρηση, κατόψεις/3D προτάσεις, επιλογή υλικών &amp; μηχανισμών. Συντονισμός με συσκευές &amp; υδραυλικά.</p>
       </article>
 
-      <article class="card"><h3>Έπιπλα Μπάνιου</h3><span class="u"></span>
-        <p><strong>Αντοχή στην υγρασία</strong>, <strong>αρμολογήσεις ακριβείας</strong>, προσαρμοσμένα ντουλάπια &amp; <strong>πάγκοι</strong> κατάλληλοι για νερό.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="https://aggelopouloscarpentry.com/έπιπλα-μπάνιου/">Δείτε Περισσότερα</a></p>
+      <article class="card"><h3>Κατασκευή</h3><span class="u"></span>
+        <p>MDF/βακελίτες/Compact HPL, μηχανισμοί <strong>Blum/FGV</strong>, βαφές &amp; βερνίκια πιστοποιημένα. Ακρίβεια κοπών &amp; συναρμολόγησης.</p>
       </article>
 
-      <article class="card"><h3>Ντουλάπες Υπνοδωμάτιου</h3><span class="u"></span>
-        <p>Συρόμενες/ανοιγόμενες με εργονομικά εσωτερικά, <strong>συρτάρια FGV</strong>, <strong>μεντεσέδες Blum</strong>, πόμολα μπάρα.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">Δείτε Περισσότερα</a></p>
+      <article class="card"><h3>Τοποθέτηση</h3><span class="u"></span>
+        <p>Γρήγορη &amp; καθαρή εγκατάσταση, τελικές ρυθμίσεις μεντεσέδων/συρταριών, ακριβείς ενώσεις και παραδόσεις “με το κλειδί”.</p>
       </article>
 
-      <article class="card"><h3>Πόρτες Εσωτερικές</h3><span class="u"></span>
-        <p><strong>Laminate</strong> ή πρεσσαριστές με <strong>πετούγιες</strong> &amp; κλειδαριές. Επισκευές συρόμενων πορτών κατόπιν ελέγχου.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">Δείτε Περισσότερα</a></p>
-      </article>
-
-      <article class="card" style="grid-column:1/-1"><h3>Ειδικές Κατασκευές</h3><span class="u"></span>
-        <p>TV wall cladding (δρύς/λάκα), ντουλάπι σαλονιού με γυαλί, νησίδες, <strong>κάσα για πατάρι</strong>, custom λύσεις.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="https://aggelopouloscarpentry.com/ειδικές-κατασκευές/">Παραδείγματα</a></p>
+      <article class="card" style="grid-column:1/-1"><h3>Ειδικές Λύσεις</h3><span class="u"></span>
+        <p>Νησίδες, κρυφοί φωτισμοί, βιτρίνες, επενδύσεις, έξυπνες γωνίες (Magic Corner/περιστροφικός μύλος), <strong>Gola</strong> ή μπάρα.</p>
       </article>
     </div>
   </section>
@@ -238,44 +224,44 @@ body{background:#fff;color:#111}
   <!-- ===== STEPS ===== -->
   <section class="wrap" id="process" aria-labelledby="how-title">
     <div class="steps-head" style="text-align:center">
-      <h2 id="how-title" style="font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Πώς Δουλεύουμε</h2>
+      <h2 id="how-title" style="font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Διαδικασία Συνεργασίας</h2>
       <p style="margin:0 auto 4px;max-width:760px;color:var(--muted)">Τυπική παράδοση <strong>10–20 ημέρες</strong> από έγκριση σχεδίων &amp; υλικών.</p>
     </div>
     <div class="steps-grid">
-      <article class="step"><div class="step-top"><span class="num">1</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8h18M7 16h10M9 12h6"/></svg></span><h3>Μέτρηση</h3></div><p>Επίσκεψη στον χώρο και ακριβείς διαστάσεις.</p></article>
-      <article class="step"><div class="step-top"><span class="num">2</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20l6-6m0 0 7-7a2 2 0 1 1 3 3l-7 7m-3 3H3v-3"/></svg></span><h3>Σχεδίαση</h3></div><p>Λύσεις προσαρμοσμένες στις ανάγκες σας (3D όπου απαιτείται).</p></article>
-      <article class="step"><div class="step-top"><span class="num">3</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M7 7V4h10v3"/></svg></span><h3>Κατασκευή</h3></div><p>Υλικά αντοχής, μηχανισμοί <strong>Blum</strong>/<strong>FGV</strong>.</p></article>
-      <article class="step"><div class="step-top"><span class="num">4</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21l2-8h10l2 8"/></svg></span><h3>Τοποθέτηση</h3></div><p>Γρήγορη &amp; καθαρή εγκατάσταση.</p></article>
-      <article class="step"><div class="step-top"><span class="num">5</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6l-11 11-5-5"/></svg></span><h3>Έλεγχος</h3></div><p>Τελικός έλεγχος ποιότητας &amp; ενημέρωση συντήρησης.</p></article>
+      <article class="step"><div class="step-top"><span class="num">1</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8h18M7 16h10M9 12h6"/></svg></span><h3>Καταγραφή</h3></div><p>Ανάγκες, στυλ, budget, χρονοδιάγραμμα.</p></article>
+      <article class="step"><div class="step-top"><span class="num">2</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20l6-6m0 0 7-7a2 2 0 1 1 3 3l-7 7m-3 3H3v-3"/></svg></span><h3>Μετρήσεις &amp; 3D</h3></div><p>Επίσκεψη στον χώρο &amp; προτάσεις σε 3D όπου απαιτείται.</p></article>
+      <article class="step"><div class="step-top"><span class="num">3</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M7 7V4h10v3"/></svg></span><h3>Κατασκευή</h3></div><p>Ποιοτικά υλικά &amp; μηχανισμοί <strong>Blum/FGV</strong>.</p></article>
+      <article class="step"><div class="step-top"><span class="num">4</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21l2-8h10l2 8"/></svg></span><h3>Τοποθέτηση</h3></div><p>Καθαρή εγκατάσταση με προσοχή στη λεπτομέρεια.</p></article>
+      <article class="step"><div class="step-top"><span class="num">5</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6l-11 11-5-5"/></svg></span><h3>Παράδοση</h3></div><p>Τελικός έλεγχος &amp; οδηγίες συντήρησης.</p></article>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ===== ABOUT (USP ΚΟΥΖΙΝΑΣ) ===== -->
   <section class="about">
     <div class="wrap">
       <div>
-        <h2>Προφίλ Επιχείρησης</h2>
-        <p><strong>Δημιουργήθηκε το 1960, από τον Λάμπρο Αγγελόπουλο</strong>, με όραμα την ποιότητα και την αξιοπιστία. Σήμερα εξειδικευόμαστε σε ξυλουργικές λύσεις για ιδιώτες &amp; επιχειρήσεις στο <strong>Περιστέρι</strong> και την ευρύτερη Αθήνα.</p>
+        <h2>Γιατί Aggelopoulos για την Κουζίνα σας;</h2>
+        <p><strong>Εμπειρία 60+ ετών</strong> και δεκάδες έργα τον χρόνο σε σπίτια της Αθήνας. Δουλεύουμε με <strong>πιστοποιημένα υλικά</strong>, μηχανισμούς <strong>Blum/FGV</strong> και ακριβείς εφαρμογές.</p>
+        <p>Στόχος μας: <strong>λειτουργικότητα</strong>, <strong>αισθητική</strong> και <strong>αντοχή</strong>—με καθαρές προσφορές και συνεπείς παραδόσεις.</p>
       </div>
-      <figure class="img"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/2-fotor-20240311154959-1.jpg" alt="Ξυλουργείο Αγγελόπουλος – στο εργαστήριο"></figure>
+      <figure class="img"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80" alt="Σύγχρονη κουζίνα με ποιοτικά υλικά"></figure>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== FAQ ===== -->
+  <!-- ===== FAQ (ΚΟΥΖΙΝΕΣ) ===== -->
   <section class="wrap" id="faq">
-    <div class="faq-head"><h2 style="font-size:clamp(22px,3.6vw,40px);margin:0">Συχνές Ερωτήσεις</h2></div>
+    <div class="faq-head"><h2 style="font-size:clamp(22px,3.6vw,40px);margin:0">Συχνές Ερωτήσεις – Κουζίνες</h2></div>
     <div class="faq-gap"></div>
     <div id="aggl-acc" class="acc">
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc1"><span>Τι περιλαμβάνει μια τυπική κουζίνα σας;</span><span class="plus">+</span></button><div id="acc1" class="acc-panel" role="region" hidden><p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong>, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, Gola ή μπάρα, πάγκοι <strong>3–4 εκ.</strong> κ.ά. Οι λεπτομέρειες καθορίζονται στη μελέτη.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc2"><span>Με ποιες μάρκες μηχανισμών δουλεύετε;</span><span class="plus">+</span></button><div id="acc2" class="acc-panel" role="region" hidden><p>Κυρίως <strong>Blum</strong> και <strong>FGV</strong>, ανάλογα τις ανάγκες του έργου.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc3"><span>Ντουλάπα: συρόμενη ή ανοιγόμενη;</span><span class="plus">+</span></button><div id="acc3" class="acc-panel" role="region" hidden><p>Συρόμενη για οικονομία χώρου, ανοιγόμενη για πλήρη πρόσβαση. Και οι δύο λύσεις υποστηρίζονται με εργονομικά εσωτερικά.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc4"><span>Αναλαμβάνετε επισκευές σε συρόμενες πόρτες;</span><span class="plus">+</span></button><div id="acc4" class="acc-panel" role="region" hidden><p>Ναι, κατόπιν ελέγχου προχωράμε σε ρύθμιση/αντικατάσταση οδηγών ή εξαρτημάτων.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc5"><span>Σε πόσο χρόνο παραδίδετε;</span><span class="plus">+</span></button><div id="acc5" class="acc-panel" role="region" hidden><p>Τυπικά <strong>10–20 ημέρες</strong> από την τελική έγκριση σχεδίων &amp; υλικών.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc6"><span>Προσφέρετε δωρεάν μέτρηση;</span><span class="plus">+</span></button><div id="acc6" class="acc-panel" role="region" hidden><p>Ναι, σε <strong>Αττική</strong>. Κλείστε ραντεβού από τη <a href="https://aggelopouloscarpentry.com/επικοινωνία/">σελίδα επικοινωνίας</a>.</p></div></div>
+      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc1"><span>Τι περιλαμβάνει μια τυπική κουζίνα σας;</span><span class="plus">+</span></button><div id="acc1" class="acc-panel" role="region" hidden><p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong>, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, Gola ή μπάρα, πάγκοι <strong>3–4 εκ.</strong>. Οι λεπτομέρειες καθορίζονται στη μελέτη.</p></div></div>
+      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc2"><span>Με ποιες μάρκες μηχανισμών δουλεύετε;</span><span class="plus">+</span></button><div id="acc2" class="acc-panel" role="region" hidden><p>Κυρίως <strong>Blum</strong> και <strong>FGV</strong>, ανάλογα με τις ανάγκες του έργου.</p></div></div>
+      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc3"><span>Πόσο διαρκεί η εγκατάσταση;</span><span class="plus">+</span></button><div id="acc3" class="acc-panel" role="region" hidden><p>Συνήθως 1–3 ημέρες, ανάλογα με το μέγεθος και τις ειδικές κατασκευές.</p></div></div>
+      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc4"><span>Αναλαμβάνετε μόνο αντικατάσταση πάγκου/ποδιάς;</span><span class="plus">+</span></button><div id="acc4" class="acc-panel" role="region" hidden><p>Ναι, κατόπιν εκτίμησης μπορούμε να αλλάξουμε πάγκο, ποδιά, φωτισμό ή μηχανισμούς.</p></div></div>
+      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc5"><span>Παρέχετε δωρεάν μέτρηση;</span><span class="plus">+</span></button><div id="acc5" class="acc-panel" role="region" hidden><p>Ναι, σε <strong>Αττική</strong>. Κλείστε ραντεβού από τη <a href="https://aggelopouloscarpentry.com/επικοινωνία/">σελίδα επικοινωνίας</a>.</p></div></div>
     </div>
   </section>
 
@@ -302,7 +288,7 @@ body{background:#fff;color:#111}
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== (ίδιο με v33) -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="wrap">
       <div>
@@ -358,7 +344,7 @@ body{background:#fff;color:#111}
   });
 })();
 
-/* ===== Lazy‑load Elfsight ===== */
+/* ===== Lazy-load Elfsight ===== */
 (function(){
   var ph=document.getElementById('elfsight-container'); if(!ph) return;
   var loaded=false;
@@ -375,5 +361,5 @@ body{background:#fff;color:#111}
 
 <!-- JSON-LD minimal -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","serviceType":"Ξυλουργικές Λύσεις – Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες, Ειδικές Κατασκευές","provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","areaServed":"Αττική","telephone":"+306936815779"},"brand":["Blum","FGV"]}
+{"@context":"https://schema.org","@type":"Service","serviceType":"Έπιπλα Κουζίνας – Σχεδιασμός, Κατασκευή, Τοποθέτηση","provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","areaServed":"Αττική","telephone":"+306936815779"},"brand":["Blum","FGV"]}
 </script>
