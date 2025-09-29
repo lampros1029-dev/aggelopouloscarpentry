@@ -161,11 +161,22 @@ body{background:#fff;color:#111}
   .about .img{order:2;width:100%;border-radius:14px;overflow:hidden;margin:6px 0 2px}
   .about .img img{display:block;width:100% !important;height:auto !important}
 
-  /* === REVIEWS: ακόμη πιο «σφιχτό» στο κινητό === */
-  .reviews .gwrap{padding:4px}
-  #elfsight-container{max-width:96%;margin:6px auto}
-  #elfsight-container .eapps-widget{max-height:340px !important;border-radius:12px !important}
+/* === REVIEWS: COMPACT MOBILE (hard clamp + no extra padding) === */
+.reviews{padding-top:2px}
+.reviews .gwrap{padding:2px}
+#elfsight-container{max-width:94%;margin:6px auto 0}
+#elfsight-container .eapps-widget{
+  /* Κόβουμε το κενό που δημιουργεί το widget */
+  min-height:0 !important;
+  height:auto !important;
+  max-height:300px !important;   /* ↓ αν θες ακόμη πιο κοντό, βάλε 260px */
+  overflow:hidden !important;
+  border-radius:12px !important;
 }
+/* Ακυρώνουμε inline heights/paddings που πετάει το script */
+#elfsight-container .eapps-widget [style*="height"]{height:auto !important}
+#elfsight-container .eapps-widget [style*="min-height"]{min-height:0 !important}
+#elfsight-container .eapps-widget [style*="padding"]{padding:8px !important}
 
 /* Helpers */
 .aggl img{max-width:100%;height:auto}
