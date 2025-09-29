@@ -1,271 +1,206 @@
 <!doctype html>
 <html lang="el">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aggelopoulos Carpentry — Ξυλουργικές Λύσεις στην Αθήνα (Περιστέρι)</title>
-<meta name="description" content="Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες & Ειδικές Κατασκευές. Παράδοση 10–20 ημέρες. Blum/FGV, Gola, LED, πάγκοι 3–4 εκ.">
-<!-- Aggelopoulos – HTML v25 -->
-<!-- Tweaks: local review arrows, scrollbar removed, hero & FAQ accordeon -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Επικοινωνία | Aggelopoulos Carpentry</title>
+  <meta name="description" content="Ζητήστε δωρεάν μέτρηση. Φόρμα επικοινωνίας με αποστολή φωτογραφιών, τηλέφωνο και χάρτη.">
+  <style>
+    :root{--accent:#5D4E37;--bg:#f7f8fb;--muted:#6b6b6b;--ink:#111}
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto;color:var(--ink);background:var(--bg)}
+    a{color:var(--accent)}
+    header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid rgba(93,78,55,.12);backdrop-filter:saturate(180%) blur(4px)}
+    .wrap{max-width:1080px;margin:0 auto;padding:20px 22px}
+    .header-inner{display:flex;gap:14px;align-items:center;justify-content:space-between}
+    .logo img{height:48px;width:auto;display:block}
+    nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .btn{border:none;border-radius:999px;padding:13px 18px;background:var(--accent);color:#fff;font-weight:800;cursor:pointer;text-decoration:none}
+    .btn[disabled]{opacity:.6;cursor:not-allowed}
+    .pill{border:1px solid rgba(93,78,55,.25);padding:9px 14px;border-radius:999px;background:#fff;text-decoration:none;color:#111;font-weight:700}
+    .hero{padding:28px 22px 12px}
+    .hero h1{margin:8px 0 4px;font-size:clamp(28px,5.2vw,52px);line-height:1.1}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1.4fr .9fr;gap:20px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:#fff;border:1px solid rgba(93,78,55,.15);border-radius:18px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:24px}
+    form{display:grid;gap:16px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.row{grid-template-columns:1fr}}
+    label{font-weight:800;display:block;margin:0 0 6px}
+    input,textarea,select{width:100%;border:1px solid #d8d8d8;border-radius:14px;padding:12px 14px;font:inherit;outline:none;background:#fff}
+    input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(93,78,55,.08)}
+    .help{color:var(--muted);font-size:.95rem}
+    .err{color:#b00020;font-weight:700;margin-top:6px;display:none}
+    .show{display:block}
+    .gallery{display:flex;flex-wrap:wrap;gap:10px}
+    .thumb{position:relative;width:110px;height:90px;border-radius:10px;overflow:hidden;border:1px solid #e3e3e3;background:#fafafa;display:grid;place-items:center}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .thumb button{position:absolute;top:4px;right:4px;border:none;border-radius:999px;background:rgba(0,0,0,.7);color:#fff;width:24px;height:24px;cursor:pointer}
+    .aside .card{position:sticky;top:88px}
+    iframe.map{width:100%;height:260px;border:0;border-radius:12px}
+    footer{margin-top:30px;padding:20px 0;border-top:1px solid rgba(93,78,55,.12);color:#555}
+    /* Spacing & consent block */
+    .consent{margin:8px 0 18px;padding:12px 14px;border:1px solid #e8e1d8;border-radius:14px;background:#fafafa}
+    .consent .consent-row{display:flex;gap:12px;align-items:flex-start}
+    .consent input[type="checkbox"]{width:20px;height:20px;margin-top:3px}
+    #sendBtn{margin-top:6px}
+  </style>
 </head>
 <body>
-<!-- === BEGIN USER HTML === -->
-<!-- Aggelopoulos – HTML v25
-Tweaks:
-1) Mobile local‑review arrows lifted a bit so they sit centered vs. cards.
-2) Desktop horizontal scrollbar removed on review track.
-   - Added scrollbar styling + hidden on desktop via overflow overlay mask.
-3) Hero anti‑widows: balance lines / slightly wider text container + word-break control.
--->
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="/"><img src="/assets/logo-dark.png" alt="Aggelopoulos Carpentry — Carpentry Solutions"></a>
+    <nav>
+      <a class="pill" href="/#services">Υπηρεσίες</a>
+      <a class="btn" href="tel:+306936815779">Κάλεσε Τώρα</a>
+    </nav>
+  </div>
+</header>
 
-<style>
-/* ====== THEME VARS ====== */
-.aggl{--accent:#5D4E37;--black:#111;--white:#fff;--muted:#6b6b6b;--star:#fbbc04}
-.aggl .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-.section-gap{height:40px}
+<section class="wrap hero">
+  <h1>Ζητήστε Δωρεάν Μέτρηση</h1>
+  <p class="muted">Συμπληρώστε τη φόρμα, ανεβάστε έως 5 φωτογραφίες και θα επικοινωνήσουμε εντός 24 ωρών.</p>
+</section>
 
-/* ====== BUTTONS ====== */
-.btn{border-radius:999px;display:inline-block;text-decoration:none;font-weight:700;padding:12px 22px;background:var(--accent);color:#fff;transition:transform .18s ease, box-shadow .18s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.22)}
+<main class="wrap">
+  <div class="grid">
+    <section class="card">
+      <div id="alert" aria-live="polite"></div>
 
-/* ====== HERO ====== */
-.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.hero .inner{min-height:clamp(260px,50vh,540px);display:flex;align-items:center;justify-content:center;padding:36px 20px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)), var(--hero-img) center 55%/cover no-repeat}
-.hero .content{max-width:1200px;margin:0 auto;text-align:center;color:#fff;padding:0 18px}
-.hero .logo{width:min(340px,68%);height:auto;display:block;margin:0 auto 10px}
-.hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,46px);line-height:1.18;max-width:980px;}
-/* Anti-widows: keep last two words together */
-.hero h1 span.nb{white-space:nowrap}
-.hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55;}
-.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
+      <form id="contact" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="access_key" value="e3990b79-e6a8-4d69-8f86-e605c272f526">
+        <input type="hidden" name="from_name" value="Aggelopoulos Carpentry Website">
+        <input type="hidden" name="subject" value="Νέο αίτημα (φόρμα επικοινωνίας)">
+        <input type="hidden" name="replyto" value="email">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0" aria-hidden="true">
+        <input type="hidden" name="_started" id="started">
 
-/* ====== SERVICES ====== */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.card{background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(93,78,55,.15);box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.card h3{font-size:clamp(20px,2.2vw,26px);text-align:center;margin:0 0 4px}
-.card .u{display:block;width:52px;height:3px;background:var(--accent);margin:10px auto 12px;border-radius:3px}
-.card p{margin:0 0 14px;text-align:center}
-.card .btn{padding:11px 18px;border-radius:12px}
-
-/* ====== STEPS ====== */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:12px}
-.step{background:#fff;border:1px solid rgba(93,78,55,.14);border-radius:18px;padding:18px 16px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .18s ease, box-shadow .18s ease}
-.step:hover{transform:translateY(-3px);box-shadow:0 14px 24px rgba(0,0,0,.08)}
-.step-top{display:grid;grid-template-columns:44px 44px 1fr;align-items:center;column-gap:12px;margin-bottom:8px}
-.num{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--accent);color:#fff;font-weight:800}
-.ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:linear-gradient(180deg, rgba(93,78,55,.09), rgba(93,78,55,.04));border:1px solid rgba(93,78,55,.2)}
-.ico svg{width:22px;height:22px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.step h3{margin:0;font-weight:900;font-size:20px}
-
-/* ====== ABOUT ====== */
-.about{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:48px 16px;color:#fff}
-.about h2{margin:0 0 10px;font-size:clamp(22px,3.6vw,40px)}
-.about p{margin:0 0 10px;font-size:clamp(14px,2vw,18px);line-height:1.65}
-.about .img{border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-.about .img img{display:block;width:100%;height:auto}
-
-/* ====== FAQ ====== */
-.faq-head{text-align:center}
-.faq-gap{height:28px}
-.acc{max-width:900px;margin:0 auto}
-.acc-item{border:1px solid rgba(93,78,55,.25);border-radius:12px;background:#fff;overflow:hidden}
-.acc-item + .acc-item{margin-top:14px}
-.acc-btn{all:unset;display:flex;justify-content:space-between;align-items:center;width:100%;cursor:pointer;font-weight:700;font-size:clamp(16px,2.4vw,20px);padding:12px 16px}
-.acc-btn .plus{font-weight:700;font-size:20px;color:var(--accent);transition:transform .24s ease}
-.acc-item.open .acc-btn .plus{transform:rotate(180deg)}
-.acc-panel{max-height:0;overflow:hidden;opacity:0;padding:0 16px;transition:max-height .3s ease, opacity .3s ease, padding-top .3s ease}
-.acc-item.open .acc-panel{opacity:1;padding-top:10px}
-.acc-panel p{margin:0 0 10px}
-
-/* ====== REVIEWS ====== */
-.reviews .gwrap{background:#f7f8fb;border-radius:16px;padding:12px}
-.rev-local{position:relative}
-/* track */
-.ggrid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px 44px 10px}
-/* desktop: hide visible scrollbar gutter */
-@media (min-width:900px){.ggrid{scrollbar-width:none}.ggrid::-webkit-scrollbar{height:0;background:transparent}}
-/* cards */
-.gcard{background:#f7f8fb;border:none;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:18px;flex:0 0 88%;scroll-snap-align:center}
-@media (min-width:900px){.gcard{flex:0 0 46%}}
-.gtop{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.ava{width:48px;height:48px;border-radius:50%;object-fit:cover}
-.gname{margin:0;color:#1f1f1f;font-weight:800}
-.gwhen{font-size:13px;color:#6b6b6b}
-.gstars{color:#fbbc04;margin:4px 0 8px;letter-spacing:.5px}
-.gtext{margin:0;color:#1f1f1f;line-height:1.65}
-
-/* Arrows — only on mobile, slightly higher */
-.rev-arrow{display:none}
-@media (max-width:820px){
-  .rev-arrow{display:grid;place-items:center;position:absolute;bottom:12px; /* lifted */
-    width:38px;height:38px;border:none;border-radius:999px;background:#3b3b3b;color:#fff;cursor:pointer;z-index:5;box-shadow:0 8px 22px rgba(0,0,0,.2)}
-  .rev-arrow svg{width:18px;height:18px;stroke:#fff;stroke-width:2;fill:none}
-  .rev-prev{left:4px}
-  .rev-next{right:4px}
-  @media (hover:hover){.rev-arrow:hover{background:#000}}
-}
-
-/* Hide Elfsight badge if present */
-.elfsight-app [class*="badge"],
-.elfsight-app [class*="Badge"],
-.elfsight-app a[href*="elfsight" i]{display:none !important;visibility:hidden !important;height:0 !important;opacity:0 !important}
-
-/* ====== CONTACT ====== */
-.contact .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:start}
-@media (max-width:900px){.contact .grid{grid-template-columns:1fr}}
-.contact .card{background:#fff;border-radius:16px;padding:22px;border:1px solid rgba(93,78,55,.15)}
-.contact .card h3{margin:0 0 8px;font-size:clamp(18px,2.6vw,24px)}
-
-/* ====== MOBILE TWEAKS ====== */
-@media (max-width:820px){.about .wrap{grid-template-columns:1fr;gap:18px;padding:36px 16px}.about .img{order:-1}}
-@media (max-width:420px){.hero .inner{padding:28px 14px}}
-</style>
-
-<div class="aggl">
-  <!-- ===== HERO ===== -->
-  <section class="hero" style="--hero-img:url(https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg)">
-    <div class="inner"><div class="content">
-      <img class="logo" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry — από το 1960">
-      <h1>Ξυλουργικές Λύσεις στην Αθήνα <span class="nb">(Περιστέρι)</span></h1>
-      <p>Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες &amp; Ειδικές Κατασκευές. <strong>Blum &amp; FGV</strong> μηχανισμοί, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/περιστρεφόμενος μύλος), <strong>LED</strong>, <strong>πάγκοι 3–4 εκ.</strong>. <strong>Παράδοση 10–20 ημέρες</strong>.</p>
-      <div class="cta">
-        <a href="/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
-        <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
-      </div>
-      <div class="badge">60+ έτη εμπειρίας • 50+ έργα/έτος • 4.9★ αξιολογήσεις</div>
-    </div></div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== SERVICES ====== -->
-  <section class="wrap" id="services">
-    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Υπηρεσίες Ξυλουργείου</h2>
-    <p style="text-align:center;margin:0 auto 24px;max-width:860px;font-size:clamp(14px,2vw,18px)">Κατασκευάζουμε &amp; τοποθετούμε <a href="#">κουζίνες</a>, <a href="#">έπιπλα μπάνιου</a>, <a href="#">ντουλάπες/υπνοδωμάτιο</a>, <a href="#">πόρτες &amp; κουφώματα</a> και <a href="#">ειδικές κατασκευές</a>.</p>
-
-    <div class="svc-grid">
-      <article class="card"><h3>Έπιπλα Κουζίνας</h3><span class="u"></span>
-        <p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong> με φρένο, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας, <strong>LED</strong>, πάγκοι <strong>3–4 εκ.</strong>.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="/επικοινωνία/">Δείτε Περισσότερα</a></p>
-      </article>
-
-      <article class="card"><h3>Έπιπλα Μπάνιου</h3><span class="u"></span>
-        <p><strong>Αντοχή στην υγρασία</strong>, <strong>αρμολογήσεις ακριβείας</strong>, προσαρμοσμένα ντουλάπια &amp; <strong>πάγκοι</strong> κατάλληλοι για νερό.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="/επικοινωνία/">Δείτε Περισσότερα</a></p>
-      </article>
-
-      <article class="card"><h3>Ντουλάπες Υπνοδωμάτιου</h3><span class="u"></span>
-        <p>Συρόμενες/ανοιγόμενες με εργονομικά εσωτερικά, <strong>συρτάρια FGV</strong>, <strong>μεντεσέδες Blum</strong>, πόμολα μπάρα.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="/επικοινωνία/">Δείτε Περισσότερα</a></p>
-      </article>
-
-      <article class="card"><h3>Πόρτες Εσωτερικές</h3><span class="u"></span>
-        <p><strong>Laminate</strong> ή πρεσσαριστές με <strong>πετούγιες</strong> &amp; κλειδαριές. Επισκευές συρόμενων πορτών κατόπιν ελέγχου.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="/επικοινωνία/">Δείτε Περισσότερα</a></p>
-      </article>
-
-      <article class="card" style="grid-column:1/-1"><h3>Ειδικές Κατασκευές</h3><span class="u"></span>
-        <p>TV wall cladding (δρύς/λάκα), ντουλάπι σαλονιού με γυαλί, νησίδες, <strong>κάσα για πατάρι</strong>, custom λύσεις.</p>
-        <p style="text-align:center;margin:0"><a class="btn" href="/επικοινωνία/">Παραδείγματα</a></p>
-      </article>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== STEPS ===== -->
-  <section class="wrap" id="process" aria-labelledby="how-title">
-    <div class="steps-head" style="text-align:center">
-      <h2 id="how-title" style="font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Πώς Δουλεύουμε</h2>
-      <p style="margin:0 auto 4px;max-width:760px;color:var(--muted)">Τυπική παράδοση <strong>10–20 ημέρες</strong> από έγκριση σχεδίων &amp; υλικών.</p>
-    </div>
-    <div class="steps-grid">
-      <article class="step"><div class="step-top"><span class="num">1</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8h18M7 16h10M9 12h6"/></svg></span><h3>Μέτρηση</h3></div><p>Επίσκεψη στον χώρο και ακριβείς διαστάσεις.</p></article>
-      <article class="step"><div class="step-top"><span class="num">2</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20l6-6m0 0 7-7a2 2 0 1 1 3 3l-7 7m-3 3H3v-3"/></svg></span><h3>Σχεδίαση</h3></div><p>Λύσεις προσαρμοσμένες στις ανάγκες σας (3D όπου απαιτείται).</p></article>
-      <article class="step"><div class="step-top"><span class="num">3</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M7 7V4h10v3"/></svg></span><h3>Κατασκευή</h3></div><p>Υλικά αντοχής, μηχανισμοί <strong>Blum</strong>/<strong>FGV</strong>.</p></article>
-      <article class="step"><div class="step-top"><span class="num">4</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 10l4 4M14 10l-4 4"/><path d="M3 21h18M5 21l2-8h10l2 8"/></svg></span><h3>Τοποθέτηση</h3></div><p>Γρήγορη &amp; καθαρή εγκατάσταση.</p></article>
-      <article class="step"><div class="step-top"><span class="num">5</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6l-11 11-5-5"/></svg></span><h3>Έλεγχος</h3></div><p>Τελικός έλεγχος ποιότητας &amp; ενημέρωση συντήρησης.</p></article>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== ABOUT ===== -->
-  <section class="about">
-    <div class="wrap">
-      <div>
-        <h2>Προφίλ Επιχείρησης</h2>
-        <p><strong>Δημιουργήθηκε το 1960, από τον Λάμπρο Αγγελόπουλο</strong>, με όραμα την ποιότητα και την αξιοπιστία. Σήμερα εξειδικευόμαστε σε ξυλουργικές λύσεις για ιδιώτες &amp; επιχειρήσεις στο <strong>Περιστέρι</strong> και την ευρύτερη Αθήνα.</p>
-      </div>
-      <figure class="img"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/2-fotor-20240311154959-1.jpg" alt="Ξυλουργείο Αγγελόπουλος – στο εργαστήριο"></figure>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== FAQ ===== -->
-  <section class="wrap" id="faq">
-    <div class="faq-head"><h2 style="font-size:clamp(22px,3.6vw,40px);margin:0">Συχνές Ερωτήσεις</h2></div>
-    <div class="faq-gap"></div>
-    <div id="aggl-acc" class="acc">
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc1"><span>Τι περιλαμβάνει μια τυπική κουζίνα σας;</span><span class="plus">+</span></button><div id="acc1" class="acc-panel" role="region" hidden><p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong>, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, Gola ή μπάρα, πάγκοι <strong>3–4 εκ.</strong> κ.ά. Οι λεπτομέρειες καθορίζονται στη μελέτη.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc2"><span>Με ποιες μάρκες μηχανισμών δουλεύετε;</span><span class="plus">+</span></button><div id="acc2" class="acc-panel" role="region" hidden><p>Κυρίως <strong>Blum</strong> και <strong>FGV</strong>, ανάλογα τις ανάγκες του έργου.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc3"><span>Ντουλάπα: συρόμενη ή ανοιγόμενη;</span><span class="plus">+</span></button><div id="acc3" class="acc-panel" role="region" hidden><p>Συρόμενη για οικονομία χώρου, ανοιγόμενη για πλήρη πρόσβαση. Και οι δύο λύσεις υποστηρίζονται με εργονομικά εσωτερικά.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc4"><span>Αναλαμβάνετε επισκευές σε συρόμενες πόρτες;</span><span class="plus">+</span></button><div id="acc4" class="acc-panel" role="region" hidden><p>Ναι, κατόπιν ελέγχου προχωράμε σε ρύθμιση/αντικατάσταση οδηγών ή εξαρτημάτων.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc5"><span>Σε πόσο χρόνο παραδίδετε;</span><span class="plus">+</span></button><div id="acc5" class="acc-panel" role="region" hidden><p>Τυπικά <strong>10–20 ημέρες</strong> από την τελική έγκριση σχεδίων &amp; υλικών.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc6"><span>Προσφέρετε δωρεάν μέτρηση;</span><span class="plus">+</span></button><div id="acc6" class="acc-panel" role="region" hidden><p>Ναι, σε <strong>Αττική</strong>. Κλείστε ραντεβού από τη <a href="/επικοινωνία/">σελίδα επικοινωνίας</a>.</p></div></div>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== REVIEWS ===== -->
-  <section class="wrap reviews" id="reviews">
-    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 8px">Αξιολογήσεις Πελατών</h2>
-    <div class="gwrap">
-      <div id="elfsight-container" style="margin:10px 0 14px"><div class="elfsight-app-16816178-446d-4e1b-bbe5-70a5e1481d13" data-elfsight-app-lazy></div></div>
-      <div class="rev-local">
-        <button class="rev-arrow rev-prev" type="button" aria-label="Προηγούμενο"><svg viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg></button>
-        <button class="rev-arrow rev-next" type="button" aria-label="Επόμενο"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-        <div class="ggrid" id="local-rev-track">
-          <article class="gcard"><div class="gtop"><img class="ava" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/pexels-anastasia-shuraeva-5704852.jpg" alt="Δήμητρα Μ."><div><p class="gname">Δήμητρα Μ.</p><div class="gwhen">1 year ago</div></div></div><div class="gstars">★★★★★</div><p class="gtext">Το αποτέλεσμα ήταν εντυπωσιακό και ακριβώς ό,τι είχα φανταστεί. Εξαιρετικοί επαγγελματίες!</p></article>
-          <article class="gcard"><div class="gtop"><img class="ava" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/pexels-nathan-cowley-1300402.jpg" alt="Γιάννης Π."><div><p class="gname">Γιάννης Π.</p><div class="gwhen">1 year ago</div></div></div><div class="gstars">★★★★★</div><p class="gtext">Άψογη ποιότητα και προσοχή στη λεπτομέρεια. Προτείνω ανεπιφύλακτα.</p></article>
+        <div class="row">
+          <div>
+            <label for="name">Ονοματεπώνυμο *</label>
+            <input id="name" name="name" autocomplete="name" required minlength="3" placeholder="π.χ. Δήμητρα Μ.">
+            <div class="err" id="e-name">Συμπληρώστε τουλάχιστον 3 χαρακτήρες.</div>
+          </div>
+          <div>
+            <label for="phone">Τηλέφωνο *</label>
+            <input id="phone" name="phone" inputmode="tel" autocomplete="tel" required pattern="^[0-9+ ()-]{8,}$" placeholder="π.χ. 693 000 0000">
+            <div class="err" id="e-phone">Δώστε έγκυρο τηλέφωνο.</div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="section-gap"></div>
+        <div>
+          <label for="email">Email (προαιρετικό)</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com">
+          <div class="err" id="e-email">Το email δεν είναι έγκυρο.</div>
+        </div>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="wrap contact" id="shop">
-    <div class="grid">
-      <figure style="margin:0"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/20240302_123455.jpg" alt="Το εργαστήριο Aggelopoulos Carpentry" style="width:100%;height:auto;display:block;border-radius:16px"></figure>
-      <div style="display:grid;gap:16px">
-        <div class="card"><h3>Τοποθεσία</h3><p><a href="https://www.google.com/maps/search/?api=1&query=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136" target="_blank" rel="noopener" style="text-decoration:underline">Χρυσάνθου 58, Περιστέρι, 12136</a></p></div>
-        <div class="card"><h3>Στοιχεία Επικοινωνίας</h3><p><a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a></p><p><a href="tel:+306936815779">(+30) 693 6815 779</a></p></div>
+        <div>
+          <label for="message">Μήνυμα *</label>
+          <textarea id="message" name="message" rows="6" required placeholder="Περιγράψτε χώρο/διαστάσεις, υλικά, χρόνο παράδοσης κ.λπ."></textarea>
+          <div class="err" id="e-message">Γράψτε τουλάχιστον 10 χαρακτήρες.</div>
+          <p class="help">Μπορείτε να στείλετε φωτογραφίες κάτω από 4MB η καθεμία.</p>
+        </div>
+
+        <div>
+          <label for="photos">Φωτογραφίες (έως 5)</label>
+          <input id="photos" name="attachments" type="file" accept="image/*" multiple>
+          <div class="gallery" id="gallery"></div>
+          <div class="err" id="e-photos" style="display:none"></div>
+        </div>
+
+        <div class="consent">
+          <div class="consent-row">
+            <input id="privacy" type="checkbox" required>
+            <label for="privacy" style="font-weight:600;margin:0">Συμφωνώ να επικοινωνήσετε για την προσφορά.</label>
+          </div>
+        </div>
+        <div class="err" id="e-privacy">Απαιτείται συγκατάθεση.</div>
+
+        <button class="btn" id="sendBtn" type="submit">Αποστολή</button>
+        <p class="help" style="margin-top:6px">Ή καλέστε στο <a href="tel:+306936815779">693 6815 779</a>.</p>
+      </form>
+    </section>
+
+    <aside class="aside">
+      <div class="card">
+        <h3 style="margin-top:0">Στοιχεία Επικοινωνίας</h3>
+        <p><strong>Τηλέφωνο:</strong> <a href="tel:+306936815779">(+30) 693 6815 779</a><br>
+        <strong>Email:</strong> <a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a><br>
+        <strong>Διεύθυνση:</strong> Χρυσάνθου 58, Περιστέρι, 12136</p>
+        <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136&output=embed"
+          title="Χάρτης Aggelopoulos Carpentry"></iframe>
+        <p class="help" style="margin-top:8px"><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136">Άνοιγμα στους Χάρτες Google</a></p>
       </div>
-    </div>
-  </section>
-</div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="wrap">© Aggelopoulos Carpentry — Περιστέρι</div></footer>
 
 <script>
-/* ===== Accordion: single-open ===== */
-(function(){var c=document.getElementById('aggl-acc');if(!c)return;var items=[].slice.call(c.querySelectorAll('.acc-item'));function openItem(it){var p=it.querySelector('.acc-panel');it.classList.add('open');p.hidden=false;p.style.maxHeight=p.scrollHeight+'px';p.style.opacity=1;it.querySelector('.acc-btn').setAttribute('aria-expanded','true')}function closeItem(it){var p=it.querySelector('.acc-panel');it.classList.remove('open');p.style.maxHeight='0px';p.style.opacity=0;it.querySelector('.acc-btn').setAttribute('aria-expanded','false');setTimeout(function(){p.hidden=true},300)}items.forEach(function(it){var b=it.querySelector('.acc-btn'),p=it.querySelector('.acc-panel');p.hidden=true;p.style.maxHeight='0px';b.addEventListener('click',function(){var o=c.querySelector('.acc-item.open');if(o&&o!==it)closeItem(o);it.classList.contains('open')?closeItem(it):openItem(it)})})})();
+(function(){
+  const form = document.getElementById('contact');
+  const btn  = document.getElementById('sendBtn');
+  const alertBox = document.getElementById('alert');
+  const started = document.getElementById('started');
+  const fileInput = document.getElementById('photos');
+  const gallery = document.getElementById('gallery');
+  started.value = String(Date.now());
 
-/* ===== Local reviews arrow scroll ===== */
-(function(){var track=document.getElementById('local-rev-track');if(!track)return;var prev=document.querySelector('.rev-prev');var next=document.querySelector('.rev-next');function cardWidth(){var c=track.querySelector('.gcard');return c?c.getBoundingClientRect().width+12:320}function go(d){track.scrollBy({left:d*cardWidth(),behavior:'smooth'})}prev&&prev.addEventListener('click',function(){go(-1)});next&&next.addEventListener('click',function(){go(1)});})();
+  function showError(id, show, msg){const el=document.getElementById(id);if(!el)return; if(msg) el.textContent=msg; el.style.display=show?'block':'none'}
+  const emailOk = v => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const telOk   = v => /^[0-9+ ()-]{8,}$/.test(v||'');
+  const minLen  = (v,n) => (v||'').trim().length>=n;
 
-/* ===== Lazy‑load Elfsight (prevents initial scroll jump) ===== */
-(function(){var ph=document.getElementById('elfsight-container');if(!ph)return;var loaded=false;function load(){if(loaded)return;loaded=true;var s=document.createElement('script');s.src='https://elfsightcdn.com/platform.js';s.async=true;s.defer=true;document.body.appendChild(s);}if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){load();io.disconnect();}})},{rootMargin:'200px'});io.observe(ph);}else{setTimeout(load,1200);}})();
+  const MAX_FILES = 5, MAX_EACH = 4*1024*1024;
+  function refreshGallery(files){
+    gallery.innerHTML='';
+    [...files].forEach((file, idx)=>{
+      const item = document.createElement('div'); item.className='thumb';
+      const img = document.createElement('img'); img.alt = file.name;
+      item.appendChild(img);
+      const rm = document.createElement('button'); rm.type='button'; rm.innerHTML='×';
+      rm.addEventListener('click', ()=>{ const list=[...fileInput.files]; list.splice(idx,1); const dt=new DataTransfer(); list.forEach(f=>dt.items.add(f)); fileInput.files=dt.files; refreshGallery(fileInput.files); });
+      item.appendChild(rm);
+      gallery.appendChild(item);
+      const reader = new FileReader(); reader.onload = e => img.src = e.target.result; reader.readAsDataURL(file);
+    });
+  }
+  fileInput.addEventListener('change', ()=>{
+    const files = fileInput.files;
+    if(files.length > MAX_FILES){ showError('e-photos', true, 'Μπορείτε έως '+MAX_FILES+' εικόνες.'); const dt=new DataTransfer(); [...files].slice(0,MAX_FILES).forEach(f=>dt.items.add(f)); fileInput.files = dt.files; }
+    else showError('e-photos', false);
+    for(const f of fileInput.files){ if(f.size > MAX_EACH){ showError('e-photos', true, 'Κάθε εικόνα έως 4MB.'); break; } }
+    refreshGallery(fileInput.files);
+  });
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault(); alertBox.innerHTML='';
+    const fd = new FormData(form);
+    const v = { name:fd.get('name'), phone:fd.get('phone'), email:fd.get('email'), message:fd.get('message'), privacy:document.getElementById('privacy').checked };
+    let ok = true;
+    if(!minLen(v.name,3)){showError('e-name', true); ok=false;} else showError('e-name', false);
+    if(!telOk(v.phone)){showError('e-phone', true); ok=false;} else showError('e-phone', false);
+    if(!emailOk(v.email)){showError('e-email', true); ok=false;} else showError('e-email', false);
+    if(!minLen(v.message,10)){showError('e-message', true); ok=false;} else showError('e-message', false);
+    if(!v.privacy){showError('e-privacy', true); ok=false;} else showError('e-privacy', false);
+
+    const tookMs = Date.now() - Number(started.value||0);
+    if (tookMs < 2500) { ok = false; alertBox.innerHTML = '<div class="fail">Πολύ γρήγορη υποβολή. Παρακαλώ ξαναδοκιμάστε.</div>'; }
+
+    for(const f of (fileInput.files||[])){ if(f.size>MAX_EACH){ ok=false; showError('e-photos', true, 'Κάθε εικόνα έως 4MB.'); break; } }
+
+    if(!ok) return;
+
+    btn.disabled = true; const old = btn.textContent; btn.textContent='Αποστολή…';
+    try{ const resp = await fetch(form.action, { method:'POST', body: fd, headers:{'Accept':'application/json'} });
+      const data = await resp.json().catch(()=>({}));
+      if(resp.ok){ form.reset(); started.value=String(Date.now()); gallery.innerHTML=''; alertBox.innerHTML='<div class="success">Ελήφθη! Θα επικοινωνήσουμε σύντομα.</div>'; }
+      else { const msg=(data&&data.message)||'Κάτι πήγε στραβά.'; alertBox.innerHTML='<div class="fail">'+msg+' Δοκιμάστε ξανά ή καλέστε στο <a href="tel:+306936815779">693 6815 779</a>.</div>'; }
+    }catch(err){ alertBox.innerHTML='<div class="fail">Αποτυχία δικτύου. Δοκιμάστε ξανά ή καλέστε στο <a href="tel:+306936815779">693 6815 779</a>.</div>'; }
+    finally{ btn.disabled=false; btn.textContent=old; }
+  });
+})();
 </script>
-
-<!-- JSON-LD minimal -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","serviceType":"Ξυλουργικές Λύσεις – Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες, Ειδικές Κατασκευές","provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","areaServed":"Αττική","telephone":"+306936815779"},"brand":["Blum","FGV"]}
-</script>
-<!-- === END USER HTML === -->
 </body>
 </html>
