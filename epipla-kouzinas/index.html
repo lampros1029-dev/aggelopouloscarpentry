@@ -1,365 +1,346 @@
-<!-- Aggelopoulos – HTML v34 (Κουζίνες – compact Google reviews + fixed About on mobile) -->
+<!-- Aggelopoulos – KITCHENS PAGE v1 (aligned to index v34) -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
-/* ====== RESET ====== */
-html,body{margin:0;padding:0}
-body{background:#fff;color:#111}
-
-/* ====== THEME VARS ====== */
+/* ====== THEME VARS (ίδιες με index) ====== */
 .aggl{--accent:#5D4E37;--black:#111;--white:#fff;--muted:#6b6b6b;--star:#fbbc04}
 .aggl .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 .section-gap{height:40px}
 .section-gap.s-tight{height:14px}
 
-/* ====== LINKS ====== */
+/* ====== LINKS / BUTTONS ====== */
 .aggl a{color:inherit;text-decoration:none;transition:opacity .18s ease}
 .aggl a:hover{opacity:.9}
-.aggl .btn{color:#fff !important;text-decoration:none}
-
-/* ====== BUTTONS ====== */
 .btn{border-radius:999px;display:inline-block;font-weight:700;padding:12px 22px;background:var(--accent);color:#fff;transition:transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.22)}
 .btn:focus{outline:2px solid rgba(93,78,55,.45);outline-offset:2px;border-radius:999px}
 
-/* ====== HERO ====== */
-.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.hero .inner{min-height:clamp(260px,50vh,540px);display:flex;align-items:center;justify-content:center;padding:36px 20px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)), var(--hero-img) center 55%/cover no-repeat}
-.hero .content{max-width:1200px;margin:0 auto;text-align:center;color:#fff;padding:0 18px}
-.hero .logo{width:min(340px,68%);height:auto;display:block;margin:0 auto 10px}
-.hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,46px);line-height:1.18;max-width:980px}
-.hero h1 span.nb{white-space:nowrap}
-.hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55}
-.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
+/* ====== HERO (compact) ====== */
+.k-hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
+.k-hero .inner{min-height:clamp(220px,38vh,420px);display:flex;align-items:center;justify-content:center;padding:30px 18px;background:linear-gradient(0deg,rgba(0,0,0,.55),rgba(0,0,0,.55)), var(--hero-img) center 55%/cover no-repeat}
+.k-hero .content{max-width:1100px;margin:0 auto;text-align:center;color:#fff;padding:0 12px}
+.k-hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,42px);line-height:1.18}
+.k-hero p{margin:0 auto 14px;max-width:900px;font-size:clamp(14px,2vw,18px);line-height:1.55}
+.k-hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 
-/* ====== SERVICES (Kitchen-focused) ====== */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.card{background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(93,78,55,.15);box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.card h3{font-size:clamp(20px,2.2vw,26px);text-align:center;margin:0 0 4px}
-.card .u{display:block;width:52px;height:3px;background:var(--accent);margin:10px auto 12px;border-radius:3px}
-.card p{margin:0 0 14px;text-align:center}
-.card .btn{padding:11px 18px;border-radius:12px}
+/* ====== BREADCRUMBS ====== */
+.breadcrumbs{font-size:14px;color:var(--muted);margin:10px 0}
+.breadcrumbs a{color:inherit}
+.breadcrumbs span.sep{opacity:.6;margin:0 6px}
 
-/* ====== STEPS ====== */
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:12px}
-.step{background:#fff;border:1px solid rgba(93,78,55,.14);border-radius:18px;padding:18px 16px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .18s ease,box-shadow .18s ease}
-.step:hover{transform:translateY(-3px);box-shadow:0 14px 24px rgba(0,0,0,.08)}
-.step-top{display:grid;grid-template-columns:44px 44px 1fr;align-items:center;column-gap:12px;margin-bottom:8px}
-.num{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;background:var(--accent);color:#fff;font-weight:800}
-.ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:linear-gradient(180deg, rgba(93,78,55,.09), rgba(93,78,55,.04));border:1px solid rgba(93,78,55,.2)}
-.ico svg{width:22px;height:22px;stroke:var(--accent);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.step h3{margin:0;font-weight:900;font-size:20px}
+/* ====== INTRO CARD ====== */
+.intro{background:#fff;border-radius:16px;padding:20px;border:1px solid rgba(93,78,55,.15);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.intro h2{margin:0 0 8px;font-size:clamp(20px,2.6vw,28px)}
+.intro p{margin:0 0 10px}
 
-/* ====== ABOUT (Kitchen USP) ====== */
-.about{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:48px 16px;color:#fff}
-.about h2{margin:0 0 10px;font-size:clamp(22px,3.6vw,40px)}
-.about p{margin:0 0 10px;font-size:clamp(14px,2vw,18px);line-height:1.65}
-.about .img{border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-.about .img img{display:block;width:100%;height:auto}
+/* ====== BADGES ====== */
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.badge{display:inline-block;background:#f7f8fb;border:1px solid rgba(93,78,55,.18);border-radius:12px;padding:6px 10px;font-size:13px}
 
-/* ====== FAQ ====== */
-.faq-head{text-align:center}
-.faq-gap{height:28px}
-.acc{max-width:900px;margin:0 auto}
-.acc-item{border:1px solid rgba(93,78,55,.25);border-radius:12px;background:#fff;overflow:hidden}
-.acc-item + .acc-item{margin-top:14px}
-.acc-btn{all:unset;display:flex;justify-content:space-between;align-items:center;width:100%;cursor:pointer;font-weight:700;font-size:clamp(16px,2.4vw,20px);padding:12px 16px}
-.acc-btn .plus{font-weight:700;font-size:20px;color:var(--accent);transition:transform .24s ease}
-.acc-item.open .acc-btn .plus{transform:rotate(180deg)}
-.acc-panel{max-height:0;overflow:hidden;opacity:0;padding:0 16px;transition:max-height .3s ease,opacity .3s ease,padding-top .3s ease}
-.acc-item.open .acc-panel{opacity:1;padding-top:10px}
-.acc-panel p{margin:0 0 10px}
+/* ====== FILTERS (προαιρετικά tags) ====== */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
+.filter{border:1px solid rgba(93,78,55,.18);padding:6px 10px;border-radius:999px;font-size:13px;cursor:pointer;background:#fff}
+.filter.active{background:rgba(93,78,55,.08)}
 
-/* ====== REVIEWS – Google only (COMPACT) ====== */
-.reviews h2{margin:0 0 4px}
-.reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px}
-#elfsight-container{max-width:920px;margin:6px auto}
-#elfsight-container > div{height:auto !important}
-#elfsight-container .eapps-widget,
-#elfsight-container [class^="eapps-"],
-#elfsight-container [class*=" eapps-"]{
-  min-height:0 !important;
-  height:auto !important;
-  max-height:420px !important;
-  overflow:hidden !important;
-  border-radius:12px !important;
-}
-@media (min-width:1200px){
-  #elfsight-container{max-width:860px}
-  #elfsight-container .eapps-widget{max-height:380px !important}
-}
+/* ====== GALLERY GRID ====== */
+.k-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+@media (max-width:900px){.k-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.k-grid{grid-template-columns:1fr}}
+.k-item{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(93,78,55,.14);background:#fff}
+.k-item figure{margin:0}
+.k-item img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;transform:scale(1.001);transition:transform .25s ease}
+.k-item:hover img{transform:scale(1.03)}
+.k-caption{padding:10px 12px;font-size:14px;color:#333}
 
-/* ====== CONTACT ====== */
-.contact .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:start}
-@media (max-width:900px){.contact .grid{grid-template-columns:1fr}}
-.contact .card{background:#fff;border-radius:16px;padding:22px;border:1px solid rgba(93,78,55,.15)}
-.contact .card h3{margin:0 0 8px;font-size:clamp(18px,2.6vw,24px)}
+/* ====== LIGHTBOX ====== */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:9999}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.lb .close{position:absolute;top:14px;right:16px;background:#fff;border-radius:999px;padding:8px 12px;font-weight:800;cursor:pointer}
+.lb .nav{position:absolute;display:flex;align-items:center;justify-content:space-between;inset:0;pointer-events:none}
+.lb .nav button{pointer-events:auto;all:unset;display:grid;place-items:center;width:54px;height:54px;border-radius:999px;background:rgba(255,255,255,.9);margin:0 10px;font-size:24px;font-weight:900;cursor:pointer}
 
-/* ====== FOOTER (unchanged from v33) ====== */
-.footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
-.footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;align-items:start;padding:28px 16px}
-@media (max-width:900px){.footer .wrap{grid-template-columns:1fr}}
-.footer p,.footer a{color:#fff}
-.footer .brand{font-weight:900;font-size:22px;margin:0 0 6px;letter-spacing:.2px}
-.footer .muted{opacity:.85;line-height:1.6}
-.footer .mini-nav{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:8px 14px;margin-top:6px}
-.footer .mini-nav a{font-weight:600}
-.footer .box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px}
-.footer .divider{height:1px;background:rgba(255,255,255,.12);margin:14px 0}
-.footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:14px 0;text-align:center}
-.footer .bottom .year{font-weight:700;opacity:.95}
-.footer .bottom .tag{display:block;opacity:.85;margin-top:4px}
-.footer .nav-box{
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 8px 22px rgba(0,0,0,.12) inset, 0 1px 0 rgba(255,255,255,.08);
-  border-radius:16px;padding:0;
-}
-.footer .nav-box .box-title{
-  font-weight:900;letter-spacing:.2px;padding:12px 16px;
-  background:rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.16);
-}
-.footer .nav-box .mini-nav{padding:12px 16px 16px;gap:10px 18px}
-@media (min-width:901px){
-  .footer .nav-box .mini-nav{grid-template-columns:repeat(3,minmax(120px,1fr))}
-  .footer .nav-box .mini-nav a{position:relative;padding:6px 0 6px 18px;opacity:.92}
-  .footer .nav-box .mini-nav a::before{content:"›";position:absolute;left:0;top:50%;transform:translateY(-50%);opacity:.85}
-  .footer .nav-box .mini-nav a:hover{opacity:1;transform:translateX(2px)}
-}
+/* ====== CTA BAND ====== */
+.cta-band{background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff;border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,.18);text-align:center}
+.cta-band .btn{background:#fff;color:#000 !important}
 
-/* ====== MOBILE POLISH (About + compact Reviews) ====== */
+/* ====== MOBILE POLISH ====== */
 @media (max-width:820px){
   .aggl .wrap{padding:0 12px}
   .section-gap{height:26px}
-  .section-gap.s-tight{height:10px}
-  .hero .inner{min-height:320px;padding:26px 14px}
-  .hero .logo{width:72%;margin-bottom:8px}
-  .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2;margin-bottom:6px}
-  .hero p{font-size:15px;line-height:1.55}
-  .hero .cta{gap:10px}
-  .hero .btn{padding:11px 18px}
-  .btn{min-width:auto}
-  .aggl .svc-grid{grid-template-columns:1fr !important;gap:14px !important}
-  .aggl .steps-grid{grid-template-columns:1fr !important;gap:14px !important}
-  .aggl .card{padding:18px}
-  .aggl .step{padding:16px}
-  .aggl .step-top{grid-template-columns:40px 40px 1fr;column-gap:10px}
-  .aggl .num{width:40px;height:40px}
-
-  /* === ABOUT: τέλειο stack στο κινητό === */
-  .about .wrap{
-    grid-template-columns:1fr !important;
-    gap:14px !important;
-    padding:24px 12px !important;
-    align-items:start !important;
-  }
-  .about .wrap > div{order:1}
-  .about .img{order:2;width:100%;border-radius:14px;overflow:hidden;margin:6px 0 2px}
-  .about .img img{display:block;width:100% !important;height:auto !important}
-
-  /* === REVIEWS: COMPACT MOBILE === */
-  .reviews{padding-top:2px}
-  .reviews .gwrap{padding:2px}
-  #elfsight-container{max-width:94%;margin:6px auto 0}
-  #elfsight-container .eapps-widget{
-    min-height:0 !important;height:auto !important;max-height:400px !important;overflow:hidden !important;border-radius:12px !important;
-  }
-  #elfsight-container .eapps-widget [style*="height"]{height:auto !important}
-  #elfsight-container .eapps-widget [style*="min-height"]{min-height:0 !important}
-  #elfsight-container .eapps-widget [style*="padding"]{padding:8px !important}
+  .k-hero .inner{min-height:280px;padding:24px 12px}
+  .k-hero h1{font-size:clamp(22px,7vw,30px)}
+  .k-hero p{font-size:15px}
 }
-
-/* Helpers */
-.aggl img{max-width:100%;height:auto}
-.aggl{overflow-x:hidden}
 </style>
 
-<div class="aggl">
-  <!-- ===== HERO (ΚΟΥΖΙΝΕΣ) ===== -->
-  <section class="hero" style="--hero-img:url(https://images.unsplash.com/photo-1600585154340-0ef3c08dcdb6?auto=format&fit=crop&w=2000&q=80)">
-    <div class="inner"><div class="content">
-      <img class="logo" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry — από το 1960">
-      <h1>Έπιπλα Κουζίνας με Υπογραφή <span class="nb">Aggelopoulos</span></h1>
-      <p>Σχεδιασμός, κατασκευή και τοποθέτηση <strong>custom κουζινών</strong> με μηχανισμούς <strong>Blum/FGV</strong>, επιλογές <strong>Gola</strong> ή πόμολο, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong> και <strong>πάγκους 3–4 εκ.</strong></p>
-      <div class="cta">
-        <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
-        <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
+<div class="aggl kitchens-page">
+  <!-- ===== HERO ===== -->
+  <section class="k-hero" style="--hero-img:url(REPLACE_WITH_YOUR_IMAGE_URL_HERO)">
+    <div class="inner">
+      <div class="content">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="https://aggelopouloscarpentry.com/">Αρχική</a>
+          <span class="sep">›</span>
+          <span aria-current="page">Έπιπλα Κουζίνας</span>
+        </nav>
+        <h1>Έπιπλα Κουζίνας στο Περιστέρι – Μελέτη, Κατασκευή &amp; Τοποθέτηση</h1>
+        <p>Σχεδιάζουμε και κατασκευάζουμε κουζίνες με <strong>μηχανισμούς Blum/FGV</strong>, επιλογές <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (<strong>Magic Corner / περιστρεφόμενος μύλος</strong>), <strong>LED</strong> φωτισμό και <strong>πάγκους 3–4 εκ.</strong> Τυπική παράδοση <strong>10–20 ημέρες</strong> από έγκριση σχεδίων &amp; υλικών.</p>
+        <div class="cta">
+          <a class="btn" href="https://aggelopouloscarpentry.com/επικοινωνία/">Ζητήστε Δωρεάν Μέτρηση</a>
+          <a class="btn" href="tel:+306936815779">Κάλεσε Τώρα</a>
+        </div>
       </div>
-      <div class="badge">Premium Custom Kitchens • Παράδοση 10–20 ημέρες</div>
-    </div></div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== SERVICES (Μόνο κουζίνα) ===== -->
-  <section class="wrap" id="services">
-    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Υπηρεσίες Κουζίνας</h2>
-    <p style="text-align:center;margin:0 auto 24px;max-width:860px;font-size:clamp(14px,2vw,18px)">
-      Κάθε έργο είναι <strong>100% custom</strong>. Συνδυάζουμε εργονομία, αισθητική και αντοχή για να αξιοποιήσουμε κάθε εκατοστό του χώρου σας.
-    </p>
-
-    <div class="svc-grid">
-      <article class="card"><h3>Μελέτη &amp; Σχεδιασμός</h3><span class="u"></span>
-        <p>Επίσκεψη για μέτρηση, κατόψεις/3D προτάσεις, επιλογή υλικών &amp; μηχανισμών. Συντονισμός με συσκευές &amp; υδραυλικά.</p>
-      </article>
-
-      <article class="card"><h3>Κατασκευή</h3><span class="u"></span>
-        <p>MDF/βακελίτες/Compact HPL, μηχανισμοί <strong>Blum/FGV</strong>, βαφές &amp; βερνίκια πιστοποιημένα. Ακρίβεια κοπών &amp; συναρμολόγησης.</p>
-      </article>
-
-      <article class="card"><h3>Τοποθέτηση</h3><span class="u"></span>
-        <p>Γρήγορη &amp; καθαρή εγκατάσταση, τελικές ρυθμίσεις μεντεσέδων/συρταριών, ακριβείς ενώσεις και παραδόσεις “με το κλειδί”.</p>
-      </article>
-
-      <article class="card" style="grid-column:1/-1"><h3>Ειδικές Λύσεις</h3><span class="u"></span>
-        <p>Νησίδες, κρυφοί φωτισμοί, βιτρίνες, επενδύσεις, έξυπνες γωνίες (Magic Corner/περιστροφικός μύλος), <strong>Gola</strong> ή μπάρα.</p>
-      </article>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== STEPS ===== -->
-  <section class="wrap" id="process" aria-labelledby="how-title">
-    <div class="steps-head" style="text-align:center">
-      <h2 id="how-title" style="font-size:clamp(22px,3.6vw,40px);margin:0 0 6px">Διαδικασία Συνεργασίας</h2>
-      <p style="margin:0 auto 4px;max-width:760px;color:var(--muted)">Τυπική παράδοση <strong>10–20 ημέρες</strong> από έγκριση σχεδίων &amp; υλικών.</p>
-    </div>
-    <div class="steps-grid">
-      <article class="step"><div class="step-top"><span class="num">1</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8h18M7 16h10M9 12h6"/></svg></span><h3>Καταγραφή</h3></div><p>Ανάγκες, στυλ, budget, χρονοδιάγραμμα.</p></article>
-      <article class="step"><div class="step-top"><span class="num">2</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20l6-6m0 0 7-7a2 2 0 1 1 3 3l-7 7m-3 3H3v-3"/></svg></span><h3>Μετρήσεις &amp; 3D</h3></div><p>Επίσκεψη στον χώρο &amp; προτάσεις σε 3D όπου απαιτείται.</p></article>
-      <article class="step"><div class="step-top"><span class="num">3</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="M7 7V4h10v3"/></svg></span><h3>Κατασκευή</h3></div><p>Ποιοτικά υλικά &amp; μηχανισμοί <strong>Blum/FGV</strong>.</p></article>
-      <article class="step"><div class="step-top"><span class="num">4</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21l2-8h10l2 8"/></svg></span><h3>Τοποθέτηση</h3></div><p>Καθαρή εγκατάσταση με προσοχή στη λεπτομέρεια.</p></article>
-      <article class="step"><div class="step-top"><span class="num">5</span><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6l-11 11-5-5"/></svg></span><h3>Παράδοση</h3></div><p>Τελικός έλεγχος &amp; οδηγίες συντήρησης.</p></article>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== ABOUT (USP ΚΟΥΖΙΝΑΣ) ===== -->
-  <section class="about">
-    <div class="wrap">
-      <div>
-        <h2>Γιατί Aggelopoulos για την Κουζίνα σας;</h2>
-        <p><strong>Εμπειρία 60+ ετών</strong> και δεκάδες έργα τον χρόνο σε σπίτια της Αθήνας. Δουλεύουμε με <strong>πιστοποιημένα υλικά</strong>, μηχανισμούς <strong>Blum/FGV</strong> και ακριβείς εφαρμογές.</p>
-        <p>Στόχος μας: <strong>λειτουργικότητα</strong>, <strong>αισθητική</strong> και <strong>αντοχή</strong>—με καθαρές προσφορές και συνεπείς παραδόσεις.</p>
+  <!-- ===== INTRO / SEO COPY ===== -->
+  <section class="wrap">
+    <article class="intro">
+      <h2>Κουζίνες που συνδυάζουν αισθητική &amp; εργονομία</h2>
+      <p>Η κουζίνα είναι ένας από τους σημαντικότερους χώρους του σπιτιού – εκεί όπου δημιουργούνται στιγμές και γεύσεις. Τα έπιπλα κουζίνας μας συνδυάζουν <strong>λειτουργικότητα, αντοχή και καθαρό design</strong>, με υλικά επιλεγμένα για καθημερινή χρήση.</p>
+      <p>Από <strong>μοντέρνες</strong> έως <strong>κλασικές</strong> γραμμές, προσφέρουμε εξατομικευμένες λύσεις σε διαστάσεις, υλικά και χρώματα, ώστε να πετύχετε την ιδανική κουζίνα για τον χώρο σας. Η εργονομική σχεδίαση και η προσεκτική κατασκευή εξασφαλίζουν <strong>αξιοπιστία στον χρόνο</strong> και εύκολη καθημερινότητα.</p>
+      <div class="badges" aria-label="Key specs">
+        <span class="badge">Blum / FGV</span>
+        <span class="badge">Gola ή πόμολο μπάρα</span>
+        <span class="badge">Magic Corner • μύλος</span>
+        <span class="badge">LED κάτω από πάγκο/ντουλάπια</span>
+        <span class="badge">Πάγκοι 3–4 εκ.</span>
+        <span class="badge">Παράδοση 10–20 ημέρες</span>
+        <span class="badge">4.9★ αξιολογήσεις</span>
       </div>
-      <figure class="img"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1600&q=80" alt="Σύγχρονη κουζίνα με ποιοτικά υλικά"></figure>
-    </div>
-  </section>
-
-  <div class="section-gap"></div>
-
-  <!-- ===== FAQ (ΚΟΥΖΙΝΕΣ) ===== -->
-  <section class="wrap" id="faq">
-    <div class="faq-head"><h2 style="font-size:clamp(22px,3.6vw,40px);margin:0">Συχνές Ερωτήσεις – Κουζίνες</h2></div>
-    <div class="faq-gap"></div>
-    <div id="aggl-acc" class="acc">
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc1"><span>Τι περιλαμβάνει μια τυπική κουζίνα σας;</span><span class="plus">+</span></button><div id="acc1" class="acc-panel" role="region" hidden><p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong>, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, Gola ή μπάρα, πάγκοι <strong>3–4 εκ.</strong>. Οι λεπτομέρειες καθορίζονται στη μελέτη.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc2"><span>Με ποιες μάρκες μηχανισμών δουλεύετε;</span><span class="plus">+</span></button><div id="acc2" class="acc-panel" role="region" hidden><p>Κυρίως <strong>Blum</strong> και <strong>FGV</strong>, ανάλογα με τις ανάγκες του έργου.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc3"><span>Πόσο διαρκεί η εγκατάσταση;</span><span class="plus">+</span></button><div id="acc3" class="acc-panel" role="region" hidden><p>Συνήθως 1–3 ημέρες, ανάλογα με το μέγεθος και τις ειδικές κατασκευές.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc4"><span>Αναλαμβάνετε μόνο αντικατάσταση πάγκου/ποδιάς;</span><span class="plus">+</span></button><div id="acc4" class="acc-panel" role="region" hidden><p>Ναι, κατόπιν εκτίμησης μπορούμε να αλλάξουμε πάγκο, ποδιά, φωτισμό ή μηχανισμούς.</p></div></div>
-      <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="acc5"><span>Παρέχετε δωρεάν μέτρηση;</span><span class="plus">+</span></button><div id="acc5" class="acc-panel" role="region" hidden><p>Ναι, σε <strong>Αττική</strong>. Κλείστε ραντεβού από τη <a href="https://aggelopouloscarpentry.com/επικοινωνία/">σελίδα επικοινωνίας</a>.</p></div></div>
-    </div>
+    </article>
   </section>
 
   <div class="section-gap s-tight"></div>
 
-  <!-- ===== REVIEWS (Google only) ===== -->
-  <section class="wrap reviews" id="reviews">
-    <h2 style="text-align:center;font-size:clamp(22px,3.6vw,40px);margin:0 0 4px">Αξιολογήσεις Πελατών</h2>
-    <div class="gwrap">
-      <div id="elfsight-container"><div class="elfsight-app-16816178-446d-4e1b-bbe5-70a5e1481d13" data-elfsight-app-lazy></div></div>
+  <!-- ===== OPTIONAL FILTER TAGS (static) ===== -->
+  <section class="wrap" aria-label="Κατηγορίες κουζινών">
+    <div class="filters" role="list">
+      <span class="filter active" role="listitem">Μοντέρνες</span>
+      <span class="filter" role="listitem">Κλασικές</span>
+      <span class="filter" role="listitem">Gola</span>
+      <span class="filter" role="listitem">Με πόμολο μπάρα</span>
+      <span class="filter" role="listitem">Λάκα</span>
+      <span class="filter" role="listitem">Δρύς</span>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="wrap" aria-labelledby="gal-title">
+    <h2 id="gal-title" style="margin:0 0 8px;font-size:clamp(22px,3.6vw,32px)">Gallery – Έργα Κουζινών</h2>
+    <p style="margin:0 0 12px;color:var(--muted)">Δείγματα από πρόσφατες εγκαταστάσεις σε Περιστέρι &amp; Αθήνα.</p>
+
+    <div class="k-grid" id="k-grid" data-lightbox>
+      <!-- === ITEM 1 === -->
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_1_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_1_LARGE" aria-label="Μεγέθυνση">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_1" alt="Κουζίνα Gola με πάγκο 4 εκ., LED και μηχανισμούς Blum">
+          </a>
+        </figure>
+        <div class="k-caption">Gola • Πάγκος 4 εκ. • LED • Blum</div>
+      </article>
+
+      <!-- === ITEM 2 === -->
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_2_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_2_LARGE">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_2" alt="Κλασική κουζίνα με πόμολο μπάρα και λύση γωνίας Magic Corner">
+          </a>
+        </figure>
+        <div class="k-caption">Κλασική • Μπάρα • Magic Corner</div>
+      </article>
+
+      <!-- === ITEM 3 === -->
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_3_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_3_LARGE">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_3" alt="Μοντέρνα κουζίνα με μύλο γωνίας και φωτισμό πάγκου">
+          </a>
+        </figure>
+        <div class="k-caption">Μοντέρνα • Μύλος • Φωτισμός</div>
+      </article>
+
+      <!-- === Add more items as needed (copy/paste) === -->
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_4_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_4_LARGE">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_4" alt="Κουζίνα λάκα με συρτάρια FGV και LED κάτω από τα ντουλάπια">
+          </a>
+        </figure>
+        <div class="k-caption">Λάκα • FGV • LED</div>
+      </article>
+
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_5_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_5_LARGE">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_5" alt="Κουζίνα δρύς με Gola και πάγκο 3 εκ.">
+          </a>
+        </figure>
+        <div class="k-caption">Δρύς • Gola • Πάγκος 3 εκ.</div>
+      </article>
+
+      <article class="k-item">
+        <figure>
+          <a href="REPLACE_WITH_YOUR_IMAGE_URL_6_LARGE" data-full="REPLACE_WITH_YOUR_IMAGE_URL_6_LARGE">
+            <img loading="lazy" src="REPLACE_WITH_YOUR_IMAGE_URL_6" alt="Κουζίνα με πόμολο μπάρα, Blum φρένα και φωτισμό εσωτερικών">
+          </a>
+        </figure>
+        <div class="k-caption">Μπάρα • Blum • Εσωτερικός φωτισμός</div>
+      </article>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="wrap contact" id="shop">
-    <div class="grid">
-      <figure style="margin:0"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/20240302_123455.jpg" alt="Το εργαστήριο Aggelopoulos Carpentry" style="width:100%;height:auto;display:block;border-radius:16px"></figure>
-      <div style="display:grid;gap:16px">
-        <div class="card"><h3>Τοποθεσία</h3><p><a href="https://www.google.com/maps/search/?api=1&query=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136" target="_blank" rel="noopener">Χρυσάνθου 58, Περιστέρι, 12136</a></p></div>
-        <div class="card"><h3>Στοιχεία Επικοινωνίας</h3><p><a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a></p><p><a href="tel:+306936815779">(+30) 693 6815 779</a></p></div>
+  <!-- ===== CTA BAND ===== -->
+  <section class="wrap">
+    <div class="cta-band">
+      <h2 style="margin:0 0 8px;font-size:clamp(20px,3vw,28px)">Θέλετε προσφορά για την κουζίνα σας;</h2>
+      <p style="margin:0 0 12px;opacity:.95">Κλείστε δωρεάν μέτρηση. Θα σας προτείνουμε λύσεις με βάση τις ανάγκες και το budget σας.</p>
+      <div class="cta" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="https://aggelopouloscarpentry.com/επικοινωνία/">Κλείστε Ραντεβού</a>
+        <a class="btn" href="tel:+306936815779">Τηλεφωνήστε Τώρα</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="wrap">
-      <div>
-        <p class="brand">Aggelopoulos Carpentry</p>
-        <p class="muted">Ξυλουργικές λύσεις: Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες &amp; Ειδικές Κατασκευές. Από το 1960 στο Περιστέρι.</p>
-        <div class="divider"></div>
-      </div>
+  <div class="section-gap"></div>
 
-      <div class="box nav-box">
-        <div class="box-title">Σύνδεσμοι</div>
-        <nav class="mini-nav" aria-label="Χρήσιμοι σύνδεσμοι">
-          <a href="https://aggelopouloscarpentry.com/">Αρχική</a>
-          <a href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">Κουζίνες</a>
-          <a href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">Ντουλάπες</a>
-          <a href="https://aggelopouloscarpentry.com/έπιπλα-μπάνιου/">Μπάνια</a>
-          <a href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">Πόρτες</a>
-          <a href="https://aggelopouloscarpentry.com/ειδικές-κατασκευές/">Ειδικές</a>
-          <a href="https://aggelopouloscarpentry.com/επικοινωνία/">Επικοινωνία</a>
-        </nav>
+  <!-- ===== FAQ (ελαφρύ, aligned με index) ===== -->
+  <section class="wrap" id="faq">
+    <h2 style="margin:0 0 8px;font-size:clamp(22px,3.6vw,32px)">Συχνές Ερωτήσεις για Κουζίνες</h2>
+    <div class="intro" id="k-acc">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><strong>Τι περιλαμβάνει μια τυπική κουζίνα;</strong><span class="plus" aria-hidden="true">+</span></button>
+        <div class="acc-panel" hidden>
+          <p>Μηχανισμοί/μεντεσέδες <strong>Blum</strong>, λύσεις γωνίας (<strong>Magic Corner/μύλος</strong>), <strong>LED</strong> φωτισμός, <strong>Gola</strong> ή πόμολο μπάρα, <strong>πάγκοι 3–4 εκ.</strong>. Οι λεπτομέρειες οριστικοποιούνται στη μελέτη.</p>
+        </div>
       </div>
-
-      <div class="box">
-        <strong>Επικοινωνία</strong>
-        <p class="muted" style="margin:6px 0 10px">
-          Χρυσάνθου 58, Περιστέρι, 12136<br>
-          <a href="tel:+306936815779">(+30) 693 6815 779</a><br>
-          <a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a>
-        </p>
-        <a class="btn" href="https://aggelopouloscarpentry.com/επικοινωνία/">Ζητήστε Δωρεάν Μέτρηση</a>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><strong>Σε πόσο χρόνο παραδίδετε;</strong><span class="plus" aria-hidden="true">+</span></button>
+        <div class="acc-panel" hidden>
+          <p>Τυπικά <strong>10–20 ημέρες</strong> από την τελική έγκριση σχεδίων και υλικών.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><strong>Προσφέρετε δωρεάν μέτρηση στην Αττική;</strong><span class="plus" aria-hidden="true">+</span></button>
+        <div class="acc-panel" hidden>
+          <p>Ναι. Κλείστε ραντεβού από τη <a href="https://aggelopouloscarpentry.com/επικοινωνία/">σελίδα επικοινωνίας</a>.</p>
+        </div>
       </div>
     </div>
-    <div class="wrap bottom">
-      <span class="year">© Aggelopoulos Carpentry 2025</span>
-      <span class="tag">Φτιαγμένο με μεράκι στην Αθήνα.</span>
+  </section>
+
+  <!-- ===== LIGHTBOX ROOT ===== -->
+  <div class="lb" id="lightbox" aria-modal="true" role="dialog">
+    <button class="close" aria-label="Κλείσιμο">×</button>
+    <div class="nav">
+      <button class="prev" aria-label="Προηγούμενη">‹</button>
+      <button class="next" aria-label="Επόμενη">›</button>
     </div>
-  </footer>
+    <img src="" alt="">
+  </div>
 </div>
 
 <script>
-/* ===== Accordion: accessible single-open ===== */
+/* ===== Accessible accordion (FAQ) ===== */
 (function(){
-  var root=document.getElementById('aggl-acc'); if(!root) return;
+  var root=document.getElementById('k-acc'); if(!root) return;
   var items=[].slice.call(root.querySelectorAll('.acc-item'));
-  function openItem(it){var p=it.querySelector('.acc-panel'),b=it.querySelector('.acc-btn');
-    it.classList.add('open'); p.hidden=false; p.style.maxHeight=p.scrollHeight+'px'; p.style.opacity=1; b.setAttribute('aria-expanded','true');}
-  function closeItem(it){var p=it.querySelector('.acc-panel'),b=it.querySelector('.acc-btn');
-    it.classList.remove('open'); p.style.maxHeight='0px'; p.style.opacity=0; b.setAttribute('aria-expanded','false'); setTimeout(function(){p.hidden=true},300);}
   items.forEach(function(it){
-    var b=it.querySelector('.acc-btn'), p=it.querySelector('.acc-panel');
-    b.setAttribute('role','button'); b.setAttribute('tabindex','0'); p.hidden=true; p.style.maxHeight='0px';
-    function toggle(){var open=it.classList.contains('open'); items.forEach(function(o){if(o!==it && o.classList.contains('open')) closeItem(o)}); open?closeItem(it):openItem(it);}
-    b.addEventListener('click',toggle); b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+    var btn=it.querySelector('.acc-btn'), panel=it.querySelector('.acc-panel');
+    function toggle(){
+      var open=btn.getAttribute('aria-expanded')==='true';
+      items.forEach(function(o){
+        var b=o.querySelector('.acc-btn'), p=o.querySelector('.acc-panel');
+        b.setAttribute('aria-expanded','false'); p.hidden=true; p.style.maxHeight='0px'; p.style.opacity=0;
+      });
+      if(!open){
+        btn.setAttribute('aria-expanded','true'); panel.hidden=false;
+        panel.style.maxHeight=panel.scrollHeight+'px'; panel.style.opacity=1;
+      }
+    }
+    btn.addEventListener('click',toggle);
+    btn.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
+    panel.hidden=true; panel.style.maxHeight='0px'; panel.style.opacity=0;
   });
 })();
 
-/* ===== Lazy-load Elfsight ===== */
+/* ===== Lightbox gallery (vanilla, tiny) ===== */
 (function(){
-  var ph=document.getElementById('elfsight-container'); if(!ph) return;
-  var loaded=false;
-  function load(){ if(loaded) return; loaded=true;
-    var s=document.createElement('script'); s.src='https://elfsightcdn.com/platform.js';
-    s.async=true; s.defer=true; document.body.appendChild(s);
+  var grid=document.querySelector('[data-lightbox]'); if(!grid) return;
+  var links=[].slice.call(grid.querySelectorAll('a[data-full]'));
+  var lb=document.getElementById('lightbox'), img=lb.querySelector('img');
+  var idx=-1;
+  function open(i){
+    idx=i; img.src=links[idx].dataset.full; lb.classList.add('open'); img.alt=links[idx].querySelector('img').alt; document.body.style.overflow='hidden';
   }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ load(); io.disconnect(); }})},{rootMargin:'200px'});
-    io.observe(ph);
-  }else{ setTimeout(load,1200); }
+  function close(){ lb.classList.remove('open'); img.src=''; document.body.style.overflow=''; }
+  function next(){ open((idx+1)%links.length); }
+  function prev(){ open((idx-1+links.length)%links.length); }
+  links.forEach(function(a,i){ a.addEventListener('click',function(e){ e.preventDefault(); open(i);}); });
+  lb.querySelector('.close').addEventListener('click',close);
+  lb.querySelector('.next').addEventListener('click',next);
+  lb.querySelector('.prev').addEventListener('click',prev);
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close();
+    if(e.key==='ArrowRight') next();
+    if(e.key==='ArrowLeft') prev();
+  });
 })();
 </script>
 
-<!-- JSON-LD minimal -->
+<!-- ===== JSON-LD: CollectionPage + ImageGallery + FAQ ===== -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","serviceType":"Έπιπλα Κουζίνας – Σχεδιασμός, Κατασκευή, Τοποθέτηση","provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","areaServed":"Αττική","telephone":"+306936815779"},"brand":["Blum","FGV"]}
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"CollectionPage",
+      "name":"Έπιπλα Κουζίνας | Aggelopoulos Carpentry",
+      "description":"Σχεδίαση, κατασκευή και τοποθέτηση κουζινών στο Περιστέρι & Αθήνα. Blum/FGV, Gola ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/μύλος), LED, πάγκοι 3–4 εκ. Παράδοση 10–20 ημέρες.",
+      "url":"https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/",
+      "breadcrumb":{
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Αρχική","item":"https://aggelopouloscarpentry.com/"},
+          {"@type":"ListItem","position":2,"name":"Έπιπλα Κουζίνας","item":"https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/"}
+        ]
+      }
+    },
+    {
+      "@type":"ImageGallery",
+      "name":"Gallery Κουζινών",
+      "image":[
+        "REPLACE_WITH_YOUR_IMAGE_URL_1_LARGE",
+        "REPLACE_WITH_YOUR_IMAGE_URL_2_LARGE",
+        "REPLACE_WITH_YOUR_IMAGE_URL_3_LARGE",
+        "REPLACE_WITH_YOUR_IMAGE_URL_4_LARGE",
+        "REPLACE_WITH_YOUR_IMAGE_URL_5_LARGE",
+        "REPLACE_WITH_YOUR_IMAGE_URL_6_LARGE"
+      ],
+      "associatedMedia":[
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_1_LARGE","caption":"Κουζίνα Gola με πάγκο 4 εκ. και LED"},
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_2_LARGE","caption":"Κλασική κουζίνα με Magic Corner"},
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_3_LARGE","caption":"Μοντέρνα κουζίνα με μύλο γωνίας"},
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_4_LARGE","caption":"Κουζίνα λάκα με FGV"},
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_5_LARGE","caption":"Κουζίνα δρύς Gola"},
+        {"@type":"ImageObject","contentUrl":"REPLACE_WITH_YOUR_IMAGE_URL_6_LARGE","caption":"Κουζίνα με πόμολο μπάρα και Blum"}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Τι περιλαμβάνει μια τυπική κουζίνα;","acceptedAnswer":{"@type":"Answer","text":"Μηχανισμοί/μεντεσέδες Blum, λύσεις γωνίας (Magic Corner/μύλος), LED, Gola ή μπάρα, πάγκοι 3–4 εκ."}},
+        {"@type":"Question","name":"Σε πόσο χρόνο παραδίδετε;","acceptedAnswer":{"@type":"Answer","text":"Τυπικά 10–20 ημέρες από την τελική έγκριση σχεδίων και υλικών."}},
+        {"@type":"Question","name":"Προσφέρετε δωρεάν μέτρηση;","acceptedAnswer":{"@type":"Answer","text":"Ναι, στην Αττική. Κλείστε ραντεβού από τη σελίδα επικοινωνίας."}}
+      ]
+    }
+  ]
+}
 </script>
