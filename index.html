@@ -121,51 +121,34 @@ body{background:#fff;color:#111}
 .footer .bottom .year{font-weight:700;opacity:.95}
 .footer .bottom .tag{display:block;opacity:.85;margin-top:4px}
 
-/* ====== MOBILE POLISH (append after v28) ====== */
+/* ====== MOBILE POLISH (v28) ====== */
 @media (max-width:820px){
   .aggl .wrap{padding:0 12px}
   .section-gap{height:26px}
   .section-gap.s-tight{height:10px}
-
-  /* Hero */
   .hero .inner{min-height:320px;padding:26px 14px}
   .hero .logo{width:72%;margin-bottom:8px}
   .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2;margin-bottom:6px}
   .hero p{font-size:15px;line-height:1.55}
   .hero .cta{gap:10px}
   .hero .btn{padding:11px 18px}
-
-  /* Buttons: full‑width & stacked for thumbs */
   .btn{min-width:auto}
   .cta .btn{width:100%;max-width:420px}
-
-  /* Services / Steps cards tighter */
   .svc-grid{grid-template-columns:1fr;gap:14px}
   .steps-grid{grid-template-columns:1fr;gap:14px}
   .card{padding:18px}
   .step{padding:16px}
   .step-top{grid-template-columns:40px 40px 1fr;column-gap:10px}
   .num{width:40px;height:40px}
-
-  /* Reviews track: larger cards, smoother swipe */
   .ggrid{padding:2px 16px 10px;gap:10px}
   .gcard{flex:0 0 92%;padding:16px}
   .rev-arrow{bottom:8px}
 }
-
 @media (max-width:480px){
-  /* Typography scale */
-  .aggl{--fs-base:15px}
-  .aggl p,.aggl li{font-size:var(--fs-base);line-height:1.6}
-
-  /* About */
+  .aggl p,.aggl li{font-size:15px;line-height:1.6}
   .about .wrap{padding:28px 12px;gap:14px}
   .about h2{font-size:22px}
-
-  /* Contact grid single column already, just tighten */
   .contact .card{padding:18px}
-
-  /* Footer: single column, generous tap targets */
   .footer .wrap{grid-template-columns:1fr;gap:16px;padding:22px 12px}
   .footer .brand{font-size:20px;margin-bottom:4px}
   .footer .box{padding:12px}
@@ -174,10 +157,10 @@ body{background:#fff;color:#111}
   .footer .bottom{padding:12px 0}
   .footer .bottom .tag{margin-top:2px}
 }
-
-/* Small helpers to avoid accidental horizontal scroll on some mobiles */
+/* Helpers */
 .aggl img{max-width:100%;height:auto}
 .aggl{overflow-x:hidden}
+
   
 </style>
 
