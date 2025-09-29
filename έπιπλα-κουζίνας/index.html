@@ -1,0 +1,495 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/έπιπλα-κουζίνας/index.html b/έπιπλα-κουζίνας/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..02a83b03f5e0e89292e50014a166f41a3d333bce
+--- /dev/null
++++ b/έπιπλα-κουζίνας/index.html
+@@ -0,0 +1,485 @@
++<!doctype html>
++<html lang="el">
++<head>
++  <meta charset="utf-8">
++  <meta name="viewport" content="width=device-width,initial-scale=1">
++  <title>Έπιπλα Κουζίνας | Aggelopoulos Carpentry</title>
++  <meta name="description" content="Custom κουζίνες Aggelopoulos Carpentry στο Περιστέρι. Μελέτη, κατασκευή και τοποθέτηση επίπλων κουζίνας με ποιοτικά υλικά και εργονομικό σχεδιασμό.">
++  <link rel="canonical" href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">
++  <style>
++    :root {
++      color-scheme: light;
++    }
++    * {
++      box-sizing: border-box;
++    }
++    body {
++      margin: 0;
++      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
++      background: #fff;
++      color: #111;
++    }
++    img {
++      display: block;
++      max-width: 100%;
++      height: auto;
++    }
++    a {
++      color: inherit;
++      text-decoration: none;
++      transition: opacity .18s ease;
++    }
++    a:hover {
++      opacity: .9;
++    }
++
++    .aggl {
++      --accent:#5D4E37;
++      --black:#111;
++      --white:#fff;
++      --muted:#6b6b6b;
++      --hero-img:url('https://images.unsplash.com/photo-1528756514091-dee5ecaa3278?auto=format&fit=crop&w=1600&q=80');
++    }
++    .aggl .wrap {
++      max-width: 1100px;
++      margin: 0 auto;
++      padding: 0 18px;
++    }
++    .section-gap {
++      height: 40px;
++    }
++    .section-gap.s-tight {
++      height: 16px;
++    }
++
++    header {
++      position: sticky;
++      top: 0;
++      z-index: 10;
++      background: rgba(255,255,255,.94);
++      border-bottom: 1px solid rgba(93,78,55,.12);
++      backdrop-filter: saturate(140%) blur(6px);
++    }
++    .topbar {
++      display: flex;
++      align-items: center;
++      justify-content: space-between;
++      gap: 16px;
++      padding: 16px 18px;
++      max-width: 1100px;
++      margin: 0 auto;
++    }
++    .topbar img {
++      height: 50px;
++      width: auto;
++    }
++    nav {
++      display: flex;
++      gap: 12px;
++      flex-wrap: wrap;
++      align-items: center;
++      font-weight: 700;
++    }
++    .pill {
++      border-radius: 999px;
++      border: 1px solid rgba(93,78,55,.25);
++      padding: 10px 16px;
++      background: #fff;
++    }
++    .btn {
++      border-radius: 999px;
++      display: inline-flex;
++      align-items: center;
++      justify-content: center;
++      gap: 8px;
++      padding: 12px 22px;
++      font-weight: 800;
++      background: var(--accent);
++      color: #fff !important;
++      box-shadow: 0 10px 22px rgba(93,78,55,.18);
++      transition: transform .18s ease, box-shadow .18s ease;
++    }
++    .btn:hover {
++      transform: translateY(-2px);
++      box-shadow: 0 16px 30px rgba(93,78,55,.2);
++    }
++
++    .hero {
++      position: relative;
++      width: 100vw;
++      left: 50%;
++      right: 50%;
++      margin-left: -50vw;
++      margin-right: -50vw;
++      background: var(--accent);
++    }
++    .hero .inner {
++      min-height: clamp(280px, 48vh, 520px);
++      display: flex;
++      align-items: center;
++      justify-content: center;
++      padding: 42px 20px;
++      background: linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)), var(--hero-img) center 50%/cover no-repeat;
++      text-align: center;
++      color: #fff;
++    }
++    .hero .content {
++      max-width: 1050px;
++      padding: 0 14px;
++    }
++    .hero h1 {
++      font-size: clamp(28px, 4.2vw, 50px);
++      margin: 12px 0 10px;
++      line-height: 1.1;
++      font-weight: 900;
++    }
++    .hero p {
++      margin: 0 auto 18px;
++      max-width: 880px;
++      font-size: clamp(15px,2.4vw,19px);
++    }
++    .hero .cta {
++      display: flex;
++      gap: 14px;
++      flex-wrap: wrap;
++      justify-content: center;
++    }
++
++    main.aggl {
++      padding: 42px 0 60px;
++    }
++    h2 {
++      font-size: clamp(24px, 3.4vw, 38px);
++      margin: 0 0 12px;
++      font-weight: 900;
++      text-align: center;
++    }
++    p.lead {
++      font-size: clamp(16px, 2.2vw, 20px);
++      color: var(--muted);
++      margin: 0 auto 26px;
++      max-width: 780px;
++      text-align: center;
++    }
++    .intro {
++      display: grid;
++      gap: 18px;
++      margin-bottom: 40px;
++    }
++    .intro p {
++      margin: 0;
++      font-size: 1.03rem;
++    }
++
++    .benefits {
++      display: grid;
++      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
++      gap: 18px;
++      margin-top: 10px;
++    }
++    .benefits .card {
++      border-radius: 18px;
++      border: 1px solid rgba(93,78,55,.14);
++      padding: 22px 20px;
++      box-shadow: 0 2px 8px rgba(0,0,0,.06);
++      background: #fff;
++      text-align: left;
++    }
++    .benefits h3 {
++      margin: 0 0 8px;
++      font-size: 1.25rem;
++      font-weight: 800;
++    }
++    .benefits p {
++      margin: 0;
++      color: var(--muted);
++    }
++
++    .gallery {
++      margin-top: 46px;
++    }
++    .gallery-grid {
++      display: grid;
++      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
++      gap: 14px;
++    }
++    .gallery figure {
++      margin: 0;
++      border-radius: 16px;
++      overflow: hidden;
++      border: 1px solid rgba(93,78,55,.12);
++      box-shadow: 0 10px 22px rgba(0,0,0,.06);
++      background: #fff;
++    }
++    .gallery figcaption {
++      padding: 12px 14px 14px;
++      font-size: .95rem;
++      color: var(--muted);
++    }
++
++    .cta-box {
++      margin-top: 50px;
++      background: linear-gradient(180deg, rgba(93,78,55,.08), rgba(93,78,55,.02));
++      border: 1px solid rgba(93,78,55,.18);
++      border-radius: 20px;
++      padding: 30px 26px;
++      text-align: center;
++      box-shadow: 0 16px 38px rgba(0,0,0,.08);
++    }
++    .cta-box h2 {
++      margin-bottom: 10px;
++    }
++    .cta-box p {
++      margin: 0 0 18px;
++      color: var(--muted);
++      font-size: 1.05rem;
++    }
++
++    footer {
++      margin-top: 60px;
++      background: linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);
++      color: #fff;
++    }
++    footer .wrap {
++      display: grid;
++      grid-template-columns: 1.2fr 1fr 1fr;
++      gap: 22px;
++      align-items: start;
++      padding: 28px 18px;
++    }
++    footer p, footer a {
++      color: #fff;
++      opacity: .92;
++    }
++    footer .brand {
++      font-weight: 900;
++      font-size: 22px;
++      margin: 0 0 6px;
++      letter-spacing: .2px;
++    }
++    footer .mini-nav {
++      display: grid;
++      grid-template-columns: repeat(2,minmax(120px,1fr));
++      gap: 8px 14px;
++    }
++    footer .mini-nav a {
++      font-weight: 600;
++    }
++    footer .box {
++      background: rgba(255,255,255,.05);
++      border: 1px solid rgba(255,255,255,.14);
++      border-radius: 16px;
++      padding: 16px;
++    }
++    footer .bottom {
++      border-top: 1px solid rgba(255,255,255,.14);
++      text-align: center;
++      padding: 12px 18px 18px;
++      font-size: .92rem;
++    }
++    footer .bottom .year {
++      font-weight: 700;
++      opacity: .95;
++    }
++
++    @media (max-width: 900px) {
++      .topbar {
++        flex-wrap: wrap;
++        justify-content: center;
++        text-align: center;
++      }
++      nav {
++        justify-content: center;
++      }
++      footer .wrap {
++        grid-template-columns: 1fr;
++        gap: 18px;
++        text-align: center;
++      }
++      footer .mini-nav {
++        justify-content: center;
++      }
++    }
++    @media (max-width: 720px) {
++      .section-gap {
++        height: 26px;
++      }
++      .hero .inner {
++        min-height: 320px;
++        padding: 30px 16px;
++      }
++      .gallery-grid {
++        grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
++      }
++    }
++  </style>
++</head>
++<body class="aggl">
++<header>
++  <div class="topbar">
++    <a href="/" aria-label="Aggelopoulos Carpentry - αρχική"><img src="/assets/logo-dark.png" alt="Aggelopoulos Carpentry λογότυπο"></a>
++    <nav>
++      <a class="pill" href="/">Αρχική</a>
++      <a class="pill" href="/#services">Υπηρεσίες</a>
++      <a class="btn" href="tel:+306936815779">Κάλεσε Τώρα</a>
++    </nav>
++  </div>
++</header>
++
++<section class="hero">
++  <div class="inner">
++    <div class="content">
++      <p class="badge" style="display:inline-block;border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.16);font-weight:700;letter-spacing:.6px;">Premium Κουζίνες Aggelopoulos</p>
++      <h1>Έπιπλα Κουζίνας με Υπογραφή Aggelopoulos</h1>
++      <p>Αναλαμβάνουμε τη μελέτη, την κατασκευή και την τοποθέτηση κουζινών που ταιριάζουν στο χώρο σας. Ποιοτικά υλικά, εργονομία και στυλ για να απολαμβάνετε κάθε στιγμή.</p>
++      <div class="cta">
++        <a class="btn" href="tel:+306936815779">693 6815 779</a>
++        <a class="pill" href="/επικοινωνία/">Κλείστε Ραντεβού Μέτρησης</a>
++      </div>
++    </div>
++  </div>
++</section>
++
++<main class="aggl">
++  <div class="wrap">
++    <div class="section-gap"></div>
++    <h2>Εξειδίκευση στα Έπιπλα Κουζίνας</h2>
++    <p class="lead">Επιλέξτε μια κουζίνα σχεδιασμένη ειδικά για εσάς, με λύσεις που αξιοποιούν κάθε εκατοστό και αναδεικνύουν την αισθητική του σπιτιού σας.</p>
++
++    <div class="intro">
++      <p>Η κουζίνα είναι ένας από τους σημαντικότερους χώρους στο σπίτι, όπου δημιουργούνται μοναδικές στιγμές και γεύσεις. Τα έπιπλα κουζίνας πρέπει να συνδυάζουν λειτουργικότητα και στυλ, προσφέροντας άνεση και αισθητική σε κάθε γωνιά.</p>
++      <p>Από μοντέρνα μέχρι κλασικά σχέδια, τα έπιπλα κουζίνας μας προσφέρουν ευελιξία και εξατομικευμένες λύσεις για κάθε σπίτι. Επιλέγοντας ανάμεσα σε ποικίλες επιλογές υλικών και χρωμάτων, μπορείτε να δημιουργήσετε την ιδανική κουζίνα που αντικατοπτρίζει το στυλ και τις ανάγκες σας.</p>
++      <p>Επιπλέον, η εργονομική σχεδίαση και η προσεκτική κατασκευή εξασφαλίζουν την αντοχή και την αξιοπιστία κάθε κομματιού, κάνοντας την καθημερινή σας ζωή στην κουζίνα πιο εύκολη και ευχάριστη.</p>
++      <p>Η ομάδα μας με έδρα το Περιστέρι εξυπηρετεί όλη την Αττική, παρέχοντας υπηρεσίες μελέτης, 3D απεικόνισης, επιλογής πάγκων και μηχανισμών, καθώς και εξειδικευμένη τοποθέτηση από έμπειρους τεχνίτες.</p>
++    </div>
++
++    <div class="benefits">
++      <div class="card">
++        <h3>Μελέτη &amp; Σχεδιασμός</h3>
++        <p>Καταγράφουμε ανάγκες, μετρήσεις και σενάρια χρήσης ώστε να προτείνουμε διάταξη με αποθηκευτικούς χώρους, νησίδες και εργονομικές ζώνες εργασίας.</p>
++      </div>
++      <div class="card">
++        <h3>Ποιοτικά Υλικά</h3>
++        <p>Ντουλάπια MDF, βακελίτες, ακρυλικά, φυσικό ξύλο και πάγκοι HPL ή compact. Συνεργασίες με BLUM, Hettich και LED φωτισμό για κορυφαία λειτουργικότητα.</p>
++      </div>
++      <div class="card">
++        <h3>Καθαρή Εγγύηση</h3>
++        <p>Παραδίδουμε με γραπτή εγγύηση, after-sales υποστήριξη και επαγγελματικό service για να διατηρείτε την κουζίνα σας σαν καινούρια.</p>
++      </div>
++    </div>
++
++    <section class="gallery" aria-labelledby="kitchen-gallery">
++      <div class="section-gap s-tight"></div>
++      <h2 id="kitchen-gallery">Portfolio Κουζινών</h2>
++      <p class="lead">Δείτε επιλεγμένα έργα με σύγχρονες και κλασικές κουζίνες που υλοποιήσαμε σε διαμερίσματα, μονοκατοικίες και εξοχικά.</p>
++      <div class="gallery-grid">
++        <figure>
++          <img src="https://images.unsplash.com/photo-1616628182501-e2dc9fbc7f55?auto=format&fit=crop&w=900&q=80" alt="Σύγχρονη λευκή κουζίνα με ξύλινη νησίδα και φωτισμό LED">
++          <figcaption>Λευκή λάκα με ξύλινες λεπτομέρειες και φωτισμό LED κάτω από τα ντουλάπια.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα με σκούρα ντουλάπια και μαρμάρινο πάγκο">
++          <figcaption>Σκούρες αποχρώσεις σε συνδυασμό με μάρμαρο για πολυτελές αποτέλεσμα.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80" alt="Γωνιακή κουζίνα με ξύλινα ντουλάπια και μαύρες ηλεκτρικές συσκευές">
++          <figcaption>Γωνιακή διάταξη με ξύλινα ντουλάπια και ενσωματωμένες ηλεκτρικές συσκευές.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80" alt="Κλασική κουζίνα με ανοιχτά ράφια και πόρτες με ταμπλάδες">
++          <figcaption>Κλασικές γραμμές με ταμπλάδες, βιτρίνες και ανοιχτά ράφια για country chic αισθητική.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80" alt="Μοντέρνα κουζίνα με νησίδα και αναρτώμενα φωτιστικά">
++          <figcaption>Μοντέρνα νησίδα με ενσωματωμένη εστία και αναρτώμενα φωτιστικά.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1588856122867-363b53ae9ab6?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα σε ανοιχτόχρωμες αποχρώσεις με μεγάλους αποθηκευτικούς χώρους">
++          <figcaption>Ανοιχτόχρωμες επιφάνειες με έξυπνους αποθηκευτικούς χώρους και βαθιά συρτάρια.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1616627997398-5d6082d40f07?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα με μπλε ντουλάπια και ορείχαλκες λαβές">
++          <figcaption>Έντονα χρώματα και ορείχαλκες λεπτομέρειες για statement αποτέλεσμα.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08dcdb6?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα με μεγάλες τζαμαρίες και ξύλινη τραπεζαρία">
++          <figcaption>Open-plan κουζίνα με τζαμαρία και ξύλινη τραπεζαρία σε συνέχεια του πάγκου.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1616628188190-585351ce2677?auto=format&fit=crop&w=900&q=80" alt="Μικρή κουζίνα με κάθετη αποθήκευση και κρυφό φωτισμό">
++          <figcaption>Μικρός χώρος με έξυπνη κάθετη αποθήκευση, gola και κρυφό φωτισμό.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα με νησίδα και καρέκλες μπαρ">
++          <figcaption>Νησίδα με πάσο και καρέκλες μπαρ για καθημερινές συγκεντρώσεις.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=900&q=80" alt="Κουζίνα με λευκά ντουλάπια και ξύλινο πάτωμα">
++          <figcaption>Λευκά ντουλάπια συνδυασμένα με ξύλινο δάπεδο για φωτεινή ατμόσφαιρα.</figcaption>
++        </figure>
++        <figure>
++          <img src="https://images.unsplash.com/photo-1616627561839-3e6a72fba23a?auto=format&fit=crop&w=900&q=80" alt="Βιομηχανικού στυλ κουζίνα με εμφανές τούβλο">
++          <figcaption>Industrial ύφος με εμφανές τούβλο, μεταλλικά στοιχεία και ανοιχτά ράφια.</figcaption>
++        </figure>
++      </div>
++    </section>
++
++    <section class="cta-box" aria-labelledby="cta-contact">
++      <h2 id="cta-contact">Ζητήστε Προσφορά &amp; 3D Μελέτη</h2>
++      <p>Επικοινωνήστε μαζί μας για δωρεάν μέτρηση, προτάσεις υλικών και αναλυτικό χρονοδιάγραμμα εγκατάστασης.</p>
++      <div class="cta" style="justify-content:center;gap:12px;flex-wrap:wrap;">
++        <a class="btn" href="tel:+306936815779">Καλέστε τον Βασίλη</a>
++        <a class="pill" href="/επικοινωνία/">Φόρμα Επικοινωνίας</a>
++      </div>
++    </section>
++  </div>
++</main>
++
++<footer>
++  <div class="wrap">
++    <div>
++      <p class="brand">Aggelopoulos Carpentry</p>
++      <p>Εξειδικευμένοι ξυλουργοί στο Περιστέρι με εμπειρία 35+ ετών σε κουζίνες, ντουλάπες, πόρτες και ειδικές κατασκευές.</p>
++    </div>
++    <div class="box">
++      <p style="margin-top:0;font-weight:800">Υπηρεσίες</p>
++      <div class="mini-nav">
++        <a href="/έπιπλα-κουζίνας/">Έπιπλα Κουζίνας</a>
++        <a href="https://aggelopouloscarpentry.com/έπιπλα-μπάνιου/">Έπιπλα Μπάνιου</a>
++        <a href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">Ντουλάπες &amp; Υπνοδωμάτια</a>
++        <a href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">Πόρτες &amp; Κουφώματα</a>
++        <a href="https://aggelopouloscarpentry.com/ειδικές-κατασκευές/">Ειδικές Κατασκευές</a>
++        <a href="/επικοινωνία/">Επικοινωνία</a>
++      </div>
++    </div>
++    <div class="box">
++      <p style="margin-top:0;font-weight:800">Στοιχεία</p>
++      <p style="margin:0">Χρυσάνθου 58, Περιστέρι<br>693 6815 779<br><a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a></p>
++    </div>
++  </div>
++  <div class="bottom">
++    <span class="year">© <script>document.write(new Date().getFullYear());</script> Aggelopoulos Carpentry</span>
++    <span style="display:block;opacity:.82;margin-top:4px">Κατασκευή &amp; συντήρηση επίπλων κουζίνας στην Αθήνα</span>
++  </div>
++</footer>
++
++<script>
++  // Προσθήκη ελαφριάς animation σε gallery όταν εμφανίζεται
++  const observer = new IntersectionObserver(entries => {
++    entries.forEach(entry => {
++      if(entry.isIntersecting){
++        entry.target.style.opacity = '1';
++        entry.target.style.transform = 'translateY(0)';
++      }
++    });
++  }, {threshold: 0.15});
++
++  document.querySelectorAll('.gallery figure').forEach(fig => {
++    fig.style.opacity = '0';
++    fig.style.transform = 'translateY(18px)';
++    fig.style.transition = 'opacity .4s ease, transform .4s ease';
++    observer.observe(fig);
++  });
++</script>
++</body>
++</html>
+ 
+EOF
+)
