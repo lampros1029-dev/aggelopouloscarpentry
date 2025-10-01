@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – Έπιπλα Υπνοδωματίου (gallery + viewer) -->
+<!-- Aggelopoulos – Έπιπλα Υπνοδωματίου (gallery + viewer) — fixed footer -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
@@ -6,10 +6,9 @@ html,body{margin:0;padding:0}
 body{background:#fff;color:#111}
 
 /* ===== THEME VARS ===== */
-.aggl{--accent:#5D4E37;--black:#111;--white:#fff;--muted:#6b6b6b;--star:#fbbc04}
+.aggl{--accent:#5D4E37;--black:#111;--white:#fff;--muted:#6b6b6b}
 .aggl .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 .section-gap{height:40px}
-.section-gap.s-tight{height:16px}
 
 /* LINKS + BUTTONS */
 .aggl a{color:inherit;text-decoration:none;transition:opacity .18s ease}
@@ -25,62 +24,83 @@ body{background:#fff;color:#111}
   display:flex;align-items:center;justify-content:center;padding:36px 20px;
   background:
     linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)),
-    var(--hero-img, radial-gradient(1200px 520px at 50% 35%, #4d412f 0%, #2b2519 60%, #19140d 100%));
-  background-position:center 55%; background-size:cover; color:#fff;
+    var(--hero-img) center 55%/cover no-repeat;
+  color:#fff;
 }
 .hero .content{max-width:1200px;margin:0 auto;text-align:center;color:#fff;padding:0 18px}
 .hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,46px);line-height:1.18;max-width:980px}
 .hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55}
-.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
 
 /* === White logo button (Home) === */
 .logo-fixed{position:absolute;top:18px;left:18px;width:180px;max-width:38vw;height:auto;z-index:10;opacity:.95;transition:opacity .2s ease,transform .2s ease}
 .logo-fixed:hover{opacity:1;transform:scale(1.02)}
 @media (max-width:600px){.logo-fixed{width:140px;top:14px;left:14px}}
+@media (max-width:820px){.hero .content{padding-top:92px}}
+
+/* ===== INTRO ===== */
+.intro{text-align:center}
+.intro h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
+.intro p{margin:8px auto 0;max-width:860px;color:var(--muted)}
 
 /* ===== GALLERY ===== */
-.gallery .head{display:grid;gap:10px;justify-items:center;text-align:center;margin-bottom:8px}
-.gallery .head h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
-.gallery .head p{margin:0;max-width:860px;color:var(--muted)}
 .g-grid{--min:230px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--min),1fr));gap:14px;align-items:stretch}
-.g-item{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);background:linear-gradient(180deg,#f2f2f2 0%,#e8e7e6 100%);aspect-ratio:4/3;cursor:pointer;background-image:repeating-linear-gradient(-45deg,rgba(0,0,0,.04) 0, rgba(0,0,0,.04) 10px, rgba(0,0,0,0) 10px, rgba(0,0,0,0) 20px);transition:transform .18s ease,box-shadow .18s ease,opacity .2s ease}
+.g-item{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);background:linear-gradient(180deg,#f2f2f2 0%,#e8e7e6 100%);aspect-ratio:4/3;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
 .g-item:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-.g-item.loaded{background:none}
-.g-item .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.02)}
-.g-item .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 90%);color:#fff;font-weight:700;font-size:14px;letter-spacing:.2px;opacity:0;transition:opacity .2s ease}
-.g-item:hover .cap{opacity:1}
+.g-item .img{position:absolute;inset:0;background-size:cover;background-position:center}
 
-/* ===== LIGHTBOX ===== */
+/* ===== LIGHTBOX (desktop arrows + mobile swipe, cross-fade, freeze bg) ===== */
 .viewer[hidden]{display:none}
 .viewer{position:fixed;inset:0;background:rgba(0,0,0,.94);display:grid;grid-template-rows:1fr auto;place-items:center;z-index:9999}
 .viewer .stage{position:relative;width:min(96vw,1280px);height:min(86vh,860px);background:#000;border-radius:10px;overflow:hidden;touch-action:pan-y}
-.viewer .stage .full{
-  position:absolute;inset:0;background:center/contain no-repeat;
-  opacity:1; transition:opacity .32s ease; /* smooth cross‑fade */
-}
+.viewer .stage .full{position:absolute;inset:0;background:center/contain no-repeat;opacity:1;transition:opacity .32s ease}
 .viewer .controls{display:flex;gap:10px;align-items:center;padding:10px}
 .viewer .btn{background:rgba(255,255,255,.1);backdrop-filter:saturate(1.2) blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff}
-.viewer .btn:hover{box-shadow:none}
-.viewer .hint{color:#ccc;font-size:13px}
-/* arrows: desktop on, mobile off */
-.viewer .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:26px;line-height:1}
+.viewer .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:26px}
 .viewer .nav.prev{left:8px}
 .viewer .nav.next{right:8px}
-@media(max-width:820px){.viewer .nav{display:none}}
-
-/* Freeze scroll when viewer open */
+@media(max-width:820px){.viewer .nav{display:none}} /* κινητά: μόνο swipe */
 body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
+
+/* ===== FOOTER (ίδιο με v34, + μικρό κενό πριν τον τίτλο) ===== */
+.footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
+.footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;align-items:start;padding:28px 16px}
+@media (max-width:900px){.footer .wrap{grid-template-columns:1fr}}
+.footer p,.footer a{color:#fff}
+.footer .brand{font-weight:900;font-size:22px;margin:6px 0 6px;letter-spacing:.2px} /* +top space */
+.footer .muted{opacity:.85;line-height:1.6}
+.footer .mini-nav{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:8px 14px;margin-top:6px}
+.footer .mini-nav a{font-weight:600}
+.footer .box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px}
+.footer .divider{height:1px;background:rgba(255,255,255,.12);margin:14px 0}
+.footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:14px 0;text-align:center}
+.footer .bottom .year{font-weight:700;opacity:.95}
+.footer .bottom .tag{display:block;opacity:.85;margin-top:4px}
+.footer .nav-box{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 8px 22px rgba(0,0,0,.12) inset, 0 1px 0 rgba(255,255,255,.08);
+  border-radius:16px;padding:0;
+}
+.footer .nav-box .box-title{
+  font-weight:900;letter-spacing:.2px;padding:12px 16px;
+  background:rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+.footer .nav-box .mini-nav{padding:12px 16px 16px;gap:10px 18px}
+@media (min-width:901px){
+  .footer .nav-box .mini-nav{grid-template-columns:repeat(3,minmax(120px,1fr))}
+  .footer .nav-box .mini-nav a{position:relative;padding:6px 0 6px 18px;opacity:.92}
+  .footer .nav-box .mini-nav a::before{content:"›";position:absolute;left:0;top:50%;transform:translateY(-50%);opacity:.85}
+  .footer .nav-box .mini-nav a:hover{opacity:1;transform:translateX(2px)}
+}
 
 /* ===== MOBILE POLISH ===== */
 @media (max-width:820px){
   .aggl .wrap{padding:0 12px}
   .section-gap{height:28px}
   .hero .inner{min-height:320px;padding:26px 14px}
-  .hero h1{font-size:clamp(20px,6.2vw,26px);line-height:1.18}
-  .hero .content{padding-top:92px} /* για να μην πέφτει πάνω στο logo */
+  .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2}
   .hero p{font-size:15px;line-height:1.55}
-  .gallery .head p{font-size:15px}
   .g-grid{--min:150px;gap:10px}
 }
 .aggl img{max-width:100%;height:auto}
@@ -88,40 +108,39 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
 </style>
 
 <div class="aggl">
-
   <!-- ===== HERO ===== -->
   <section class="hero" style="--hero-img:url(/assets/ntoulapes/aggelopoulos-epipla-upnodomatiou-hero.png)">
     <div class="inner">
+      <!-- Λευκό λογότυπο ως κουμπί προς Αρχική -->
       <a href="https://aggelopouloscarpentry.com/" aria-label="Αρχική">
         <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry">
       </a>
 
       <div class="content">
-        <h1>Έπιπλα Υπνοδωματίου</h1>
-        <p>Κατασκευή κατά παραγγελία με <strong>Blum</strong>/<strong>FGV</strong>, εργονομικά εσωτερικά, συρτάρια βαρέως τύπου, LED και φινιρίσματα λάκας ή καπλαμά. Μελέτη στον χώρο σας και τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
-        <div class="cta">
-          <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
-          <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
-        </div>
-        <div class="badge">Σχεδίαση στα μέτρα σας • 4.9★ αξιολογήσεις</div>
+        <h1>Έπιπλα Υπνοδωματίου — Συρόμενες &amp; Ανοιγόμενες</h1>
+        <p>Κατασκευή κατά παραγγελία με Blum/FGV, εργονομικά εσωτερικά, φωτισμό LED και ποιοτικά φινιρίσματα.</p>
       </div>
     </div>
   </section>
 
   <div class="section-gap"></div>
 
+  <!-- ===== INTRO ===== -->
+  <section class="wrap intro">
+    <h2>Gallery Έργων</h2>
+    <p>Δείγματα από πρόσφατες ντουλάπες και έπιπλα υπνοδωματίου.</p>
+  </section>
+
+  <div class="section-gap" style="height:24px"></div>
+
   <!-- ===== GALLERY ===== -->
-  <section class="wrap gallery" id="gallery">
-    <div class="head">
-      <h2>Gallery Ντουλαπών</h2>
-      <p>Συρόμενες &amp; ανοιγόμενες λύσεις με καθρέφτη, λάκα, ξύλο, και εσωτερικές διατάξεις για μέγιστη εργονομία.</p>
-    </div>
+  <section class="wrap">
     <div class="g-grid" id="g-grid" aria-live="polite"></div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== FOOTER (όπως πριν) ===== -->
+  <!-- ===== FOOTER (v34) ===== -->
   <footer class="footer">
     <div class="wrap">
       <div>
@@ -160,13 +179,15 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
   </footer>
 </div>
 
-<!-- === GALLERY CONFIG === -->
+<!-- ===== GALLERY CONFIG (ντουλάπες) ===== -->
 <script>
+  // Ριζικός φάκελος και pattern αρχείων
   window.AGGLO_IMG_BASE = '/assets/ntoulapes';
   window.AGGLO_IMG_EXT  = 'jpg';
+  // filenames: aggelopoulos-epipla-upnodomatiou-{i}.jpg
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-upnodomatiou-' + i + '.' + ext; };
   window.AGGLO_IMG_MIN_INDEX = 1;
-  window.AGGLO_IMG_MAX_INDEX = 80;
+  window.AGGLO_IMG_MAX_INDEX = 27; /* προσαρμόζεται ανάλογα με τα αρχεία στο repo */
 </script>
 
 <script>
@@ -178,18 +199,16 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
   var BASE=(window.AGGLO_IMG_BASE||'').replace(/\/$/,'');
   var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'item_'+i+'.'+ext; };
   var MIN = Number(window.AGGLO_IMG_MIN_INDEX||1);
-  var MAX = Number(window.AGGLO_IMG_MAX_INDEX||80);
+  var MAX = Number(window.AGGLO_IMG_MAX_INDEX||27);
 
   var images=[];
 
   function addCard(idx,url){
     var li=document.createElement('div');
-    li.className='g-item loaded'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
+    li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
     li.dataset.idx=images.length;
     var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
-    var cap=document.createElement('div'); cap.className='cap'; cap.textContent='Ντουλάπα #'+ idx;
-    li.appendChild(img); li.appendChild(cap);
-    grid.appendChild(li);
+    li.appendChild(img); grid.appendChild(li);
     images.push(url);
   }
 
@@ -214,7 +233,7 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
     if(!v){
       v=document.createElement('div');
       v.className='viewer';
-      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button><span class="hint">Swipe ← / →</span></div>';
+      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button></div>';
       document.body.appendChild(v);
       v.querySelector('#vclose').onclick=close;
       v.addEventListener('click',function(e){ if(e.target===v) close(); });
@@ -275,7 +294,6 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
     var full=v.querySelector('#vfull');
     if(!first){
       full.style.opacity = 0;
-      // περιμένουμε ένα frame για ομαλό fade
       requestAnimationFrame(function(){
         full.style.backgroundImage='url("'+images[cur]+'")';
         requestAnimationFrame(function(){ full.style.opacity = 1; });
@@ -295,17 +313,4 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
     if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(+el.dataset.idx); }
   });
 })();
-</script>
-
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "name":"Κατασκευή Ντουλαπών",
-  "serviceType":"Ντουλάπες Υπνοδωματίου — Συρόμενες & Ανοιγόμενες",
-  "areaServed":"Αθήνα, Περιστέρι",
-  "provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","telephone":"+306936815779"},
-  "brand":["Blum","FGV"]
-}
 </script>
