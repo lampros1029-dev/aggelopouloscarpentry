@@ -8,7 +8,7 @@
     body { margin: 0; font-family: system-ui, sans-serif; background: #fff; color: #111; }
     .hero {
       background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-        url(/assets/kataskeyes/aggelopoulos-eidikes-kataskeues-16.webp) center/cover no-repeat;
+        url(/assets/kataskeyes/aggelopoulos-eidikes-kataskeyes-16.webp) center/cover no-repeat;
       height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white;
       padding: 20px;
     }
@@ -35,9 +35,7 @@
       background-size: contain; background-repeat: no-repeat; background-position: center;
       transition: opacity 0.3s ease;
     }
-    .viewer .controls {
-      margin-top: 16px;
-    }
+    .viewer .controls { margin-top: 16px; }
     .viewer .btn {
       background: #5D4E37; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 999px; cursor: pointer;
     }
@@ -51,12 +49,10 @@
     .viewer .next { right: 0; }
 
     @media(max-width: 720px){
-      .viewer .nav { display: none; }
+      .viewer .nav { display: none; } /* κινητά: swipe only */
     }
 
-    body.aggl-modal-open {
-      overflow: hidden; position: fixed; width: 100%;
-    }
+    body.aggl-modal-open { overflow: hidden; position: fixed; width: 100%; }
   </style>
 </head>
 <body>
@@ -71,10 +67,11 @@
   </section>
 
   <script>
+    /* Ρυθμίσεις paths/ονόματων */
     window.AGGLO_IMG_EXT = "webp";
-    window.AGGLO_IMG_BASE = "/assets/kataskeyes";
+    window.AGGLO_IMG_BASE = "/assets/kataskeyes"; // ΦΑΚΕΛΟΣ
     window.AGGLO_IMG_NAMER = function(i,ext){
-      return 'aggelopoulos-eidikes-kataskeues-' + i + '.' + ext;
+      return 'aggelopoulos-eidikes-kataskeyes-' + i + '.' + ext; // PREFIX ΑΡΧΕΙΩΝ
     };
     window.AGGLO_IMG_MIN_INDEX = 1;
     window.AGGLO_IMG_MAX_INDEX = 18;
@@ -117,7 +114,7 @@
         if(images.length===0){
           grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#6b6b6b">Δεν βρέθηκαν εικόνες.</p>';
         }else{
-          images.sort((a,b)=>a.idx - b.idx); // ✔ ταξινόμηση
+          images.sort((a,b)=>a.idx - b.idx);
           images.forEach(({url}, i)=>{
             var li=document.createElement('div');
             li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
@@ -125,7 +122,7 @@
             var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
             li.appendChild(img); grid.appendChild(li);
           });
-          images = images.map(x=>x.url); // κρατάμε URLs μόνο
+          images = images.map(x=>x.url);
         }
       }
     }
