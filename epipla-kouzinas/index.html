@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – Κουζίνες v1 + Before/After slider -->
+<!-- Aggelopoulos – Κουζίνες v1 + Before/After slider (paths -> /assets/kouzines/ , ext -> .webp) -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
@@ -123,8 +123,8 @@ body{background:#fff;color:#111}
 
 <div class="aggl">
 
-  <!-- ===== HERO (με δικό σου φόντο) ===== -->
-  <section class="hero" style="--hero-img:url(/assets/Koyzines/aggelopoulos-epipla-kouzinas-hero.jpg)">
+  <!-- ===== HERO (με δικό σου φόντο .webp) ===== -->
+  <section class="hero" style="--hero-img:url(/assets/kouzines/aggelopoulos-epipla-kouzinas-hero.webp)">
     <div class="inner"><div class="content">
       <h1>Έπιπλα Κουζίνας στην Αθήνα (Περιστέρι) — Κατασκευή, Σχεδίαση &amp; Τοποθέτηση</h1>
       <p>Μοντέρνες &amp; κλασικές κουζίνες με <strong>Blum</strong>/<strong>FGV</strong>, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, πάγκους <strong>HPL/Quartz</strong>. Τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
@@ -138,7 +138,7 @@ body{background:#fff;color:#111}
 
   <div class="section-gap"></div>
 
-  <!-- ===== BEFORE / AFTER ===== -->
+  <!-- ===== BEFORE / AFTER (.webp) ===== -->
   <section class="wrap ba" id="before-after" aria-labelledby="ba-title">
     <div class="head">
       <h2 id="ba-title">Before / After — Πραγματική Αναβάθμιση Χώρου</h2>
@@ -146,8 +146,8 @@ body{background:#fff;color:#111}
     </div>
 
     <div class="ba-slider" role="region" aria-label="Σύγκριση πριν και μετά κουζίνας">
-      <div class="ba-img" style="background-image:url('/assets/Koyzines/before_after/aggelopoulos-epipla-kouzinas-before.png')" aria-hidden="true"></div>
-      <div class="ba-img ba-after" id="baAfter" style="background-image:url('/assets/Koyzines/before_after/aggelopoulos-epipla-kouzinas-after.png')" aria-hidden="true"></div>
+      <div class="ba-img" style="background-image:url('/assets/kouzines/before_after/aggelopoulos-epipla-kouzinas-before.webp')" aria-hidden="true"></div>
+      <div class="ba-img ba-after" id="baAfter" style="background-image:url('/assets/kouzines/before_after/aggelopoulos-epipla-kouzinas-after.webp')" aria-hidden="true"></div>
       <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Μετακινήστε για να δείτε πριν/μετά">
       <div class="ba-handle" aria-hidden="true">
         <div class="dot">↔</div>
@@ -157,7 +157,7 @@ body{background:#fff;color:#111}
 
   <div class="section-gap"></div>
 
-  <!-- ===== GALLERY (δηλώνουμε BASE/EXT/NAMER πιο κάτω) ===== -->
+  <!-- ===== GALLERY ===== -->
   <section class="wrap gallery" id="gallery">
     <div class="head">
       <h2>Gallery Κουζινών</h2>
@@ -207,13 +207,10 @@ body{background:#fff;color:#111}
   </footer>
 </div>
 
-<!-- === ΔΗΛΩΣΗ GALLERY PATH & NAMER ΓΙΑ ΤΑ ΑΡΧΕΙΑ ΤΟΥ REPO === -->
+<!-- === ΔΗΛΩΣΗ GALLERY PATH & NAMER (.webp) === -->
 <script>
-  // Βάλε βάση και επέκταση για τη gallery σου:
-  window.AGGLO_IMG_BASE = '/assets/Koyzines';
-  window.AGGLO_IMG_EXT  = 'jpg';
-  // Τα αρχεία είναι: aggelopoulos-epipla-kouzinas-1.1.jpg ... 1.47.jpg
-  // Ονοματοποιός: δώσε index -> όνομα αρχείου
+  window.AGGLO_IMG_BASE = '/assets/kouzines';
+  window.AGGLO_IMG_EXT  = 'webp';
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-kouzinas-1.'+ i +'.'+ ext; };
 </script>
 
@@ -224,7 +221,6 @@ body{background:#fff;color:#111}
   var range=document.getElementById('baRange');
   function set(v){ s.style.setProperty('--pos', v+'%'); }
   range.addEventListener('input',function(){ set(this.value); });
-  // drag anywhere on slider
   s.addEventListener('pointerdown',function(e){
     s.setPointerCapture(e.pointerId);
     function move(ev){
@@ -242,19 +238,16 @@ body{background:#fff;color:#111}
 </script>
 
 <script>
-/* ===== GALLERY BOOTSTRAP =====
-   - Φορτώνει 47 εικόνες από BASE με ονόματα που φτιάχνει ο NAMER.
-*/
+/* ===== GALLERY BOOTSTRAP (47 εικόνες .webp) ===== */
 (function(){
   var grid=document.getElementById('g-grid'); if(!grid) return;
 
-  var TOTAL=47; // όπως ζήτησες
-  var EXT=(window.AGGLO_IMG_EXT||'jpg').replace('.','');
+  var TOTAL=47;
+  var EXT=(window.AGGLO_IMG_EXT||'webp').replace('.','');
   var BASE=(window.AGGLO_IMG_BASE||'');
   var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'epipla_kouzinas_'+i+'.'+ext; };
   var CAN_LOAD=!!BASE;
 
-  // Δημιουργία placeholders
   var items=[];
   for(var i=1;i<=TOTAL;i++){
     var li=document.createElement('div');
@@ -282,7 +275,7 @@ body{background:#fff;color:#111}
       node.classList.add('loaded');
       node.querySelector('.img').style.backgroundImage='url("'+url+'")';
     };
-    im.onerror=function(){ /* μένουμε σε skeleton αν λείπει */ };
+    im.onerror=function(){ /* skeleton αν λείπει */ };
     im.src=url;
   }
 
@@ -340,4 +333,3 @@ body{background:#fff;color:#111}
   "brand":["Blum","FGV"]
 }
 </script>
-
