@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – Ντουλάπες (dynamic gallery, no slider) -->
+<!-- Aggelopoulos – Ντουλάπες (dynamic gallery, no slider) + white logo button -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
@@ -33,6 +33,15 @@ body{background:#fff;color:#111}
 .hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55}
 .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
+
+/* === White logo button (to Home) === */
+.logo-fixed{
+  position:absolute; top:18px; left:18px;
+  width:180px; max-width:38vw; height:auto; z-index:10;
+  opacity:.95; transition:opacity .2s ease, transform .2s ease;
+}
+.logo-fixed:hover{opacity:1; transform:scale(1.02)}
+@media (max-width:600px){.logo-fixed{width:140px; top:14px; left:14px}}
 
 /* ===== GALLERY ===== */
 .gallery .head{display:grid;gap:10px;justify-items:center;text-align:center;margin-bottom:8px}
@@ -101,15 +110,23 @@ body{background:#fff;color:#111}
 
   <!-- ===== HERO (χρησιμοποιεί το PNG σου) ===== -->
   <section class="hero" style="--hero-img:url(/assets/ntoulapes/aggelopoulos-epipla-upnodomatiou-hero.png)">
-    <div class="inner"><div class="content">
-      <h1>Ντουλάπες Υπνοδωματίου — Συρόμενες &amp; Ανοιγόμενες</h1>
-      <p>Κατασκευή κατά παραγγελία με <strong>Blum</strong>/<strong>FGV</strong>, εργονομικά εσωτερικά, συρτάρια βαρέως τύπου, LED και φινιρίσματα λάκας ή καπλαμά. Μελέτη στον χώρο σας και τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
-      <div class="cta">
-        <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
-        <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
+    <div class="inner">
+
+      <!-- White logo button to Home (από την αρχική σελίδα) -->
+      <a href="https://aggelopouloscarpentry.com/" aria-label="Αρχική">
+        <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry">
+      </a>
+
+      <div class="content">
+        <h1>Ντουλάπες Υπνοδωματίου — Συρόμενες &amp; Ανοιγόμενες</h1>
+        <p>Κατασκευή κατά παραγγελία με <strong>Blum</strong>/<strong>FGV</strong>, εργονομικά εσωτερικά, συρτάρια βαρέως τύπου, LED και φινιρίσματα λάκας ή καπλαμά. Μελέτη στον χώρο σας και τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
+        <div class="cta">
+          <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
+          <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
+        </div>
+        <div class="badge">Σχεδίαση στα μέτρα σας • 4.9★ αξιολογήσεις</div>
       </div>
-      <div class="badge">Σχεδίαση στα μέτρα σας • 4.9★ αξιολογήσεις</div>
-    </div></div>
+    </div>
   </section>
 
   <div class="section-gap"></div>
@@ -171,7 +188,7 @@ body{background:#fff;color:#111}
   window.AGGLO_IMG_EXT  = 'jpg';
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-upnodomatiou-' + i + '.' + ext; };
   // Μέχρι πόσο να δοκιμάσουμε (τα κενά αγνοούνται)
-  window.AGGLO_IMG_MIN_INDEX = 1;   // αν οι πρώτες είναι από 3, βάλ’το 1 — θα τις προσπεράσει
+  window.AGGLO_IMG_MIN_INDEX = 1;
   window.AGGLO_IMG_MAX_INDEX = 80;
 </script>
 
