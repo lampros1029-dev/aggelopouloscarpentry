@@ -97,7 +97,8 @@ body{background:#fff;color:#111}
   .aggl .wrap{padding:0 12px}
   .section-gap{height:28px}
   .hero .inner{min-height:320px;padding:26px 14px}
-  .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2;margin-bottom:6px}
+  /* μικρότερος τίτλος στο κινητό */
+  .hero h1{font-size:clamp(20px,6.2vw,26px);line-height:1.18}
   .hero p{font-size:15px;line-height:1.55}
   .gallery .head p{font-size:15px}
   .g-grid{--min:150px;gap:10px}
@@ -118,7 +119,7 @@ body{background:#fff;color:#111}
       </a>
 
       <div class="content">
-        <h1>Ντουλάπες Υπνοδωματίου — Συρόμενες &amp; Ανοιγόμενες</h1>
+        <h1>Έπιπλα Υπνοδωματίου</h1>
         <p>Κατασκευή κατά παραγγελία με <strong>Blum</strong>/<strong>FGV</strong>, εργονομικά εσωτερικά, συρτάρια βαρέως τύπου, LED και φινιρίσματα λάκας ή καπλαμά. Μελέτη στον χώρο σας και τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
         <div class="cta">
           <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
@@ -183,17 +184,15 @@ body{background:#fff;color:#111}
 
 <!-- === GALLERY CONFIG ΓΙΑ ΝΤΟΥΛΑΠΕΣ === -->
 <script>
-  // Βάση & pattern αρχείων: aggelopoulos-epipla-upnodomatiou-{N}.jpg
   window.AGGLO_IMG_BASE = '/assets/ntoulapes';
   window.AGGLO_IMG_EXT  = 'jpg';
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-upnodomatiou-' + i + '.' + ext; };
-  // Μέχρι πόσο να δοκιμάσουμε (τα κενά αγνοούνται)
   window.AGGLO_IMG_MIN_INDEX = 1;
   window.AGGLO_IMG_MAX_INDEX = 80;
 </script>
 
 <script>
-/* ===== DYNAMIC GALLERY LOADER (δοκιμάζει MIN..MAX και προσθέτει μόνο όσα υπάρχουν) ===== */
+/* ===== DYNAMIC GALLERY LOADER ===== */
 (function(){
   var grid=document.getElementById('g-grid'); if(!grid) return;
 
@@ -203,7 +202,7 @@ body{background:#fff;color:#111}
   var MIN = Number(window.AGGLO_IMG_MIN_INDEX||1);
   var MAX = Number(window.AGGLO_IMG_MAX_INDEX||80);
 
-  var items=[]; var images=[];
+  var images=[];
 
   function addCard(idx,url){
     var li=document.createElement('div');
@@ -213,7 +212,7 @@ body{background:#fff;color:#111}
     var cap=document.createElement('div'); cap.className='cap'; cap.textContent='Ντουλάπα #'+ idx;
     li.appendChild(img); li.appendChild(cap);
     grid.appendChild(li);
-    items.push(li); images.push(url);
+    images.push(url);
   }
 
   var pending=0;
