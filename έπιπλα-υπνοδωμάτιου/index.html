@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – Ντουλάπες (dynamic gallery, no slider) + white logo button -->
+<!-- Aggelopoulos – Ντουλάπες (dynamic gallery, no slider) + white logo button + mobile polish + swipe viewer -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
@@ -58,15 +58,14 @@ body{background:#fff;color:#111}
 /* ===== LIGHTBOX ===== */
 .viewer[hidden]{display:none}
 .viewer{position:fixed;inset:0;background:rgba(0,0,0,.92);display:grid;grid-template-rows:1fr auto;place-items:center;z-index:9999}
-.viewer .stage{position:relative;width:min(96vw,1280px);height:min(86vh,860px);background:#000;border-radius:10px;overflow:hidden}
+.viewer .stage{position:relative;width:min(96vw,1280px);height:min(86vh,860px);background:#000;border-radius:10px;overflow:hidden;touch-action:pan-y}
 .viewer .stage .full{position:absolute;inset:0;background:center/contain no-repeat}
 .viewer .controls{display:flex;gap:10px;align-items:center;padding:10px}
 .viewer .btn{background:rgba(255,255,255,.1);backdrop-filter:saturate(1.2) blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff}
 .viewer .btn:hover{box-shadow:none}
 .viewer .hint{color:#ccc;font-size:13px}
-.viewer .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
-.viewer .nav.prev{left:8px}
-.viewer .nav.next{right:8px}
+/* κρύψε τα βελάκια */
+.viewer .nav{display:none !important}
 
 /* ===== FOOTER (ίδιο με αρχική v34) ===== */
 .footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
@@ -97,8 +96,9 @@ body{background:#fff;color:#111}
   .aggl .wrap{padding:0 12px}
   .section-gap{height:28px}
   .hero .inner{min-height:320px;padding:26px 14px}
-  /* μικρότερος τίτλος στο κινητό */
+  /* πιο μικρός τίτλος ΚΑΙ χαμηλότερα ώστε να φαίνεται το logo */
   .hero h1{font-size:clamp(20px,6.2vw,26px);line-height:1.18}
+  .hero .content{padding-top:92px} /* σπρώχνει τίτλο κάτω από το logo */
   .hero p{font-size:15px;line-height:1.55}
   .gallery .head p{font-size:15px}
   .g-grid{--min:150px;gap:10px}
@@ -109,11 +109,11 @@ body{background:#fff;color:#111}
 
 <div class="aggl">
 
-  <!-- ===== HERO (χρησιμοποιεί το PNG σου) ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero" style="--hero-img:url(/assets/ntoulapes/aggelopoulos-epipla-upnodomatiou-hero.png)">
     <div class="inner">
 
-      <!-- White logo button to Home (από την αρχική σελίδα) -->
+      <!-- White logo button -->
       <a href="https://aggelopouloscarpentry.com/" aria-label="Αρχική">
         <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry">
       </a>
@@ -132,7 +132,7 @@ body{background:#fff;color:#111}
 
   <div class="section-gap"></div>
 
-  <!-- ===== GALLERY ΝΤΟΥΛΑΠΩΝ (δυναμική) ===== -->
+  <!-- ===== GALLERY ===== -->
   <section class="wrap gallery" id="gallery">
     <div class="head">
       <h2>Gallery Ντουλαπών</h2>
@@ -143,7 +143,7 @@ body{background:#fff;color:#111}
 
   <div class="section-gap"></div>
 
-  <!-- ===== FOOTER (ίδιο με αρχική) ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="wrap">
       <div>
@@ -182,7 +182,7 @@ body{background:#fff;color:#111}
   </footer>
 </div>
 
-<!-- === GALLERY CONFIG ΓΙΑ ΝΤΟΥΛΑΠΕΣ === -->
+<!-- === GALLERY CONFIG === -->
 <script>
   window.AGGLO_IMG_BASE = '/assets/ntoulapes';
   window.AGGLO_IMG_EXT  = 'jpg';
@@ -192,7 +192,7 @@ body{background:#fff;color:#111}
 </script>
 
 <script>
-/* ===== DYNAMIC GALLERY LOADER ===== */
+/* ===== DYNAMIC GALLERY LOADER + LIGHTBOX (swipe) ===== */
 (function(){
   var grid=document.getElementById('g-grid'); if(!grid) return;
 
@@ -235,12 +235,38 @@ body{background:#fff;color:#111}
     if(!v){
       v=document.createElement('div');
       v.className='viewer';
-      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button><span class="hint">Esc/←/→</span></div>';
+      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button><span class="hint">Swipe ← / →</span></div>';
       document.body.appendChild(v);
       v.querySelector('#vclose').onclick=close;
       v.addEventListener('click',function(e){ if(e.target===v) close(); });
-      v.querySelector('.prev').onclick=function(){ step(-1); };
-      v.querySelector('.next').onclick=function(){ step(1); };
+
+      // swipe handlers
+      var stage=v.querySelector('.stage');
+      var startX=0, dx=0, touching=false;
+      var TH=40; // κατώφλι pixels
+
+      function start(e){
+        touching=true;
+        startX = (e.touches? e.touches[0].clientX : e.clientX);
+        dx=0;
+      }
+      function move(e){
+        if(!touching) return;
+        var x=(e.touches? e.touches[0].clientX : e.clientX);
+        dx = x - startX;
+      }
+      function end(){
+        if(!touching) return; touching=false;
+        if(Math.abs(dx)>TH){ step(dx<0? 1 : -1); }
+      }
+      stage.addEventListener('touchstart',start,{passive:true});
+      stage.addEventListener('touchmove',move,{passive:true});
+      stage.addEventListener('touchend',end);
+      // optional mouse swipe
+      stage.addEventListener('mousedown',start);
+      stage.addEventListener('mousemove',move);
+      stage.addEventListener('mouseup',end);
+
       document.addEventListener('keydown',function(e){
         if(!v || v.hasAttribute('hidden')) return;
         if(e.key==='Escape') close();
@@ -267,7 +293,7 @@ body{background:#fff;color:#111}
 })();
 </script>
 
-<!-- JSON-LD: Υπηρεσία Ντουλαπών -->
+<!-- JSON-LD -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
