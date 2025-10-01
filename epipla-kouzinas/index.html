@@ -1,32 +1,89 @@
-<!-- Aggelopoulos – Kitchens (Hero + Empty Gallery Hook + Footer) -->
+<!-- Aggelopoulos – Κουζίνες v1 + Before/After slider -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
 html,body{margin:0;padding:0}
 body{background:#fff;color:#111}
 
-/* ===== THEME VARS (aligned with index v34) ===== */
+/* ===== THEME VARS (ίδιες με αρχική) ===== */
 .aggl{--accent:#5D4E37;--black:#111;--white:#fff;--muted:#6b6b6b;--star:#fbbc04}
 .aggl .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
 .section-gap{height:40px}
+.section-gap.s-tight{height:16px}
 
-/* ===== LINKS / BUTTONS ===== */
+/* LINKS + BUTTONS */
 .aggl a{color:inherit;text-decoration:none;transition:opacity .18s ease}
 .aggl a:hover{opacity:.9}
 .btn{border-radius:999px;display:inline-block;font-weight:700;padding:12px 22px;background:var(--accent);color:#fff;transition:transform .18s ease,box-shadow .18s ease}
 .btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.22)}
 .btn:focus{outline:2px solid rgba(93,78,55,.45);outline-offset:2px;border-radius:999px}
 
-/* ===== HERO (same style as index v34) ===== */
-.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.hero .inner{min-height:clamp(260px,50vh,540px);display:flex;align-items:center;justify-content:center;padding:36px 20px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)), var(--hero-img) center 55%/cover no-repeat}
+/* ===== HERO ===== */
+.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:#1f1a12}
+.hero .inner{
+  min-height:clamp(260px,50vh,520px);
+  display:flex;align-items:center;justify-content:center;padding:36px 20px;
+  background:
+    linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)),
+    var(--hero-img, radial-gradient(1200px 520px at 50% 35%, #4d412f 0%, #2b2519 60%, #19140d 100%));
+  background-position:center 55%; background-size:cover; color:#fff;
+}
 .hero .content{max-width:1200px;margin:0 auto;text-align:center;color:#fff;padding:0 18px}
-.hero .logo{width:min(340px,68%);height:auto;display:block;margin:0 auto 10px}
 .hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,46px);line-height:1.18;max-width:980px}
 .hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55}
 .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
 
-/* ===== FOOTER (same as index v34) ===== */
+/* ===== BEFORE/AFTER SLIDER ===== */
+.ba .head{display:grid;gap:10px;justify-items:center;text-align:center;margin-bottom:8px}
+.ba .head h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
+.ba .head p{margin:0;max-width:900px;color:var(--muted)}
+.ba-slider{
+  position:relative;border-radius:16px;overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  background:#eee;aspect-ratio:16/9;
+  --pos:50%;
+}
+.ba-img{position:absolute;inset:0;background-size:cover;background-position:center}
+.ba-after{width:var(--pos);border-right:2px solid rgba(255,255,255,.85)}
+.ba-handle{
+  position:absolute;top:0;bottom:0;left:calc(var(--pos) - 18px);width:36px;
+  display:grid;place-items:center;cursor:ew-resize;touch-action:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.18) 50%,rgba(0,0,0,.0));
+  border-left:1px solid rgba(255,255,255,.7);border-right:1px solid rgba(0,0,0,.15);
+}
+.ba-handle .dot{
+  width:36px;height:36px;border-radius:999px;display:grid;place-items:center;
+  background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.12);box-shadow:0 4px 18px rgba(0,0,0,.18)
+}
+.ba-range{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:ew-resize}
+
+/* ===== GALLERY ===== */
+.gallery .head{display:grid;gap:10px;justify-items:center;text-align:center;margin-bottom:8px}
+.gallery .head h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
+.gallery .head p{margin:0;max-width:860px;color:var(--muted)}
+.g-grid{--min:230px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--min),1fr));gap:14px;align-items:stretch}
+.g-item{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);background:linear-gradient(180deg,#f2f2f2 0%,#e8e7e6 100%);aspect-ratio:4/3;cursor:pointer;background-image:repeating-linear-gradient(-45deg,rgba(0,0,0,.04) 0, rgba(0,0,0,.04) 10px, rgba(0,0,0,0) 10px, rgba(0,0,0,0) 20px);transition:transform .18s ease, box-shadow .18s ease, opacity .2s ease}
+.g-item:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.g-item.loaded{background:none}
+.g-item .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(1.02)}
+.g-item .cap{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 90%);color:#fff;font-weight:700;font-size:14px;letter-spacing:.2px;opacity:0;transition:opacity .2s ease}
+.g-item:hover .cap{opacity:1}
+
+/* ===== LIGHTBOX ===== */
+.viewer[hidden]{display:none}
+.viewer{position:fixed;inset:0;background:rgba(0,0,0,.92);display:grid;grid-template-rows:1fr auto;place-items:center;z-index:9999}
+.viewer .stage{position:relative;width:min(96vw,1280px);height:min(86vh,860px);background:#000;border-radius:10px;overflow:hidden}
+.viewer .stage .full{position:absolute;inset:0;background:center/contain no-repeat}
+.viewer .controls{display:flex;gap:10px;align-items:center;padding:10px}
+.viewer .btn{background:rgba(255,255,255,.1);backdrop-filter:saturate(1.2) blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff}
+.viewer .btn:hover{box-shadow:none}
+.viewer .hint{color:#ccc;font-size:13px}
+.viewer .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.viewer .nav.prev{left:8px}
+.viewer .nav.next{right:8px}
+
+/* ===== FOOTER (ίδιο με αρχική v34) ===== */
 .footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
 .footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;align-items:start;padding:28px 16px}
 @media (max-width:900px){.footer .wrap{grid-template-columns:1fr}}
@@ -40,17 +97,8 @@ body{background:#fff;color:#111}
 .footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:14px 0;text-align:center}
 .footer .bottom .year{font-weight:700;opacity:.95}
 .footer .bottom .tag{display:block;opacity:.85;margin-top:4px}
-.footer .nav-box{
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 8px 22px rgba(0,0,0,.12) inset, 0 1px 0 rgba(255,255,255,.08);
-  border-radius:16px;padding:0;
-}
-.footer .nav-box .box-title{
-  font-weight:900;letter-spacing:.2px;padding:12px 16px;
-  background:rgba(255,255,255,.08);
-  border-bottom:1px solid rgba(255,255,255,.16);
-}
+.footer .nav-box{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 22px rgba(0,0,0,.12) inset, 0 1px 0 rgba(255,255,255,.08);border-radius:16px;padding:0}
+.footer .nav-box .box-title{font-weight:900;letter-spacing:.2px;padding:12px 16px;background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.16)}
 .footer .nav-box .mini-nav{padding:12px 16px 16px;gap:10px 18px}
 @media (min-width:901px){
   .footer .nav-box .mini-nav{grid-template-columns:repeat(3,minmax(120px,1fr))}
@@ -62,43 +110,65 @@ body{background:#fff;color:#111}
 /* ===== MOBILE POLISH ===== */
 @media (max-width:820px){
   .aggl .wrap{padding:0 12px}
-  .section-gap{height:26px}
+  .section-gap{height:28px}
   .hero .inner{min-height:320px;padding:26px 14px}
-  .hero .logo{width:72%;margin-bottom:8px}
   .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2;margin-bottom:6px}
   .hero p{font-size:15px;line-height:1.55}
-  .hero .btn{padding:11px 18px}
+  .gallery .head p{font-size:15px}
+  .g-grid{--min:150px;gap:10px}
 }
-
-/* ===== GALLERY HOOK (EMPTY PLACEHOLDER) ===== */
-/* Μόλις προσθέσεις τη γκαλερί σου, μπορείς να αφαιρέσεις τον ελάχιστο χώρο. */
-#gallery-hook{min-height:60vh}
+.aggl img{max-width:100%;height:auto}
+.aggl{overflow-x:hidden}
 </style>
 
 <div class="aggl">
-  <!-- ===== HERO ===== -->
-  <section class="hero" style="--hero-img:url(REPLACE_WITH_YOUR_HERO_IMAGE_URL)">
+
+  <!-- ===== HERO (με δικό σου φόντο) ===== -->
+  <section class="hero" style="--hero-img:url(/assets/Koyzines/aggelopoulos-epipla-kouzinas-hero.jpg)">
     <div class="inner"><div class="content">
-      <img class="logo" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry — από το 1960">
-      <h1>Έπιπλα Κουζίνας – Gallery</h1>
-      <p>Δείγματα από κουζίνες που κατασκευάσαμε &amp; τοποθετήσαμε σε Περιστέρι και Αθήνα.</p>
+      <h1>Έπιπλα Κουζίνας στην Αθήνα (Περιστέρι) — Κατασκευή, Σχεδίαση &amp; Τοποθέτηση</h1>
+      <p>Μοντέρνες &amp; κλασικές κουζίνες με <strong>Blum</strong>/<strong>FGV</strong>, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/μύλος), <strong>LED</strong>, πάγκους <strong>HPL/Quartz</strong>. Τυπική παράδοση <strong>10–20 ημέρες</strong>.</p>
       <div class="cta">
         <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
         <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
       </div>
+      <div class="badge">Κουζίνες κατά παραγγελία • 50+ έργα/έτος • 4.9★</div>
     </div></div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== EMPTY GALLERY AREA (no content) ===== -->
-  <section class="wrap" id="gallery-hook">
-    <!-- Ρίξε εδώ ΜΟΝΟ τον κώδικα της γκαλερί σου όταν είναι έτοιμος -->
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section class="wrap ba" id="before-after" aria-labelledby="ba-title">
+    <div class="head">
+      <h2 id="ba-title">Before / After — Πραγματική Αναβάθμιση Χώρου</h2>
+      <p>Σύρετε τον δείκτη για να συγκρίνετε τον χώρο <strong>πριν</strong> και <strong>μετά</strong> την τοποθέτηση. Δείτε την ποιότητα φινιρίσματος και την εργονομία από κοντά· έπειτα συνεχίστε στη <strong>gallery</strong> για περισσότερα έργα.</p>
+    </div>
+
+    <div class="ba-slider" role="region" aria-label="Σύγκριση πριν και μετά κουζίνας">
+      <div class="ba-img" style="background-image:url('/assets/Koyzines/before_after/aggelopoulos-epipla-kouzinas-before.jpg')" aria-hidden="true"></div>
+      <div class="ba-img ba-after" id="baAfter" style="background-image:url('/assets/Koyzines/before_after/aggelopoulos-epipla-kouzinas-after.jpg')" aria-hidden="true"></div>
+      <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Μετακινήστε για να δείτε πριν/μετά">
+      <div class="ba-handle" aria-hidden="true">
+        <div class="dot">↔</div>
+      </div>
+    </div>
   </section>
 
   <div class="section-gap"></div>
 
-  <!-- ===== FOOTER (ίδιο με index v34) ===== -->
+  <!-- ===== GALLERY (δηλώνουμε BASE/EXT/NAMER πιο κάτω) ===== -->
+  <section class="wrap gallery" id="gallery">
+    <div class="head">
+      <h2>Gallery Κουζινών</h2>
+      <p>Δείγματα έργων: λευκές λάκες, ξύλινα καπλαμά, γωνιακές λύσεις, νησίδες, κρυφοί φωτισμοί.</p>
+    </div>
+    <div class="g-grid" id="g-grid" aria-live="polite"></div>
+  </section>
+
+  <div class="section-gap"></div>
+
+  <!-- ===== FOOTER (ίδιο με αρχική) ===== -->
   <footer class="footer">
     <div class="wrap">
       <div>
@@ -136,3 +206,137 @@ body{background:#fff;color:#111}
     </div>
   </footer>
 </div>
+
+<!-- === ΔΗΛΩΣΗ GALLERY PATH & NAMER ΓΙΑ ΤΑ ΑΡΧΕΙΑ ΤΟΥ REPO === -->
+<script>
+  // Βάλε βάση και επέκταση για τη gallery σου:
+  window.AGGLO_IMG_BASE = '/assets/Koyzines';
+  window.AGGLO_IMG_EXT  = 'jpg';
+  // Τα αρχεία είναι: aggelopoulos-epipla-kouzinas-1.1.jpg ... 1.47.jpg
+  // Ονοματοποιός: δώσε index -> όνομα αρχείου
+  window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-kouzinas-1.'+ i +'.'+ ext; };
+</script>
+
+<script>
+/* ===== BEFORE/AFTER INTERACTION ===== */
+(function(){
+  var s=document.querySelector('.ba-slider'); if(!s) return;
+  var range=document.getElementById('baRange');
+  function set(v){ s.style.setProperty('--pos', v+'%'); }
+  range.addEventListener('input',function(){ set(this.value); });
+  // drag anywhere on slider
+  s.addEventListener('pointerdown',function(e){
+    s.setPointerCapture(e.pointerId);
+    function move(ev){
+      var r=s.getBoundingClientRect();
+      var x=Math.max(0, Math.min(ev.clientX - r.left, r.width));
+      set((x/r.width*100).toFixed(2));
+      range.value=(x/r.width*100).toFixed(0);
+    }
+    move(e);
+    function up(ev){ s.releasePointerCapture(e.pointerId); s.removeEventListener('pointermove',move); s.removeEventListener('pointerup',up); }
+    s.addEventListener('pointermove',move);
+    s.addEventListener('pointerup',up);
+  });
+})();
+</script>
+
+<script>
+/* ===== GALLERY BOOTSTRAP =====
+   - Φορτώνει 47 εικόνες από BASE με ονόματα που φτιάχνει ο NAMER.
+*/
+(function(){
+  var grid=document.getElementById('g-grid'); if(!grid) return;
+
+  var TOTAL=47; // όπως ζήτησες
+  var EXT=(window.AGGLO_IMG_EXT||'jpg').replace('.','');
+  var BASE=(window.AGGLO_IMG_BASE||'');
+  var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'epipla_kouzinas_'+i+'.'+ext; };
+  var CAN_LOAD=!!BASE;
+
+  // Δημιουργία placeholders
+  var items=[];
+  for(var i=1;i<=TOTAL;i++){
+    var li=document.createElement('div');
+    li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
+    li.dataset.idx=i;
+    var img=document.createElement('div'); img.className='img';
+    var cap=document.createElement('div'); cap.className='cap'; cap.textContent='Κουζίνα #' + i;
+    li.appendChild(img); li.appendChild(cap);
+    grid.appendChild(li); items.push(li);
+  }
+
+  if(!CAN_LOAD) return;
+
+  function srcFor(idx){ return BASE.replace(/\/$/,'') + '/' + NAMER(idx, EXT); }
+
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ load(e.target); io.unobserve(e.target); }});
+  },{rootMargin:'200px'}) : null;
+
+  function load(node){
+    var i=node.dataset.idx;
+    var url=srcFor(i);
+    var im=new Image();
+    im.onload=function(){
+      node.classList.add('loaded');
+      node.querySelector('.img').style.backgroundImage='url("'+url+'")';
+    };
+    im.onerror=function(){ /* μένουμε σε skeleton αν λείπει */ };
+    im.src=url;
+  }
+
+  items.forEach(function(n){ io ? io.observe(n) : load(n); });
+
+  // Lightbox
+  var v=null, cur=0;
+  function open(idx){
+    cur=idx;
+    if(!v){
+      v=document.createElement('div');
+      v.className='viewer';
+      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button><span class="hint">Esc/←/→</span></div>';
+      document.body.appendChild(v);
+      v.querySelector('#vclose').onclick=close;
+      v.addEventListener('click',function(e){ if(e.target===v) close(); });
+      v.querySelector('.prev').onclick=function(){ step(-1); };
+      v.querySelector('.next').onclick=function(){ step(1); };
+      document.addEventListener('keydown',function(e){
+        if(v.hasAttribute('hidden')) return;
+        if(e.key==='Escape') close();
+        if(e.key==='ArrowLeft') step(-1);
+        if(e.key==='ArrowRight') step(1);
+      });
+    }
+    v.removeAttribute('hidden'); render();
+  }
+  function close(){ if(v) v.setAttribute('hidden',''); }
+  function step(d){ cur = ((cur-1 + d + TOTAL) % TOTAL) + 1; render(); }
+  function render(){
+    var url = srcFor(cur);
+    var full=v.querySelector('#vfull');
+    full.style.backgroundImage = 'url("'+url+'")';
+  }
+
+  grid.addEventListener('click',function(e){
+    var el=e.target.closest('.g-item'); if(!el) return; open(+el.dataset.idx);
+  });
+  grid.addEventListener('keydown',function(e){
+    var el=e.target.closest('.g-item'); if(!el) return;
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(+el.dataset.idx); }
+  });
+})();
+</script>
+
+<!-- JSON-LD: Υπηρεσία Κουζινών -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"Κατασκευή Επίπλων Κουζίνας",
+  "serviceType":"Έπιπλα Κουζίνας – Σχεδίαση, Κατασκευή & Τοποθέτηση",
+  "areaServed":"Αθήνα, Περιστέρι",
+  "provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","telephone":"+306936815779"},
+  "brand":["Blum","FGV"]
+}
+</script>
