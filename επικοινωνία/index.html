@@ -31,15 +31,43 @@
     .help{color:var(--muted);font-size:.95rem}
     .err{color:#b00020;font-weight:700;margin-top:6px;display:none}
     .show{display:block}
-    /* ----- (ΣΧΟΛΙΟ) Στυλ για thumbnails ανεβάσματος (δεν χρησιμοποιούνται πλέον) -----
-    .gallery{display:flex;flex-wrap:wrap;gap:10px}
-    .thumb{position:relative;width:110px;height:90px;border-radius:10px;overflow:hidden;border:1px solid #e3e3e3;background:#fafafa;display:grid;place-items:center}
-    .thumb img{width:100%;height:100%;object-fit:cover}
-    .thumb button{position:absolute;top:4px;right:4px;border:none;border-radius:999px;background:rgba(0,0,0,.7);color:#fff;width:24px;height:24px;cursor:pointer}
-    */
+    /* ----- (ΣΧΟΛΙΟ) Στυλ για thumbnails ανεβάσματος (δεν χρησιμοποιούνται πλέον) ----- */
     .aside .card{position:sticky;top:88px}
     iframe.map{width:100%;height:260px;border:0;border-radius:12px}
-    footer{margin-top:30px;padding:20px 0;border-top:1px solid rgba(93,78,55,.12);color:#555}
+
+    /* ====== Κοινό FOOTER (όπως στις υπόλοιπες σελίδες) ====== */
+    .footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
+    .footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:22px;align-items:start;padding:28px 22px}
+    @media (max-width:900px){.footer .wrap{grid-template-columns:1fr}}
+    .footer p,.footer a{color:#fff}
+    .footer .brand{font-weight:900;font-size:22px;margin:6px 0 6px;letter-spacing:.2px}
+    .footer .muted{opacity:.85;line-height:1.6}
+    .footer .mini-nav{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:8px 14px;margin-top:6px}
+    .footer .mini-nav a{font-weight:600}
+    .footer .box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px}
+    .footer .divider{height:1px;background:rgba(255,255,255,.12);margin:14px 0}
+    .footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:14px 22px;text-align:center}
+    .footer .bottom .year{font-weight:700;opacity:.95}
+    .footer .bottom .tag{display:block;opacity:.85;margin-top:4px}
+    .footer .nav-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 8px 22px rgba(0,0,0,.12) inset, 0 1px 0 rgba(255,255,255,.08);
+      border-radius:16px;padding:0;
+    }
+    .footer .nav-box .box-title{
+      font-weight:900;letter-spacing:.2px;padding:12px 16px;
+      background:rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.16);
+    }
+    .footer .nav-box .mini-nav{padding:12px 16px 16px;gap:10px 18px}
+    @media (min-width:901px){
+      .footer .nav-box .mini-nav{grid-template-columns:repeat(3,minmax(120px,1fr))}
+      .footer .nav-box .mini-nav a{position:relative;padding:6px 0 6px 18px;opacity:.92}
+      .footer .nav-box .mini-nav a::before{content:"›";position:absolute;left:0;top:50%;transform:translateY(-50%);opacity:.85}
+      .footer .nav-box .mini-nav a:hover{opacity:1;transform:translateX(2px)}
+    }
+
     /* Spacing & consent block */
     .consent{margin:8px 0 18px;padding:12px 14px;border:1px solid #e8e1d8;border-radius:14px;background:#fafafa}
     .consent .consent-row{display:flex;gap:12px;align-items:flex-start}
@@ -99,19 +127,7 @@
           <label for="message">Μήνυμα *</label>
           <textarea id="message" name="message" rows="6" required placeholder="Περιγράψτε χώρο/διαστάσεις, υλικά, χρόνο παράδοσης κ.λπ."></textarea>
           <div class="err" id="e-message">Γράψτε τουλάχιστον 10 χαρακτήρες.</div>
-          <!-- (ΣΧΟΛΙΟ) Αφαιρέθηκε το ενημερωτικό για φωτογραφίες
-          <p class="help">Μπορείτε να στείλετε φωτογραφίες κάτω από 4MB η καθεμία.</p>
-          -->
         </div>
-
-        <!-- (ΣΧΟΛΙΟ) ΟΛΟ ΤΟ ΜΠΛΟΚ ΑΝΕΒΑΣΜΑΤΟΣ ΦΩΤΟΓΡΑΦΙΩΝ ΑΠΕΝΕΡΓΟΠΟΙΗΘΗΚΕ
-        <div>
-          <label for="photos">Φωτογραφίες (έως 5)</label>
-          <input id="photos" name="attachments" type="file" accept="image/*" multiple>
-          <div class="gallery" id="gallery"></div>
-          <div class="err" id="e-photos" style="display:none"></div>
-        </div>
-        -->
 
         <div class="consent">
           <div class="consent-row">
@@ -141,7 +157,43 @@
   </div>
 </main>
 
-<footer><div class="wrap">© Aggelopoulos Carpentry — Περιστέρι</div></footer>
+<!-- ===== Κοινό Footer ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <p class="brand">Aggelopoulos Carpentry</p>
+      <p class="muted">Ξυλουργικές λύσεις: Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες &amp; Ειδικές Κατασκευές. Από το 1960 στο Περιστέρι.</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="box nav-box">
+      <div class="box-title">Σύνδεσμοι</div>
+      <nav class="mini-nav" aria-label="Χρήσιμοι σύνδεσμοι">
+        <a href="https://aggelopouloscarpentry.com/">Αρχική</a>
+        <a href="https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/">Κουζίνες</a>
+        <a href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">Ντουλάπες</a>
+        <a href="https://aggelopouloscarpentry.com/έπιπλα-μπάνιου/">Μπάνια</a>
+        <a href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">Πόρτες</a>
+        <a href="https://aggelopouloscarpentry.com/ειδικές-κατασκευές/">Ειδικές</a>
+        <a href="https://aggelopouloscarpentry.com/επικοινωνία/">Επικοινωνία</a>
+      </nav>
+    </div>
+
+    <div class="box">
+      <strong>Επικοινωνία</strong>
+      <p class="muted" style="margin:6px 0 10px">
+        Χρυσάνθου 58, Περιστέρι, 12136<br>
+        <a href="tel:+306936815779">(+30) 693 6815 779</a><br>
+        <a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a>
+      </p>
+      <a class="btn" href="https://aggelopouloscarpentry.com/επικοινωνία/">Ζητήστε Δωρεάν Μέτρηση</a>
+    </div>
+  </div>
+  <div class="bottom">
+    <span class="year">© Aggelopoulos Carpentry 2025</span>
+    <span class="tag">Φτιαγμένο με μεράκι στην Αθήνα.</span>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -158,36 +210,6 @@
   const telOk   = v => /^[0-9+ ()-]{8,}$/.test(v||'');
   const minLen  = (v,n) => (v||'').trim().length>=n;
 
-  /* ==========================
-     (ΣΧΟΛΙΟ) ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ FILE UPLOAD JS
-  ===========================
-  // const fileInput = document.getElementById('photos');
-  // const gallery = document.getElementById('gallery');
-  // const MAX_FILES = 5, MAX_EACH = 4*1024*1024;
-
-  // function refreshGallery(files){
-  //   gallery.innerHTML='';
-  //   [...files].forEach((file, idx)=>{
-  //     const item = document.createElement('div'); item.className='thumb';
-  //     const img = document.createElement('img'); img.alt = file.name;
-  //     item.appendChild(img);
-  //     const rm = document.createElement('button'); rm.type='button'; rm.innerHTML='×';
-  //     rm.addEventListener('click', ()=>{ const list=[...fileInput.files]; list.splice(idx,1); const dt=new DataTransfer(); list.forEach(f=>dt.items.add(f)); fileInput.files=dt.files; refreshGallery(fileInput.files); });
-  //     item.appendChild(rm);
-  //     gallery.appendChild(item);
-  //     const reader = new FileReader(); reader.onload = e => img.src = e.target.result; reader.readAsDataURL(file);
-  //   });
-  // }
-
-  // fileInput.addEventListener('change', ()=>{
-  //   const files = fileInput.files;
-  //   if(files.length > MAX_FILES){ showError('e-photos', true, 'Μπορείτε έως '+MAX_FILES+' εικόνες.'); const dt=new DataTransfer(); [...files].slice(0,MAX_FILES).forEach(f=>dt.items.add(f)); fileInput.files = dt.files; }
-  //   else showError('e-photos', false);
-  //   for(const f of fileInput.files){ if(f.size > MAX_EACH){ showError('e-photos', true, 'Κάθε εικόνα έως 4MB.'); break; } }
-  //   refreshGallery(fileInput.files);
-  // });
-  */
-
   form.addEventListener('submit', async (e)=>{
     e.preventDefault(); alertBox.innerHTML='';
     const fd = new FormData(form);
@@ -203,10 +225,6 @@
     const tookMs = Date.now() - Number(started.value||0);
     if (tookMs < 2500) { ok = false; alertBox.innerHTML = '<div class="fail">Πολύ γρήγορη υποβολή. Παρακαλώ ξαναδοκιμάστε.</div>'; }
 
-    /* (ΣΧΟΛΙΟ) Αφαιρέθηκε ο έλεγχος μεγέθους για τα αρχεία
-    for(const f of (fileInput.files||[])){ if(f.size>MAX_EACH){ ok=false; showError('e-photos', true, 'Κάθε εικόνα έως 4MB.'); break; } }
-    */
-
     if(!ok) return;
 
     btn.disabled = true; const old = btn.textContent; btn.textContent='Αποστολή…';
@@ -215,9 +233,6 @@
       const data = await resp.json().catch(()=>({}));
       if(resp.ok){
         form.reset(); started.value=String(Date.now());
-        /* (ΣΧΟΛΙΟ) Δεν υπάρχει πλέον gallery για καθάρισμα
-        gallery.innerHTML='';
-        */
         alertBox.innerHTML='<div class="success">Ελήφθη! Θα επικοινωνήσουμε σύντομα.</div>';
       }else{
         const msg=(data&&data.message)||'Κάτι πήγε στραβά.';
