@@ -1,4 +1,4 @@
-<!-- Aggelopoulos – Κουζίνες v1 + Before/After slider (.webp) + δυναμική gallery -->
+<!-- Aggelopoulos – Κουζίνες v1 (.webp) + fixed Before/After slider + δυναμική gallery -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
 /* ===== RESET ===== */
@@ -34,7 +34,7 @@ body{background:#fff;color:#111}
 .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
 
-/* ===== BEFORE/AFTER SLIDER ===== */
+/* ===== BEFORE/AFTER SLIDER (διορθωμένο) ===== */
 .ba .head{display:grid;gap:10px;justify-items:center;text-align:center;margin-bottom:8px}
 .ba .head h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
 .ba .head p{margin:0;max-width:900px;color:var(--muted)}
@@ -42,20 +42,21 @@ body{background:#fff;color:#111}
   position:relative;border-radius:16px;overflow:hidden;
   box-shadow:0 10px 24px rgba(0,0,0,.08);
   background:#eee;aspect-ratio:16/9;
-  --pos:50%;
+  user-select:none;touch-action:none;
+  --x:50%; /* θα γίνεται px από το JS */
 }
 .ba-img{position:absolute;inset:0;background-size:cover;background-position:center}
-.ba-after{width:var(--pos);border-right:1px solid rgba(255,255,255,.9)} /* πιο λεπτή γραμμή */
+.ba-after{ /* εμφανίζει αριστερό τμήμα μέχρι τη γραμμή */
+  clip-path:inset(0 calc(100% - var(--x)) 0 0);
+}
+.ba-line{position:absolute;top:0;bottom:0;left:var(--x);width:1px;background:rgba(255,255,255,.92);box-shadow:0 0 0 1px rgba(0,0,0,.08) inset}
 .ba-handle{
-  position:absolute;top:0;bottom:0;left:calc(var(--pos) - 12px);width:24px; /* πιο λεπτή λαβή */
-  display:grid;place-items:center;cursor:ew-resize;touch-action:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.18) 50%,rgba(0,0,0,.0));
-  border-left:1px solid rgba(255,255,255,.7);border-right:1px solid rgba(0,0,0,.12);
-}
-.ba-handle .dot{
+  position:absolute;top:50%;left:var(--x);transform:translate(-50%,-50%);
   width:28px;height:28px;border-radius:999px;display:grid;place-items:center;
-  background:rgba(255,255,255,.95);border:1px solid rgba(0,0,0,.12);box-shadow:0 4px 18px rgba(0,0,0,.18)
+  background:rgba(255,255,255,.96);border:1px solid rgba(0,0,0,.12);
+  box-shadow:0 4px 18px rgba(0,0,0,.18);cursor:ew-resize;
 }
+.ba-handle::before{content:"↔";font-size:14px;line-height:1}
 .ba-range{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:ew-resize}
 
 /* ===== GALLERY ===== */
@@ -138,7 +139,7 @@ body{background:#fff;color:#111}
 
   <div class="section-gap"></div>
 
-  <!-- ===== BEFORE / AFTER (.webp, από τον ίδιο φάκελο) ===== -->
+  <!-- ===== BEFORE / AFTER (.webp, fixed) ===== -->
   <section class="wrap ba" id="before-after" aria-labelledby="ba-title">
     <div class="head">
       <h2 id="ba-title">Before / After — Πραγματική Αναβάθμιση Χώρου</h2>
@@ -148,10 +149,9 @@ body{background:#fff;color:#111}
     <div class="ba-slider" role="region" aria-label="Σύγκριση πριν και μετά κουζίνας">
       <div class="ba-img" style="background-image:url('/assets/kouzines/aggelopoulos-epipla-kouzinas-before.webp')" aria-hidden="true"></div>
       <div class="ba-img ba-after" id="baAfter" style="background-image:url('/assets/kouzines/aggelopoulos-epipla-kouzinas-after.webp')" aria-hidden="true"></div>
+      <div class="ba-line" aria-hidden="true"></div>
+      <div class="ba-handle" aria-hidden="true"></div>
       <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Μετακινήστε για να δείτε πριν/μετά">
-      <div class="ba-handle" aria-hidden="true">
-        <div class="dot">↔</div>
-      </div>
     </div>
   </section>
 
@@ -211,29 +211,42 @@ body{background:#fff;color:#111}
 <script>
   window.AGGLO_IMG_BASE = '/assets/kouzines';
   window.AGGLO_IMG_EXT  = 'webp';
-  // Μοντέλο ονόματος: aggelopoulos-epipla-kouzinas-1.{N}.webp
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-kouzinas-1.'+ i +'.'+ ext; };
-  // Μέγιστο που θα δοκιμάσουμε (αν λείπουν νούμερα, απλώς παραλείπονται)
   window.AGGLO_IMG_MAX_INDEX = 80;
 </script>
 
 <script>
-/* ===== BEFORE/AFTER INTERACTION ===== */
+/* ===== BEFORE/AFTER INTERACTION (διορθωμένο: ακριβές κέντρο γραμμής/λαβής) ===== */
 (function(){
   var s=document.querySelector('.ba-slider'); if(!s) return;
   var range=document.getElementById('baRange');
-  function set(v){ s.style.setProperty('--pos', v+'%'); }
-  range.addEventListener('input',function(){ set(this.value); });
-  s.addEventListener('pointerdown',function(e){
+
+  var ratio=0.5; // πόσο δεξιά (0..1)
+
+  function setByRatio(r){
+    ratio=Math.max(0,Math.min(1,r));
+    var x = ratio * s.clientWidth;
+    s.style.setProperty('--x', x+'px');   // pixel-ακριβές
+    range.value = Math.round(ratio*100);
+  }
+
+  // αρχικοποίηση + responsive
+  setByRatio(0.5);
+  window.addEventListener('resize', function(){ setByRatio(ratio); });
+
+  range.addEventListener('input', function(){ setByRatio(this.value/100); });
+
+  function onPointer(e){
+    var r=s.getBoundingClientRect();
+    var x=Math.max(0, Math.min(e.clientX - r.left, r.width));
+    setByRatio(x/r.width);
+  }
+
+  s.addEventListener('pointerdown', function(e){
     s.setPointerCapture(e.pointerId);
-    function move(ev){
-      var r=s.getBoundingClientRect();
-      var x=Math.max(0, Math.min(ev.clientX - r.left, r.width));
-      set((x/r.width*100).toFixed(2));
-      range.value=(x/r.width*100).toFixed(0);
-    }
-    move(e);
-    function up(){ s.releasePointerCapture(e.pointerId); s.removeEventListener('pointermove',move); s.removeEventListener('pointerup',up); }
+    onPointer(e);
+    function move(ev){ onPointer(ev); }
+    function up(ev){ s.releasePointerCapture(e.pointerId); s.removeEventListener('pointermove',move); s.removeEventListener('pointerup',up); }
     s.addEventListener('pointermove',move);
     s.addEventListener('pointerup',up);
   });
@@ -250,19 +263,17 @@ body{background:#fff;color:#111}
   var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'epipla_kouzinas_'+i+'.'+ext; };
   var MAX = Number(window.AGGLO_IMG_MAX_INDEX||80);
 
-  var items=[];     // DOM nodes
-  var images=[];    // urls για lightbox
-  var indices=[];   // ποιο index αντιστοιχεί σε ποια κάρτα
+  var items=[]; var images=[];
 
   function addCard(idx,url){
     var li=document.createElement('div');
     li.className='g-item loaded'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
-    li.dataset.idx=indices.length; // θέση στο images[]
+    li.dataset.idx=images.length;
     var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
     var cap=document.createElement('div'); cap.className='cap'; cap.textContent='Κουζίνα #'+ idx;
     li.appendChild(img); li.appendChild(cap);
     grid.appendChild(li);
-    items.push(li); images.push(url); indices.push(idx);
+    items.push(li); images.push(url);
   }
 
   var pending=0;
