@@ -5,196 +5,216 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ειδικές Κατασκευές | Aggelopoulos Carpentry</title>
   <style>
-    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:#111; background:#fff; }
+    body { margin: 0; font-family: system-ui, sans-serif; background: #fff; color: #111; }
     .hero {
-      height: 60vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; padding:20px;
-      background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.45));
-      background-size: cover; background-position:center; background-repeat:no-repeat;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url(/assets/kataskeyes/aggelopoulos-eidikes-kataskeues-16.webp) center/cover no-repeat;
+      height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+      padding: 20px;
     }
-    .hero h1 { font-size: clamp(24px,5vw,42px); background: rgba(0,0,0,.5); padding:10px 20px; border-radius:12px; }
-    .wrap { max-width:1080px; margin:0 auto; padding:24px 16px; }
-    h2 { text-align:center; font-size:28px; margin-top:32px; }
-    .g-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-top:24px; }
-    .g-item { cursor:pointer; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
-    .g-item .img { aspect-ratio:4/3; background-size:cover; background-position:center; }
-    .empty { grid-column:1/-1; text-align:center; color:#6b6b6b; }
+    .hero h1 {
+      font-size: clamp(24px, 5vw, 42px);
+      background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 12px;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 16px; }
+    h2 { text-align: center; font-size: 28px; margin-top: 32px; }
+    .g-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px; margin-top: 24px;
+    }
+    .g-item { cursor: pointer; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .g-item .img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+    .viewer {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .viewer[hidden] { display: none !important; }
+    .viewer .stage { position: relative; width: 96%; max-width: 900px; max-height: 80vh; }
+    .viewer .full {
+      width: 100%; height: 100%;
+      background-size: contain; background-repeat: no-repeat; background-position: center;
+      transition: opacity 0.3s ease;
+    }
+    .viewer .controls {
+      margin-top: 16px;
+    }
+    .viewer .btn {
+      background: #5D4E37; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 999px; cursor: pointer;
+    }
+    .viewer .btn:hover { opacity: 0.95; }
+    .viewer .nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 42px; background: rgba(0,0,0,0.4); color: white; border: none;
+      padding: 6px 16px; border-radius: 8px; cursor: pointer; z-index: 10;
+    }
+    .viewer .prev { left: 0; }
+    .viewer .next { right: 0; }
 
-    /* Viewer */
-    .viewer { position:fixed; inset:0; background:rgba(0,0,0,.92); z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; }
-    .viewer[hidden]{ display:none!important; }
-    .viewer .stage{ position:relative; width:96%; max-width:900px; max-height:80vh; }
-    .viewer .full{ width:100%; height:100%; background-size:contain; background-position:center; background-repeat:no-repeat; transition:opacity .3s ease; }
-    .viewer .controls{ margin-top:16px; }
-    .viewer .btn{ background:#5D4E37; color:#fff; border:none; padding:10px 20px; font-weight:700; border-radius:999px; cursor:pointer; }
-    .viewer .nav{ position:absolute; top:50%; transform:translateY(-50%); font-size:42px; background:rgba(0,0,0,.4); color:#fff; border:none; padding:6px 16px; border-radius:8px; cursor:pointer; z-index:10; }
-    .viewer .prev{ left:0; } .viewer .next{ right:0; }
-    @media (max-width:720px){ .viewer .nav{ display:none; } } /* κινητά: μόνο swipe */
-    body.aggl-modal-open{ overflow:hidden; position:fixed; width:100%; }
+    @media(max-width: 720px){
+      .viewer .nav { display: none; }
+    }
+
+    body.aggl-modal-open {
+      overflow: hidden; position: fixed; width: 100%;
+    }
   </style>
 </head>
 <body>
 
-  <section id="hero" class="hero">
+  <section class="hero">
     <h1>Ειδικές Κατασκευές</h1>
   </section>
 
   <section class="wrap">
     <h2>Gallery Ειδικών Κατασκευών</h2>
-    <div id="g-grid" class="g-grid" aria-label="Gallery εικόνων ειδικών κατασκευών">
-      <p class="empty" id="empty">Φορτώνει…</p>
-    </div>
+    <div id="g-grid" class="g-grid" aria-label="Gallery εικόνων ειδικών κατασκευών"></div>
   </section>
 
   <script>
+    window.AGGLO_IMG_EXT = "webp";
+    window.AGGLO_IMG_BASE = "/assets/kataskeyes";
+    window.AGGLO_IMG_NAMER = function(i,ext){
+      return 'aggelopoulos-eidikes-kataskeues-' + i + '.' + ext;
+    };
+    window.AGGLO_IMG_MIN_INDEX = 1;
+    window.AGGLO_IMG_MAX_INDEX = 18;
+  </script>
+
+  <script>
+  /* ===== DYNAMIC GALLERY + VIEWER (σε αριθμητική σειρά) ===== */
   (function(){
-    const grid = document.getElementById('g-grid');
-    const emptyMsg = document.getElementById('empty');
-    const hero = document.getElementById('hero');
+    var grid=document.getElementById('g-grid'); if(!grid) return;
 
-    // Δοκιμάζουμε όλους τους πιθανούς συνδυασμούς
-    const BASES = ['/assets/kataskeues','/assets/kataskeyes'];
-    const PREFIXES = ['aggelopoulos-eidikes-kataskeues-','aggelopoulos-eidikes-kataskeyes-'];
-    const EXTS = ['webp','jpg','jpeg','png'];
-    const MIN = 1, MAX = 30;
+    var EXT=(window.AGGLO_IMG_EXT||'webp').replace('.','');
+    var BASE=(window.AGGLO_IMG_BASE||'').replace(/\/$/,'');
+    var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'item_'+i+'.'+ext; };
+    var MIN = Number(window.AGGLO_IMG_MIN_INDEX||1);
+    var MAX = Number(window.AGGLO_IMG_MAX_INDEX||18);
 
-    // Επιστρέφει το ΠΡΩΤΟ url που όντως φορτώνει
-    function probeUrl(url){
-      return new Promise(resolve=>{
-        const img = new Image();
-        img.onload = ()=> resolve(url);
-        img.onerror = ()=> resolve(null);
-        img.src = url;
-      });
+    var images=[];
+
+    function addCard(idx,url){
+      var li=document.createElement('div');
+      li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
+      li.dataset.idx=images.length;
+      var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
+      li.appendChild(img); grid.appendChild(li);
+      images.push({idx, url});
     }
 
-    async function firstExistingUrl(i){
-      for (const base of BASES){
-        for (const pref of PREFIXES){
-          for (const ext of EXTS){
-            const u = `${base}/${pref}${i}.${ext}`;
-            const ok = await probeUrl(u);
-            if(ok) return ok;
-          }
-        }
-      }
-      return null;
+    var pending=0;
+    function tryLoad(i){
+      var url = BASE + '/' + NAMER(i, EXT);
+      pending++;
+      var im=new Image();
+      im.onload=function(){ addCard(i,url); checkDone(); };
+      im.onerror=function(){ checkDone(); };
+      im.src=url;
     }
 
-    async function build(){
-      const found = [];
-      // Σκανάρουμε αριθμητικά 1..30
-      for (let i=MIN;i<=MAX;i++){
-        const url = await firstExistingUrl(i);
-        if(url) found.push({i,url});
-      }
-
-      // Αν δεν βρήκαμε τίποτα
-      if(found.length===0){
-        emptyMsg.textContent = 'Δεν βρέθηκαν εικόνες.';
-        return;
-      }
-
-      // Ορίζουμε hero: προτιμάμε #16, αλλιώς την 1η διαθέσιμη
-      const fav = found.find(x=>x.i===16) || found[0];
-      hero.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,.45)), url(${fav.url})`;
-
-      // Καθαρισμός placeholder
-      emptyMsg.remove();
-
-      // Ταξινόμηση αριθμητικά και γέμισμα grid
-      found.sort((a,b)=>a.i-b.i);
-      found.forEach((item, idx)=>{
-        const cell = document.createElement('div');
-        cell.className = 'g-item';
-        cell.dataset.idx = idx;
-        const ph = document.createElement('div');
-        ph.className = 'img';
-        ph.style.backgroundImage = `url("${item.url}")`;
-        cell.appendChild(ph);
-        grid.appendChild(cell);
-      });
-
-      // Lightbox
-      const urls = found.map(x=>x.url);
-      let v=null, cur=0, scrollY=0;
-
-      function freeze(on){
-        if(on){
-          scrollY = window.scrollY || window.pageYOffset;
-          document.body.classList.add('aggl-modal-open');
-          document.body.style.top = (-scrollY)+'px';
+    function checkDone(){
+      if(--pending<=0){
+        if(images.length===0){
+          grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#6b6b6b">Δεν βρέθηκαν εικόνες.</p>';
         }else{
-          document.body.classList.remove('aggl-modal-open');
-          document.body.style.top = '';
-          window.scrollTo(0, scrollY);
-        }
-      }
-
-      function render(first){
-        const full = v.querySelector('#vfull');
-        if(!first){ full.style.opacity = 0; requestAnimationFrame(()=>{ full.style.backgroundImage=`url("${urls[cur]}")`; requestAnimationFrame(()=>full.style.opacity=1); }); }
-        else { full.style.opacity=0; full.style.backgroundImage=`url("${urls[cur]}")`; requestAnimationFrame(()=>full.style.opacity=1); }
-      }
-
-      function open(pos){
-        cur = pos;
-        if(!v){
-          v = document.createElement('div');
-          v.className = 'viewer';
-          v.innerHTML = `
-            <div class="stage">
-              <div id="vfull" class="full"></div>
-              <button class="nav prev" aria-label="Προηγούμενη">‹</button>
-              <button class="nav next" aria-label="Επόμενη">›</button>
-            </div>
-            <div class="controls"><button id="vclose" class="btn">Κλείσιμο</button></div>
-          `;
-          document.body.appendChild(v);
-          v.querySelector('#vclose').onclick = close;
-          v.addEventListener('click', e=>{ if(e.target===v) close(); });
-          const p=v.querySelector('.prev'), n=v.querySelector('.next');
-          if(p) p.onclick = ()=>step(-1);
-          if(n) n.onclick = ()=>step(1);
-
-          // swipe
-          const stage = v.querySelector('.stage');
-          let startX=0, dx=0, touching=false, TH=40;
-          function start(e){ touching=true; startX=(e.touches?e.touches[0].clientX:e.clientX); dx=0; }
-          function move(e){ if(!touching) return; const x=(e.touches?e.touches[0].clientX:e.clientX); dx=x-startX; }
-          function end(){ if(!touching) return; touching=false; if(Math.abs(dx)>TH) step(dx<0?1:-1); }
-          stage.addEventListener('touchstart',start,{passive:true});
-          stage.addEventListener('touchmove',move,{passive:true});
-          stage.addEventListener('touchend',end);
-          stage.addEventListener('mousedown',start);
-          stage.addEventListener('mousemove',move);
-          stage.addEventListener('mouseup',end);
-
-          document.addEventListener('keydown',e=>{
-            if(!v || v.hasAttribute('hidden')) return;
-            if(e.key==='Escape') close();
-            if(e.key==='ArrowLeft') step(-1);
-            if(e.key==='ArrowRight') step(1);
+          images.sort((a,b)=>a.idx - b.idx); // ✔ ταξινόμηση
+          images.forEach(({url}, i)=>{
+            var li=document.createElement('div');
+            li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
+            li.dataset.idx=i;
+            var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
+            li.appendChild(img); grid.appendChild(li);
           });
+          images = images.map(x=>x.url); // κρατάμε URLs μόνο
         }
-        v.removeAttribute('hidden');
-        freeze(true);
-        render(true);
       }
-
-      function close(){ if(!v) return; v.setAttribute('hidden',''); freeze(false); }
-      function step(d){ cur = (cur + d + urls.length) % urls.length; render(false); }
-
-      grid.addEventListener('click', e=>{
-        const el = e.target.closest('.g-item'); if(!el) return;
-        open(+el.dataset.idx);
-      });
-      grid.addEventListener('keydown', e=>{
-        const el = e.target.closest('.g-item'); if(!el) return;
-        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(+el.dataset.idx); }
-      });
     }
 
-    build();
+    for(var i=MIN;i<=MAX;i++){ tryLoad(i); }
+
+    // ===== Lightbox =====
+    var v=null, cur=0, scrollY=0;
+
+    function open(pos){
+      cur=pos;
+      if(!v){
+        v=document.createElement('div');
+        v.className='viewer';
+        v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button></div>';
+        document.body.appendChild(v);
+        v.querySelector('#vclose').onclick=close;
+        v.addEventListener('click',function(e){ if(e.target===v) close(); });
+
+        var p=v.querySelector('.prev'), n=v.querySelector('.next');
+        if(p) p.onclick=function(){ step(-1); };
+        if(n) n.onclick=function(){ step(1); };
+
+        var stage=v.querySelector('.stage');
+        var startX=0, dx=0, touching=false, TH=40;
+        function start(e){ touching=true; startX=(e.touches?e.touches[0].clientX:e.clientX); dx=0; }
+        function move(e){ if(!touching) return; var x=(e.touches?e.touches[0].clientX:e.clientX); dx=x-startX; }
+        function end(){ if(!touching) return; touching=false; if(Math.abs(dx)>TH){ step(dx<0?1:-1);} }
+        stage.addEventListener('touchstart',start,{passive:true});
+        stage.addEventListener('touchmove',move,{passive:true});
+        stage.addEventListener('touchend',end);
+        stage.addEventListener('mousedown',start);
+        stage.addEventListener('mousemove',move);
+        stage.addEventListener('mouseup',end);
+
+        document.addEventListener('keydown',function(e){
+          if(!v || v.hasAttribute('hidden')) return;
+          if(e.key==='Escape') close();
+          if(e.key==='ArrowLeft') step(-1);
+          if(e.key==='ArrowRight') step(1);
+        });
+      }
+      v.removeAttribute('hidden');
+      freezeBody(true);
+      render(true);
+    }
+
+    function close(){
+      if(!v) return;
+      v.setAttribute('hidden','');
+      freezeBody(false);
+    }
+
+    function freezeBody(on){
+      if(on){
+        scrollY = window.scrollY || window.pageYOffset;
+        document.body.classList.add('aggl-modal-open');
+        document.body.style.top = (-scrollY)+'px';
+      }else{
+        document.body.classList.remove('aggl-modal-open');
+        document.body.style.top = '';
+        window.scrollTo(0, scrollY);
+      }
+    }
+
+    function step(d){ cur=((cur+d+images.length)%images.length); render(false); }
+
+    function render(first){
+      var full=v.querySelector('#vfull');
+      if(!first){
+        full.style.opacity = 0;
+        requestAnimationFrame(function(){
+          full.style.backgroundImage='url("'+images[cur]+'")';
+          requestAnimationFrame(function(){ full.style.opacity = 1; });
+        });
+      }else{
+        full.style.opacity = 0;
+        full.style.backgroundImage='url("'+images[cur]+'")';
+        requestAnimationFrame(function(){ full.style.opacity = 1; });
+      }
+    }
+
+    grid.addEventListener('click',function(e){
+      var el=e.target.closest('.g-item'); if(!el) return; open(+el.dataset.idx);
+    });
+    grid.addEventListener('keydown',function(e){
+      var el=e.target.closest('.g-item'); if(!el) return;
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(+el.dataset.idx); }
+    });
   })();
   </script>
 
