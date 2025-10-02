@@ -1,6 +1,31 @@
-<!-- Aggelopoulos – HTML v34 (compact Google reviews + fixed About on mobile) -->
+<!-- Aggelopoulos – HTML v35 (SEO pack + JSON-LD + hero preload, no design change) -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="/assets/js/favicon-injector.js"></script>
+
+<!-- ===== HEAD SEO PACK ===== -->
+<title>Ξυλουργός Περιστέρι Αθήνα | Κουζίνες, Ντουλάπες, Ειδικές Κατασκευές – Aggelopoulos Carpentry</title>
+<meta name="description" content="Κουζίνες, ντουλάπες, μπάνια, πόρτες & ειδικές ξυλουργικές κατασκευές στο Περιστέρι & Αθήνα. Blum/FGV, Gola ή πόμολο, LED, πάγκοι 3–4 εκ. Παράδοση 10–20 ημέρες.">
+<link rel="canonical" href="https://aggelopouloscarpentry.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="el_GR">
+<meta property="og:site_name" content="Aggelopoulos Carpentry">
+<meta property="og:url" content="https://aggelopouloscarpentry.com/">
+<meta property="og:title" content="Ξυλουργός Περιστέρι Αθήνα | Κουζίνες, Ντουλάπες, Ειδικές Κατασκευές">
+<meta property="og:description" content="Από το 1960. Κουζίνες, ντουλάπες, μπάνια, πόρτες & ειδικές κατασκευές. Δωρεάν μέτρηση. Παράδοση 10–20 ημέρες.">
+<meta property="og:image" content="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aggelopoulos Carpentry – Ξυλουργικές Λύσεις">
+<meta name="twitter:description" content="Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες, Ειδικές Κατασκευές. Περιστέρι & Αθήνα.">
+<meta name="twitter:image" content="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg">
+
+<!-- LCP hint: preload hero image (keeps same visual; speeds up paint) -->
+<link rel="preload" as="image" href="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg" />
+
 <style>
 /* ====== RESET ====== */
 html,body{margin:0;padding:0}
@@ -74,20 +99,18 @@ body{background:#fff;color:#111}
 
 /* ====== REVIEWS – Google only (COMPACT) ====== */
 .reviews h2{margin:0 0 4px}
-.reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px} /* λιγότερο padding για μικρότερο κουτί */
+.reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px}
 #elfsight-container{max-width:920px;margin:6px auto}
 #elfsight-container > div{height:auto !important}
-/* Ελέγχουμε το injected widget ώστε να μην αφήνει μεγάλο «κενό» */
 #elfsight-container .eapps-widget,
 #elfsight-container [class^="eapps-"],
 #elfsight-container [class*=" eapps-"]{
   min-height:0 !important;
   height:auto !important;
-  max-height:420px !important;   /* desktop clamp */
-  overflow:hidden !important;    /* κόβει το επιπλέον λευκό */
+  max-height:420px !important;
+  overflow:hidden !important;
   border-radius:12px !important;
 }
-/* λίγο πιο «σφιχτό» στα πολύ μεγάλα desktop */
 @media (min-width:1200px){
   #elfsight-container{max-width:860px}
   #elfsight-container .eapps-widget{max-height:380px !important}
@@ -128,7 +151,7 @@ body{background:#fff;color:#111}
 @media (min-width:901px){
   .footer .nav-box .mini-nav{grid-template-columns:repeat(3,minmax(120px,1fr))}
   .footer .nav-box .mini-nav a{position:relative;padding:6px 0 6px 18px;opacity:.92}
-  .footer .nav-box .mini-nav a::before{content:"›";position:absolute;left:0;top:50%;transform:translateY(-50%);opacity:.85}
+  .footer .nav-box .mini-nav a::before{content:"›";position:absolute;left:0;top:50%;transform:translateY(-50%)}
   .footer .nav-box .mini-nav a:hover{opacity:1;transform:translateX(2px)}
 }
 
@@ -249,7 +272,9 @@ body{background:#fff;color:#111}
         <h2>Προφίλ Επιχείρησης</h2>
         <p><strong>Δημιουργήθηκε το 1960, από τον Λάμπρο Αγγελόπουλο</strong>, με όραμα την ποιότητα και την αξιοπιστία. Σήμερα εξειδικευόμαστε σε ξυλουργικές λύσεις για ιδιώτες &amp; επιχειρήσεις στο <strong>Περιστέρι</strong> και την ευρύτερη Αθήνα.</p>
       </div>
-      <figure class="img"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/2-fotor-20240311154959-1.jpg" alt="Ξυλουργείο Αγγελόπουλος – στο εργαστήριο"></figure>
+      <figure class="img">
+        <img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/2-fotor-20240311154959-1.jpg" alt="Ξυλουργείο Aggelopoulos Carpentry – στο εργαστήριο" loading="lazy" decoding="async">
+      </figure>
     </div>
   </section>
 
@@ -284,15 +309,22 @@ body{background:#fff;color:#111}
   <!-- ===== CONTACT ===== -->
   <section class="wrap contact" id="shop">
     <div class="grid">
-      <figure style="margin:0"><img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/20240302_123455.jpg" alt="Το εργαστήριο Aggelopoulos Carpentry" style="width:100%;height:auto;display:block;border-radius:16px"></figure>
+      <figure style="margin:0">
+        <img src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/20240302_123455.jpg" alt="Το εργαστήριο Aggelopoulos Carpentry" style="width:100%;height:auto;display:block;border-radius:16px" loading="lazy" decoding="async">
+      </figure>
       <div style="display:grid;gap:16px">
-        <div class="card"><h3>Τοποθεσία</h3><p><a href="https://www.google.com/maps/search/?api=1&query=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136" target="_blank" rel="noopener">Χρυσάνθου 58, Περιστέρι, 12136</a></p></div>
-        <div class="card"><h3>Στοιχεία Επικοινωνίας</h3><p><a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a></p><p><a href="tel:+306936815779">(+30) 693 6815 779</a></p></div>
+        <div class="card"><h3>Τοποθεσία</h3>
+          <p><a href="https://www.google.com/maps/search/?api=1&query=%CE%A7%CF%81%CF%85%CF%83%CE%AC%CE%BD%CE%B8%CE%BF%CF%85%2058%2C%20%CE%A0%CE%B5%CF%81%CE%B9%CF%83%CF%84%CE%AD%CF%81%CE%B9%2C%2012136" target="_blank" rel="noopener">Χρυσάνθου 58, Περιστέρι, 12136</a></p>
+        </div>
+        <div class="card"><h3>Στοιχεία Επικοινωνίας</h3>
+          <p><a href="mailto:basilisangelopoulos1965@gmail.com">basilisangelopoulos1965@gmail.com</a></p>
+          <p><a href="tel:+306936815779">(+30) 693 6815 779</a></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== (ίδιο με v33) -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="wrap">
       <div>
@@ -348,7 +380,7 @@ body{background:#fff;color:#111}
   });
 })();
 
-/* ===== Lazy‑load Elfsight ===== */
+/* ===== Lazy-load Elfsight ===== */
 (function(){
   var ph=document.getElementById('elfsight-container'); if(!ph) return;
   var loaded=false;
@@ -363,7 +395,76 @@ body{background:#fff;color:#111}
 })();
 </script>
 
-<!-- JSON-LD minimal -->
+<!-- ===== JSON-LD ===== -->
+<!-- 1) Υπηρεσίες (κρατάμε το υπάρχον ελάχιστο Service) -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","serviceType":"Ξυλουργικές Λύσεις – Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες, Ειδικές Κατασκευές","provider":{"@type":"LocalBusiness","name":"Aggelopoulos Carpentry","areaServed":"Αττική","telephone":"+306936815779"},"brand":["Blum","FGV"]}
+</script>
+
+<!-- 2) LocalBusiness (NAP, ώρες, περιοχές) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Aggelopoulos Carpentry",
+  "url":"https://aggelopouloscarpentry.com/",
+  "image":"https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg",
+  "logo":"https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png",
+  "telephone":"+306936815779",
+  "email":"basilisangelopoulos1965@gmail.com",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Χρυσάνθου 58",
+    "addressLocality":"Περιστέρι",
+    "postalCode":"12136",
+    "addressCountry":"GR"
+  },
+  "areaServed":[{"@type":"City","name":"Αθήνα"},{"@type":"City","name":"Περιστέρι"}],
+  "priceRange":"€€",
+  "sameAs":[
+    "https://maps.app.goo.gl/VRRLghdGCoTDPAek7"
+  ],
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"10:00","closes":"14:00"}
+  ],
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Έπιπλα κουζίνας"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ντουλάπες"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Έπιπλα μπάνιου"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Πόρτες & κουφώματα"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ειδικές κατασκευές"}}
+  ]
+}
+</script>
+
+<!-- 3) FAQPage (ταιριάζει 100% με τα ορατά FAQ) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Τι περιλαμβάνει μια τυπική κουζίνα σας;","acceptedAnswer":{"@type":"Answer","text":"Μηχανισμοί/μεντεσέδες Blum, λύσεις γωνίας (Magic Corner/μύλος), LED, Gola ή μπάρα, πάγκοι 3–4 εκ. κ.ά. Οι λεπτομέρειες καθορίζονται στη μελέτη."}},
+    {"@type":"Question","name":"Με ποιες μάρκες μηχανισμών δουλεύετε;","acceptedAnswer":{"@type":"Answer","text":"Κυρίως Blum και FGV, ανάλογα τις ανάγκες του έργου."}},
+    {"@type":"Question","name":"Ντουλάπα: συρόμενη ή ανοιγόμενη;","acceptedAnswer":{"@type":"Answer","text":"Συρόμενη για οικονομία χώρου, ανοιγόμενη για πλήρη πρόσβαση. Και οι δύο λύσεις υποστηρίζονται με εργονομικά εσωτερικά."}},
+    {"@type":"Question","name":"Αναλαμβάνετε επισκευές σε συρόμενες πόρτες;","acceptedAnswer":{"@type":"Answer","text":"Ναι, κατόπιν ελέγχου προχωράμε σε ρύθμιση/αντικατάσταση οδηγών ή εξαρτημάτων."}},
+    {"@type":"Question","name":"Σε πόσο χρόνο παραδίδετε;","acceptedAnswer":{"@type":"Answer","text":"Τυπικά 10–20 ημέρες από την τελική έγκριση σχεδίων & υλικών."}},
+    {"@type":"Question","name":"Προσφέρετε δωρεάν μέτρηση;","acceptedAnswer":{"@type":"Answer","text":"Ναι, σε Αττική. Κλείστε ραντεβού από τη σελίδα επικοινωνίας."}}
+  ]
+}
+</script>
+
+<!-- 4) WebSite + SearchAction (βοηθά web-AI & site search) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Aggelopoulos Carpentry",
+  "url":"https://aggelopouloscarpentry.com/",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://aggelopouloscarpentry.com/?s={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
+}
 </script>
