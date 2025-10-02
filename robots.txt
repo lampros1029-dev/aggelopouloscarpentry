@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Content-signal: search=yes, ai-train=yes
+Content-signal: search=yes, ai-train=yes, ai-input=yes
 
 Sitemap: https://aggelopouloscarpentry.com/sitemap.xml
