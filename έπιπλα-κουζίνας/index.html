@@ -1,6 +1,59 @@
 <!-- Aggelopoulos – Έπιπλα Κουζίνας (Before/After + dynamic gallery) – mobile BA fix + footer spacing -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://aggelopouloscarpentry.com/#business",
+  "name": "Aggelopoulos Carpentry Solutions",
+  "url": "https://aggelopouloscarpentry.com/",
+  "telephone": "+30 693 681 5779",
+  "email": "aggelopouloscarpentry@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Χρυσάνθου 58",
+    "addressLocality": "Περιστέρι",
+    "addressRegion": "Αττική",
+    "postalCode": "12136",
+    "addressCountry": "GR"
+  },
+  "areaServed": "Athens",
+  "priceRange": "€€",
+  "sameAs": []
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Πόσο κοστίζει μια κουζίνα;",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Το τελικό κόστος εξαρτάται από το μήκος των πάγκων, τα υλικά πρόσοψης και τους μηχανισμούς. Ξεκινάμε με δωρεάν μέτρηση ώστε να δώσουμε σαφή προσφορά."}
+    },
+    {
+      "@type": "Question",
+      "name": "Σε πόσες μέρες παραδίδετε;",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Η τυπική παράδοση κυμαίνεται στις 10–20 εργάσιμες ημέρες, ανάλογα με τη διαθεσιμότητα των υλικών και τον φόρτο παραγωγής."}
+    },
+    {
+      "@type": "Question",
+      "name": "Τι μηχανισμούς χρησιμοποιείτε;",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Χρησιμοποιούμε μηχανισμούς BLUM ή FGV όπου ταιριάζει. Συζητάμε τις επιλογές στην προσφορά για να ταιριάξουν στον τρόπο χρήσης σας."}
+    }
+  ]
+}
+</script>
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -188,7 +241,7 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
     <div class="inner">
       <!-- Λευκό λογότυπο ως κουμπί προς Αρχική -->
       <a href="https://aggelopouloscarpentry.com/" aria-label="Αρχική">
-        <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry">
+        <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry" loading="lazy" decoding="async">
       </a>
 
       <div class="content">
@@ -208,8 +261,8 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
     </div>
 
     <div class="ba-wrap" id="ba-wrap" aria-label="Before After slider">
-      <img class="ba-before" src="/assets/kouzines/aggelopoulos-epipla-kouzinas-before.webp" alt="Before">
-      <img class="ba-after"  src="/assets/kouzines/aggelopoulos-epipla-kouzinas-after.webp"  alt="After">
+      <img class="ba-before" src="/assets/kouzines/aggelopoulos-epipla-kouzinas-before.webp" alt="Κουζίνα πριν την ανακαίνιση" loading="lazy" decoding="async">
+      <img class="ba-after"  src="/assets/kouzines/aggelopoulos-epipla-kouzinas-after.webp"  alt="Κουζίνα μετά την ολοκλήρωση" loading="lazy" decoding="async">
       <span class="ba-handle" id="ba-handle"></span>
       <span class="ba-knob" id="ba-knob" aria-hidden="true"></span>
     </div>
@@ -224,6 +277,33 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
       <p><!-- hidden --></p>
     </div>
     <div class="g-grid" id="g-grid" aria-live="polite"></div>
+  </section>
+
+  <div class="section-gap"></div>
+
+  <section class="wrap mini-faq" aria-labelledby="faq-kouzines">
+    <h2 id="faq-kouzines">Συχνές ερωτήσεις</h2>
+    <div class="faq-list" style="display:grid;gap:16px;max-width:900px;margin:0 auto">
+      <article>
+        <h3 style="margin:0 0 6px">Πόσο κοστίζει μια κουζίνα;</h3>
+        <p style="margin:0">Το τελικό κόστος επηρεάζεται από το μήκος των πάγκων, τα υλικά πρόσοψης και τα αξεσουάρ όπως μηχανισμούς και φωτισμό. Προτείνουμε δωρεάν μέτρηση για ακριβή προσφορά.</p>
+      </article>
+      <article>
+        <h3 style="margin:0 0 6px">Σε πόσες μέρες παραδίδετε;</h3>
+        <p style="margin:0">Οι κατασκευές ολοκληρώνονται συνήθως σε 10–20 εργάσιμες ημέρες, ανάλογα με τη διαθεσιμότητα των υλικών και το χρονοδιάγραμμα παραγωγής.</p>
+      </article>
+      <article>
+        <h3 style="margin:0 0 6px">Τι μηχανισμούς χρησιμοποιείτε;</h3>
+        <p style="margin:0">Χρησιμοποιούμε μηχανισμούς BLUM ή FGV ανάλογα με την ανάγκη του έργου, συζητώντας τις επιλογές στην προσφορά για να ταιριάζουν στον τρόπο χρήσης σας.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="section-gap"></div>
+
+  <section class="wrap related-links" aria-labelledby="related-kouzines">
+    <h2 id="related-kouzines" style="text-align:center;margin-bottom:12px">Χρήσιμες συνδέσεις</h2>
+    <p style="text-align:center;max-width:760px;margin:0 auto">Δείτε επίσης τις <a href="https://aggelopouloscarpentry.com/έπιπλα-υπνοδωμάτιου/">λύσεις μας για ντουλάπες</a>, επιλέξτε <a href="https://aggelopouloscarpentry.com/πόρτες-και-κουφώματα/">πόρτες εσωτερικού χώρου</a> ή καλέστε μας από τη <a href="https://aggelopouloscarpentry.com/επικοινωνία/">σελίδα επικοινωνίας</a>.</p>
   </section>
 
   <div class="section-gap"></div>
