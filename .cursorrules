@@ -1,0 +1,25 @@
+# SEO & Content guardrails για aggelopouloscarpentry.com
+
+# ΓΕΝΙΚΑ
+# - Δουλεύουμε σε branch (όχι στο main).
+# - Όλες οι αλλαγές atomic και με καθαρά commit messages.
+# - Δεν αφαιρούμε ελληνικό περιεχόμενο χωρίς καλύτερη αντικατάσταση.
+
+# ΑΡΧΕΙΑ/ΦΑΚΕΛΟΙ
+# - ΜΗΝ πειράζεις /assets/** εκτός αν ζητηθεί ρητά.
+# - Πρόσθεσε /sitemap.xml και /robots.txt στο root.
+# - Αν λείπει /projects/index.html, δημιούργησέ το.
+
+# SEO TAGS
+# - 1× <title> ανά σελίδα (50–60 χαρακτήρες).
+# - 1× meta description (150–160 χαρακτήρες).
+# - Μην αλλάζεις H1.
+# - Πρόσθεσε JSON-LD LocalBusiness στο <head> των service pages.
+
+# ΕΙΚΟΝΕΣ
+# - Πρόσθεσε alt κειμενικά, φυσική γλώσσα (με τοποθεσία όπου ταιριάζει).
+# - <img loading="lazy" decoding="async" width height> όπου γίνεται.
+
+# LINKING
+# - Κανένα 404 σε menu/footer.
+# - Internal links από κάθε service → Contact + σχετικές υπηρεσίες.

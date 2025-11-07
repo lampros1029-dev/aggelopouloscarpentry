@@ -1,4 +1,7 @@
 <!-- Aggelopoulos – Έπιπλα Κουζίνας (Before/After + dynamic gallery) – mobile BA fix + footer spacing -->
+<title>Έπιπλα Κουζίνας στο Περιστέρι — Μελέτη &amp; Τοποθέτηση</title>
+<meta name="description" content="Κουζίνες κατά παραγγελία με εργονομία και αντοχή. Υλικά BLUM/FGV, καθαρή τοποθέτηση στην Αθήνα. Δείτε ιδέες &amp; ζητήστε μέτρηση.">
+<link rel="stylesheet" href="/assets/css/faq.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <script type="application/ld+json">
@@ -281,21 +284,37 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
 
   <div class="section-gap"></div>
 
-  <section class="wrap mini-faq" aria-labelledby="faq-kouzines">
-    <h2 id="faq-kouzines">Συχνές ερωτήσεις</h2>
-    <div class="faq-list" style="display:grid;gap:16px;max-width:900px;margin:0 auto">
-      <article>
-        <h3 style="margin:0 0 6px">Πόσο κοστίζει μια κουζίνα;</h3>
-        <p style="margin:0">Το τελικό κόστος επηρεάζεται από το μήκος των πάγκων, τα υλικά πρόσοψης και τα αξεσουάρ όπως μηχανισμούς και φωτισμό. Προτείνουμε δωρεάν μέτρηση για ακριβή προσφορά.</p>
-      </article>
-      <article>
-        <h3 style="margin:0 0 6px">Σε πόσες μέρες παραδίδετε;</h3>
-        <p style="margin:0">Οι κατασκευές ολοκληρώνονται συνήθως σε 10–20 εργάσιμες ημέρες, ανάλογα με τη διαθεσιμότητα των υλικών και το χρονοδιάγραμμα παραγωγής.</p>
-      </article>
-      <article>
-        <h3 style="margin:0 0 6px">Τι μηχανισμούς χρησιμοποιείτε;</h3>
-        <p style="margin:0">Χρησιμοποιούμε μηχανισμούς BLUM ή FGV ανάλογα με την ανάγκη του έργου, συζητώντας τις επιλογές στην προσφορά για να ταιριάζουν στον τρόπο χρήσης σας.</p>
-      </article>
+  <section class="faq-accordion" aria-labelledby="faq-kouzines-title">
+    <h2 id="faq-kouzines-title" class="h2">Συχνές Ερωτήσεις</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq-kouzines-1">
+        <span>Πόσο κοστίζει μια κουζίνα;</span>
+        <span class="ico">›</span>
+      </button>
+      <div id="faq-kouzines-1" class="faq-a"><div>
+        <p>Το τελικό κόστος εξαρτάται από το μήκος των πάγκων, τα υλικά πρόσοψης και τα αξεσουάρ όπως μηχανισμούς και φωτισμό. Προτείνουμε δωρεάν μέτρηση για ακριβή προσφορά.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq-kouzines-2">
+        <span>Σε πόσες μέρες παραδίδετε;</span>
+        <span class="ico">›</span>
+      </button>
+      <div id="faq-kouzines-2" class="faq-a"><div>
+        <p>Οι κατασκευές ολοκληρώνονται συνήθως σε 10–20 εργάσιμες ημέρες, ανάλογα με τη διαθεσιμότητα των υλικών και το χρονοδιάγραμμα παραγωγής.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq-kouzines-3">
+        <span>Τι μηχανισμούς χρησιμοποιείτε;</span>
+        <span class="ico">›</span>
+      </button>
+      <div id="faq-kouzines-3" class="faq-a"><div>
+        <p>Χρησιμοποιούμε μηχανισμούς BLUM ή FGV ανάλογα με την ανάγκη του έργου, συζητώντας τις επιλογές στην προσφορά για να ταιριάζουν στον τρόπο χρήσης σας.</p>
+      </div></div>
     </div>
   </section>
 
@@ -509,3 +528,5 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
   });
 })();
 </script>
+<script src="/assets/js/faq.js"></script>
+

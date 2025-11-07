@@ -1,0 +1,17 @@
+﻿## Τι αλλάζει
+- Προσθήκη canonical /robots.txt
+- Προσθήκη /sitemap.xml με percent-encoded ελληνικά slugs (+ σωστά trailing slashes)
+- LocalBusiness JSON-LD σε όλες τις υπηρεσίες
+- FAQ sections + FAQPage JSON-LD όπου υπάρχουν
+- Internal cross-links μεταξύ υπηρεσιών + CTA προς /επικοινωνία/
+- Image hygiene: alt, loading="lazy", decoding="async" (χωρίς width/height όπου δεν ήταν ασφαλές)
+
+## Σημειώσεις
+- Τα hero backgrounds είναι βαριά — επόμενο pass με WebP/AVIF & περιορισμένο preload.
+
+## Acceptance checklist
+- [ ] /robots.txt δείχνει στο σωστό sitemap
+- [ ] /sitemap.xml επιστρέφει 200 και περιέχει όλες τις σελίδες (percent-encoded <loc>)
+- [ ] LocalBusiness + (όπου υπάρχει) FAQPage JSON-LD είναι valid
+- [ ] Κάθε σελίδα έχει μοναδικό <title> + meta description
+- [ ] Internal links/CTA δεν παράγουν 404
