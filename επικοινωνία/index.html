@@ -258,8 +258,24 @@ window.axeptioSettings = {
   const telOk   = v => /^[0-9+ ()-]{8,}$/.test(v||'');
   const minLen  = (v,n) => (v||'').trim().length>=n;
 
+  // Renders alert text safely (no innerHTML with dynamic/remote content) to avoid any XSS
+  // vector via a third-party API response, even though web3forms.com is trusted.
+  function setAlert(kind, text, withPhoneLink){
+    alertBox.textContent = '';
+    const div = document.createElement('div');
+    div.className = kind;
+    div.appendChild(document.createTextNode(text));
+    if (withPhoneLink){
+      const a = document.createElement('a');
+      a.href = 'tel:+306936815779';
+      a.textContent = '693 6815 779';
+      div.appendChild(a);
+    }
+    alertBox.appendChild(div);
+  }
+
   form.addEventListener('submit', async (e)=>{
-    e.preventDefault(); alertBox.innerHTML='';
+    e.preventDefault(); alertBox.textContent='';
     const fd = new FormData(form);
     const v = { name:fd.get('name'), phone:fd.get('phone'), email:fd.get('email'), message:fd.get('message'), privacy:document.getElementById('privacy').checked };
     let ok = true;
@@ -271,7 +287,7 @@ window.axeptioSettings = {
     if(!v.privacy){showError('e-privacy', true); ok=false;} else showError('e-privacy', false);
 
     const tookMs = Date.now() - Number(started.value||0);
-    if (tookMs < 2500) { ok = false; alertBox.innerHTML = '<div class="fail">Πολύ γρήγορη υποβολή. Παρακαλώ ξαναδοκιμάστε.</div>'; }
+    if (tookMs < 2500) { ok = false; setAlert('fail', 'Πολύ γρήγορη υποβολή. Παρακαλώ ξαναδοκιμάστε.', false); }
 
     if(!ok) return;
 
@@ -281,13 +297,13 @@ window.axeptioSettings = {
       const data = await resp.json().catch(()=>({}));
       if(resp.ok){
         form.reset(); started.value=String(Date.now());
-        alertBox.innerHTML='<div class="success">Ελήφθη! Θα επικοινωνήσουμε σύντομα.</div>';
+        setAlert('success', 'Ελήφθη! Θα επικοινωνήσουμε σύντομα.', false);
       }else{
-        const msg=(data&&data.message)||'Κάτι πήγε στραβά.';
-        alertBox.innerHTML='<div class="fail">'+msg+' Δοκιμάστε ξανά ή καλέστε στο <a href="tel:+306936815779">693 6815 779</a>.</div>';
+        const msg=(data&&typeof data.message==='string' ? data.message : 'Κάτι πήγε στραβά.')+' Δοκιμάστε ξανά ή καλέστε στο ';
+        setAlert('fail', msg, true);
       }
     }catch(err){
-      alertBox.innerHTML='<div class="fail">Αποτυχία δικτύου. Δοκιμάστε ξανά ή καλέστε στο <a href="tel:+306936815779">693 6815 779</a>.</div>';
+      setAlert('fail', 'Αποτυχία δικτύου. Δοκιμάστε ξανά ή καλέστε στο ', true);
     }finally{
       btn.disabled=false; btn.textContent=old;
     }

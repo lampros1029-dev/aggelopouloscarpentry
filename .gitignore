@@ -1,0 +1,30 @@
+# Secrets / environment
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+
+# Dependencies
+node_modules/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Build output (only relevant if a build step is introduced later)
+dist/
+build/
+.output/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
