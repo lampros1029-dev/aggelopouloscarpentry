@@ -1,9 +1,7 @@
 (function () {
   const H = document.head;
   const links = [
-    { rel: "icon", href: "/favicon.ico", sizes: "any" },
-    { rel: "icon", type: "image/png", href: "/assets/favicons/favicon-32x32.png", sizes: "32x32" },
-    { rel: "icon", type: "image/png", href: "/assets/favicons/favicon-16x16.png", sizes: "16x16" },
+    { rel: "icon", type: "image/png", href: "/assets/favicons/android-chrome-192x192.png", sizes: "192x192" },
     { rel: "apple-touch-icon", href: "/assets/favicons/apple-touch-icon.png" },
     { rel: "manifest", href: "/site.webmanifest" }
   ];
