@@ -338,6 +338,8 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-upnodomatiou-' + i + '.' + ext; };
   window.AGGLO_IMG_MIN_INDEX = 1;
   window.AGGLO_IMG_MAX_INDEX = 27; /* προσαρμόζεται ανάλογα με τα αρχεία στο repo */
+  /* Ρητή λίστα με τις εικόνες που υπάρχουν (χωρίς δοκιμές 1..MAX και 404). Πρόσθεσε εδώ τον αριθμό όταν ανεβαίνει νέα εικόνα. */
+  window.AGGLO_IMG_LIST = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27];
 </script>
 
 <script>
@@ -373,7 +375,9 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
   }
   function checkDone(){ if(--pending<=0 && images.length===0){ grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#6b6b6b">Δεν βρέθηκαν εικόνες.</p>'; } }
 
-  for(var i=MIN;i<=MAX;i++){ tryLoad(i); }
+  var LIST=window.AGGLO_IMG_LIST;
+  if(LIST && LIST.length){ for(var k=0;k<LIST.length;k++){ tryLoad(LIST[k]); } }
+  else { for(var i=MIN;i<=MAX;i++){ tryLoad(i); } }
 
   // ===== Lightbox =====
   var v=null, cur=0, scrollY=0;
