@@ -65,7 +65,7 @@
     (function step(){ var k=D?Math.min((now()-t0)/D,1):1; scrollTo(0,y0+(y1-y0)*ease(k));
       if(k<1) anim.raf=requestAnimationFrame(step); else { anim=null; html.style.scrollBehavior=prevSB; quietUntil=now()+180; } })();
   }
-  function inStory(s){ var h=H(); return s>=Y(0)-h*.6 && s<=Y(N-1)+h*.6; }
+  function inStory(s){ var h=H(); return s>=Y(0)-h*.98 && s<=Y(N-1)+h*.6; } // entering: one wheel step once the story top is visible under the nav
   // returns true if the gesture was consumed (one gesture = one chapter)
   function stepDir(dir){
     var s=scrollY, y0=Y(0), yN=Y(N-1), h=H();
@@ -100,6 +100,21 @@
       if(anim){ e.preventDefault(); return; }
       if(stepDir(dir)) e.preventDefault();
     });
+    // free scrolling (scrollbar, trackpad momentum, middle-click, find-in-page) that stops between two chapters:
+    // settle on the nearest chapter, so its text is never left half under the nav
+    var idleT=0, ptrDown=false;
+    addEventListener('pointerdown',function(){ ptrDown=true; },{passive:true});
+    addEventListener('pointerup',function(){ ptrDown=false; armIdle(); },{passive:true});
+    function settle(){
+      if(!PIN.matches||anim||ptrDown||lbOpen()) return;
+      var s=scrollY, y0=Y(0), yN=Y(N-1), h=H();
+      if(s<=y0+4||s>=yN-4) return;                       // outside or exactly on the first/last chapter: leave the page alone
+      var f=(s-y0)/h, i=Math.round(f);
+      if(Math.abs(f-i)*h>3) go(i,false);
+    }
+    function armIdle(){ clearTimeout(idleT); idleT=setTimeout(settle,160); }
+    addEventListener('scroll',function(){ if(!anim) armIdle(); },{passive:true});
+    addEventListener('resize',function(){ if(PIN.matches&&!anim){ var s=scrollY,y0=Y(0),h=H(); if(s>y0-h*.5&&s<Y(N-1)+h*.5) go(clamp(Math.round((s-y0)/h),0,N-1),true); } });
     dots.forEach(function(d){ d.addEventListener('click',function(){ go(+d.dataset.go); }); });
     // the scroll cue lands on chapter 1 exactly
     var cue=cs.querySelector('.cs-cue'); if(cue) cue.addEventListener('click',function(e){ if(PIN.matches){ e.preventDefault(); go(0); } });
