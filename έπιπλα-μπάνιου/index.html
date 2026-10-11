@@ -245,6 +245,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== GALLERY ===== -->
   <section class="wrap">
     <div class="g-grid" id="g-grid" aria-live="polite"></div>
+<!-- ===== GALLERY CONFIG: σταθερή σειρά ανά έργο, λεζάντα = alt (κοινός κώδικας: /assets/js/gallery.js) ===== -->
+<script>
+  window.AGGLO_IMG_BASE = '/assets/epipla-mpaniou';
+  window.AGGLO_IMG_EXT  = 'jpg';
+  window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-mpaniou-' + i + '.' + ext; };
+  window.AGGLO_ORDER = [{"n": 4, "cap": "Έπιπλο μπάνιου σε ξύλινη απόχρωση με ντουλάπια και συρτάρια"}, {"n": 5, "cap": "Λεπτομέρεια πάγκου με προφίλ στον τοίχο και χερούλια προφίλ"}, {"n": 1, "cap": "Κρεμαστό έπιπλο σε σκούρο ξύλο με ενσωματωμένο λευκό νιπτήρα"}, {"n": 2, "cap": "Πάγκος σε σκούρο ξύλο με επιτραπέζιο νιπτήρα και ανοιχτό ράφι"}, {"n": 3, "cap": "Ψηλή λευκή στήλη μπάνιου με ράφια και ανακλινόμενο ντουλάπι στο κάτω μέρος"}];
+</script>
+<script src="/assets/js/gallery.js"></script>
   </section>
 
   <div class="section-gap"></div>
@@ -331,13 +339,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 </div>
 
-<!-- ===== GALLERY CONFIG: σταθερή σειρά ανά έργο, λεζάντα = alt (κοινός κώδικας: /assets/js/gallery.js) ===== -->
-<script>
-  window.AGGLO_IMG_BASE = '/assets/epipla-mpaniou';
-  window.AGGLO_IMG_EXT  = 'jpg';
-  window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-mpaniou-' + i + '.' + ext; };
-  window.AGGLO_ORDER = [{"n": 4, "cap": "Έπιπλο μπάνιου σε ξύλινη απόχρωση με ντουλάπια και συρτάρια"}, {"n": 5, "cap": "Λεπτομέρεια πάγκου με προφίλ στον τοίχο και χερούλια προφίλ"}, {"n": 1, "cap": "Κρεμαστό έπιπλο σε σκούρο ξύλο με ενσωματωμένο λευκό νιπτήρα"}, {"n": 2, "cap": "Πάγκος σε σκούρο ξύλο με επιτραπέζιο νιπτήρα και ανοιχτό ράφι"}, {"n": 3, "cap": "Ψηλή λευκή στήλη μπάνιου με ράφια και ανακλινόμενο ντουλάπι στο κάτω μέρος"}];
-</script>
-<script src="/assets/js/gallery.js"></script>
 <script src="/assets/js/faq.js"></script>
 

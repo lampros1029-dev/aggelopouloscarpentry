@@ -245,6 +245,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ===== GALLERY ===== -->
   <section class="wrap">
     <div class="g-grid" id="g-grid" aria-live="polite"></div>
+<!-- ===== GALLERY CONFIG: σταθερή σειρά ανά έργο, λεζάντα = alt (κοινός κώδικας: /assets/js/gallery.js) ===== -->
+<script>
+  window.AGGLO_IMG_BASE = '/assets/portes';
+  window.AGGLO_IMG_EXT  = 'jpg';
+  window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-portes-' + i + '.' + ext; };
+  window.AGGLO_ORDER = [{"n": 2, "cap": "Εσωτερική πόρτα σε γκρι-ξύλινη απόχρωση με κάσα"}, {"n": 4, "cap": "Εσωτερική πόρτα σε ανοιχτή ξύλινη απόχρωση, ανοιχτή"}, {"n": 5, "cap": "Λεπτομέρεια πόρτας σε ξύλινη απόχρωση με πόμολο"}, {"n": 3, "cap": "Πόρτα σε ξύλινη απόχρωση με κάθετες χαραγές και λαβή"}, {"n": 6, "cap": "Πόρτα σε λευκή απόχρωση με φαρδιά κάσα"}, {"n": 1, "cap": "Εξωτερική πόρτα με οριζόντιες ξύλινες σανίδες"}];
+</script>
+<script src="/assets/js/gallery.js"></script>
   </section>
 
   <div class="section-gap"></div>
@@ -331,13 +339,5 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </footer>
 </div>
 
-<!-- ===== GALLERY CONFIG: σταθερή σειρά ανά έργο, λεζάντα = alt (κοινός κώδικας: /assets/js/gallery.js) ===== -->
-<script>
-  window.AGGLO_IMG_BASE = '/assets/portes';
-  window.AGGLO_IMG_EXT  = 'jpg';
-  window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-portes-' + i + '.' + ext; };
-  window.AGGLO_ORDER = [{"n": 2, "cap": "Εσωτερική πόρτα σε γκρι-ξύλινη απόχρωση με κάσα"}, {"n": 4, "cap": "Εσωτερική πόρτα σε ανοιχτή ξύλινη απόχρωση, ανοιχτή"}, {"n": 5, "cap": "Λεπτομέρεια πόρτας σε ξύλινη απόχρωση με πόμολο"}, {"n": 3, "cap": "Πόρτα σε ξύλινη απόχρωση με κάθετες χαραγές και λαβή"}, {"n": 6, "cap": "Πόρτα σε λευκή απόχρωση με φαρδιά κάσα"}, {"n": 1, "cap": "Εξωτερική πόρτα με οριζόντιες ξύλινες σανίδες"}];
-</script>
-<script src="/assets/js/gallery.js"></script>
 <script src="/assets/js/faq.js"></script>
 
