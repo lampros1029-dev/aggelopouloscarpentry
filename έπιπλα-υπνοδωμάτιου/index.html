@@ -149,24 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .intro h2{margin:0;font-size:clamp(22px,3.6vw,40px)}
 .intro p{margin:8px auto 0;max-width:860px;color:var(--muted)}
 
-/* ===== GALLERY ===== */
-.g-grid{--min:230px;display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--min),1fr));gap:14px;align-items:stretch}
-.g-item{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);background:linear-gradient(180deg,#f2f2f2 0%,#e8e7e6 100%);aspect-ratio:4/3;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease}
-.g-item:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-.g-item .img{position:absolute;inset:0;background-size:cover;background-position:center}
-
-/* ===== LIGHTBOX (desktop arrows + mobile swipe, cross-fade, freeze bg) ===== */
-.viewer[hidden]{display:none}
-.viewer{position:fixed;inset:0;background:rgba(0,0,0,.94);display:grid;grid-template-rows:1fr auto;place-items:center;z-index:9999}
-.viewer .stage{position:relative;width:min(96vw,1280px);height:min(86vh,860px);background:#000;border-radius:10px;overflow:hidden;touch-action:pan-y}
-.viewer .stage .full{position:absolute;inset:0;background:center/contain no-repeat;opacity:1;transition:opacity .32s ease}
-.viewer .controls{display:flex;gap:10px;align-items:center;padding:10px}
-.viewer .btn{background:rgba(255,255,255,.1);backdrop-filter:saturate(1.2) blur(4px);border:1px solid rgba(255,255,255,.2);color:#fff}
-.viewer .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:26px}
-.viewer .nav.prev{left:8px}
-.viewer .nav.next{right:8px}
-@media(max-width:820px){.viewer .nav{display:none}} /* κινητά: μόνο swipe */
-body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
+/* gallery + lightbox: /assets/css/gallery.css */
 
 /* ===== FOOTER (ίδιο με v34, + μικρό κενό πριν τον τίτλο) ===== */
 .footer{margin-top:20px;background:linear-gradient(180deg,#3a2f1f 0%,#2c2418 100%);color:#fff}
@@ -213,15 +196,34 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
 .aggl img{max-width:100%;height:auto}
 .aggl{overflow-x:hidden}
 </style>
+<link rel="stylesheet" href="/assets/css/gallery.css">
+
+<!-- ===== ΚΕΝΤΡΙΚΟ ΜΕΝΟΥ (ίδιο σε όλες τις σελίδες · /assets/css/nav.css + /assets/js/nav.js) ===== -->
+<link rel="stylesheet" href="/assets/css/nav.css">
+<header class="sn" id="sn">
+  <div class="sn__in">
+    <a class="sn__logo" href="/" aria-label="Aggelopoulos Carpentry, αρχική σελίδα"><img src="/assets/logo-nav.webp" alt="Aggelopoulos Carpentry" width="428" height="96" decoding="async"></a>
+    <button type="button" class="sn__burger" aria-expanded="false" aria-controls="sn-menu" aria-label="Άνοιγμα μενού"><span></span></button>
+    <nav class="sn__nav" id="sn-menu" aria-label="Κύριο μενού">
+      <ul class="sn__list">
+        <li><a href="/έπιπλα-κουζίνας/">Κουζίνες</a></li>
+        <li><a href="/έπιπλα-υπνοδωμάτιου/" aria-current="page">Ντουλάπες</a></li>
+        <li><a href="/έπιπλα-μπάνιου/">Έπιπλα μπάνιου</a></li>
+        <li><a href="/πόρτες-και-κουφώματα/">Πόρτες</a></li>
+        <li><a href="/ειδικές-κατασκευές/">Ειδικές κατασκευές</a></li>
+        <li><a href="/επικοινωνία/">Επικοινωνία</a></li>
+      </ul>
+      <a class="sn__cta" href="tel:+306936815779"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>Κάλεσε τώρα</span></a>
+    </nav>
+    <div class="sn__scrim" aria-hidden="true"></div>
+  </div>
+</header>
+<script src="/assets/js/nav.js" defer></script>
 
 <div class="aggl">
   <!-- ===== HERO ===== -->
   <section class="hero" style="--hero-img:url(/assets/ntoulapes/aggelopoulos-epipla-upnodomatiou-hero.png)">
     <div class="inner">
-      <!-- Λευκό λογότυπο ως κουμπί προς Αρχική -->
-      <a href="https://aggelopouloscarpentry.com/" aria-label="Αρχική">
-        <img class="logo-fixed" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry" loading="lazy" decoding="async">
-      </a>
 
       <div class="content">
         <h1>Έπιπλα Υπνοδωματίου — Συρόμενες &amp; Ανοιγόμενες</h1>
@@ -323,150 +325,19 @@ body.aggl-modal-open{overflow:hidden;position:fixed;width:100%}
       </div>
     </div>
     <div class="wrap bottom">
-      <span class="year">© Aggelopoulos Carpentry 2025</span>
-      <span class="tag">Φτιαγμένο με μεράκι στην Αθήνα.</span>
+      <span class="year">© Aggelopoulos Carpentry 2026</span>
+      <span class="tag">Φτιαγμένο με μεράκι από την <a class="credit" href="https://horizonwebstudio.online" target="_blank" rel="noopener">Horizon Web Studio</a></span>
     </div>
   </footer>
 </div>
 
-<!-- ===== GALLERY CONFIG (ντουλάπες) ===== -->
+<!-- ===== GALLERY CONFIG: σταθερή σειρά ανά έργο, λεζάντα = alt (κοινός κώδικας: /assets/js/gallery.js) ===== -->
 <script>
-  // Ριζικός φάκελος και pattern αρχείων
   window.AGGLO_IMG_BASE = '/assets/ntoulapes';
   window.AGGLO_IMG_EXT  = 'jpg';
-  // filenames: aggelopoulos-epipla-upnodomatiou-{i}.jpg
   window.AGGLO_IMG_NAMER = function(i,ext){ return 'aggelopoulos-epipla-upnodomatiou-' + i + '.' + ext; };
-  window.AGGLO_IMG_MIN_INDEX = 1;
-  window.AGGLO_IMG_MAX_INDEX = 27; /* προσαρμόζεται ανάλογα με τα αρχεία στο repo */
-  /* Ρητή λίστα με τις εικόνες που υπάρχουν (χωρίς δοκιμές 1..MAX και 404). Πρόσθεσε εδώ τον αριθμό όταν ανεβαίνει νέα εικόνα. */
-  window.AGGLO_IMG_LIST = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27];
+  window.AGGLO_ORDER = [{"n": 1, "cap": "Συρόμενη ντουλάπα τριών φύλλων με οριζόντια προφίλ αλουμινίου"}, {"n": 3, "cap": "Συρόμενη ντουλάπα με ένα φύλλο ανοιχτό: ράφια και συρταριέρα στο εσωτερικό"}, {"n": 9, "cap": "Δίφυλλη συρόμενη ντουλάπα σε ανοιχτό τόνο με προφίλ αλουμινίου"}, {"n": 10, "cap": "Εσωτερικό συρόμενης ντουλάπας με ράφι, κρεμάστρα και συρτάρι"}, {"n": 4, "cap": "Λευκή ανοιγόμενη ντουλάπα με ράφια, συρτάρια και χώρο κρεμάσματος"}, {"n": 5, "cap": "Η λευκή ντουλάπα από άλλη γωνία, με την εσωτερική συρταριέρα"}, {"n": 6, "cap": "Λεπτομέρεια εσωτερικών συρταριών ντουλάπας"}, {"n": 8, "cap": "Λευκή ντουλάπα με εξωτερικά συρτάρια, ράφια και κρεμάστρες"}, {"n": 12, "cap": "Ντουλάπα σε ξύλινη απόχρωση με ανοιχτό κουτί στη μέση και ράφια στα πλάγια"}, {"n": 16, "cap": "Λεπτομέρεια ανοιχτού κουτιού με πρίζες και συρτάρια από κάτω"}, {"n": 17, "cap": "Κλειστή ξύλινη ντουλάπα με συρτάρια και πόμολα μπάρα"}, {"n": 18, "cap": "Ξύλινη ντουλάπα με ψηλά φύλλα και πόμολα μπάρα"}, {"n": 13, "cap": "Ντουλάπα σε ξύλινη απόχρωση χωρίς φύλλα: κρεμάστρα, ράφια και συρτάρια"}, {"n": 14, "cap": "Η ίδια ντουλάπα από το πλάι, με χώρο κρεμάσματος σε δύο επίπεδα"}, {"n": 15, "cap": "Ντουλάπια πάνω από την πόρτα και ψηλή ντουλάπα στον διάδρομο"}, {"n": 19, "cap": "Ντουλάπα τοίχου σε γκρι απόχρωση τσιμέντου με κεντρικό κουτί και συρτάρια"}, {"n": 20, "cap": "Λεπτομέρεια ανοιχτού κουτιού και συρταριών με πόμολα μπάρα"}, {"n": 26, "cap": "Δίφυλλη ντουλάπα με συρταριέρα και πόμολα μπάρα"}, {"n": 27, "cap": "Εσωτερικό ντουλάπας με κρεμάστρες, ράφια και συρτάρια"}, {"n": 25, "cap": "Ντουλάπα με ανοιχτά φύλλα: χώρος κρεμάσματος και ράφια"}, {"n": 22, "cap": "Συρταριέρα σε σκούρο ξύλο με καθρέφτη από πάνω"}, {"n": 23, "cap": "Συρταριέρα και καθρέφτης με ξύλινη κορνίζα"}, {"n": 24, "cap": "Κομοδίνο σε σκούρο ξύλο με συρτάρια"}, {"n": 21, "cap": "Λεπτομέρεια συρταριών με τετράγωνα πόμολα"}, {"n": 11, "cap": "Ανοιχτό συρτάρι συρταριέρας σε ξύλινη απόχρωση"}];
 </script>
-
-<script>
-/* ===== DYNAMIC GALLERY + VIEWER (desktop arrows, mobile swipe, cross‑fade, freeze body) ===== */
-(function(){
-  var grid=document.getElementById('g-grid'); if(!grid) return;
-
-  var EXT=(window.AGGLO_IMG_EXT||'jpg').replace('.','');
-  var BASE=(window.AGGLO_IMG_BASE||'').replace(/\/$/,'');
-  var NAMER=window.AGGLO_IMG_NAMER || function(i,ext){ return 'item_'+i+'.'+ext; };
-  var MIN = Number(window.AGGLO_IMG_MIN_INDEX||1);
-  var MAX = Number(window.AGGLO_IMG_MAX_INDEX||27);
-
-  var images=[];
-
-  function addCard(idx,url){
-    var li=document.createElement('div');
-    li.className='g-item'; li.setAttribute('role','button'); li.setAttribute('tabindex','0');
-    li.dataset.idx=images.length;
-    var img=document.createElement('div'); img.className='img'; img.style.backgroundImage='url("'+url+'")';
-    li.appendChild(img); grid.appendChild(li);
-    images.push(url);
-  }
-
-  var pending=0;
-  function tryLoad(i){
-    var url = BASE + '/' + NAMER(i, EXT);
-    pending++;
-    var im=new Image();
-    im.onload=function(){ addCard(i,url); checkDone(); };
-    im.onerror=function(){ checkDone(); };
-    im.src=url;
-  }
-  function checkDone(){ if(--pending<=0 && images.length===0){ grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#6b6b6b">Δεν βρέθηκαν εικόνες.</p>'; } }
-
-  var LIST=window.AGGLO_IMG_LIST;
-  if(LIST && LIST.length){ for(var k=0;k<LIST.length;k++){ tryLoad(LIST[k]); } }
-  else { for(var i=MIN;i<=MAX;i++){ tryLoad(i); } }
-
-  // ===== Lightbox =====
-  var v=null, cur=0, scrollY=0;
-
-  function open(pos){
-    cur=pos;
-    if(!v){
-      v=document.createElement('div');
-      v.className='viewer';
-      v.innerHTML='<div class="stage"><div class="full" id="vfull"></div><button class="nav prev" aria-label="Προηγούμενη">‹</button><button class="nav next" aria-label="Επόμενη">›</button></div><div class="controls"><button class="btn" id="vclose">Κλείσιμο</button></div>';
-      document.body.appendChild(v);
-      v.querySelector('#vclose').onclick=close;
-      v.addEventListener('click',function(e){ if(e.target===v) close(); });
-
-      // Desktop arrows
-      var p=v.querySelector('.prev'), n=v.querySelector('.next');
-      if(p) p.onclick=function(){ step(-1); };
-      if(n) n.onclick=function(){ step(1); };
-
-      // Swipe (touch & mouse) για κινητά
-      var stage=v.querySelector('.stage');
-      var startX=0, dx=0, touching=false, TH=40;
-      function start(e){ touching=true; startX=(e.touches?e.touches[0].clientX:e.clientX); dx=0; }
-      function move(e){ if(!touching) return; var x=(e.touches?e.touches[0].clientX:e.clientX); dx=x-startX; }
-      function end(){ if(!touching) return; touching=false; if(Math.abs(dx)>TH){ step(dx<0?1:-1);} }
-      stage.addEventListener('touchstart',start,{passive:true});
-      stage.addEventListener('touchmove',move,{passive:true});
-      stage.addEventListener('touchend',end);
-      stage.addEventListener('mousedown',start);
-      stage.addEventListener('mousemove',move);
-      stage.addEventListener('mouseup',end);
-
-      document.addEventListener('keydown',function(e){
-        if(!v || v.hasAttribute('hidden')) return;
-        if(e.key==='Escape') close();
-        if(e.key==='ArrowLeft') step(-1);
-        if(e.key==='ArrowRight') step(1);
-      });
-    }
-    v.removeAttribute('hidden');
-    freezeBody(true);
-    render(true);
-  }
-
-  function close(){
-    if(!v) return;
-    v.setAttribute('hidden','');
-    freezeBody(false);
-  }
-
-  // Freeze/restore body scroll & keep position
-  function freezeBody(on){
-    if(on){
-      scrollY = window.scrollY || window.pageYOffset;
-      document.body.classList.add('aggl-modal-open');
-      document.body.style.top = (-scrollY)+'px';
-    }else{
-      document.body.classList.remove('aggl-modal-open');
-      document.body.style.top = '';
-      window.scrollTo(0, scrollY);
-    }
-  }
-
-  function step(d){ cur=((cur+d+images.length)%images.length); render(false); }
-
-  // Cross-fade render
-  function render(first){
-    var full=v.querySelector('#vfull');
-    if(!first){
-      full.style.opacity = 0;
-      requestAnimationFrame(function(){
-        full.style.backgroundImage='url("'+images[cur]+'")';
-        requestAnimationFrame(function(){ full.style.opacity = 1; });
-      });
-    }else{
-      full.style.opacity = 0;
-      full.style.backgroundImage='url("'+images[cur]+'")';
-      requestAnimationFrame(function(){ full.style.opacity = 1; });
-    }
-  }
-
-  grid.addEventListener('click',function(e){
-    var el=e.target.closest('.g-item'); if(!el) return; open(+el.dataset.idx);
-  });
-  grid.addEventListener('keydown',function(e){
-    var el=e.target.closest('.g-item'); if(!el) return;
-    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(+el.dataset.idx); }
-  });
-})();
-</script>
+<script src="/assets/js/gallery.js"></script>
 <script src="/assets/js/faq.js"></script>
 

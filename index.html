@@ -103,9 +103,13 @@ body{background:#fff;color:#111}
 .hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
 
 /* ====== SERVICES ====== */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:stretch}
+/* κάρτες υπηρεσιών: ίσο ύψος, τίτλος σε μία γραμμή, κουμπιά στην ίδια ευθεία */
+.svc-grid .card{display:flex;flex-direction:column}
+.svc-grid .card h3{white-space:nowrap}
+.svc-grid .card p:last-child{margin-top:auto !important;padding-top:4px}
 .card{background:#fff;border-radius:16px;padding:24px;border:1px solid rgba(93,78,55,.15);box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.card h3{font-size:clamp(20px,2.2vw,26px);text-align:center;margin:0 0 4px}
+.card h3{font-size:clamp(18px,1.6vw,20.5px);text-align:center;margin:0 0 4px}
 .card .u{display:block;width:52px;height:3px;background:var(--accent);margin:10px auto 12px;border-radius:3px}
 .card p{margin:0 0 14px;text-align:center}
 .card .btn{padding:11px 18px;border-radius:12px}
@@ -144,7 +148,7 @@ body{background:#fff;color:#111}
 /* ====== REVIEWS – Google only (COMPACT) ====== */
 .reviews h2{margin:0 0 4px}
 .reviews .gwrap{background:#f7f8fb;border-radius:14px;padding:6px}
-#elfsight-container{max-width:920px;margin:6px auto}
+#elfsight-container{max-width:920px;margin:6px auto;min-height:420px} /* δεσμευμένος χώρος για το widget κριτικών (CLS) */
 #elfsight-container > div{height:auto !important}
 #elfsight-container .eapps-widget,
 #elfsight-container [class^="eapps-"],
@@ -239,6 +243,28 @@ body{background:#fff;color:#111}
 .aggl img{max-width:100%;height:auto}
 .aggl{overflow-x:hidden}
 </style>
+
+<!-- ===== ΚΕΝΤΡΙΚΟ ΜΕΝΟΥ (ίδιο σε όλες τις σελίδες · /assets/css/nav.css + /assets/js/nav.js) ===== -->
+<link rel="stylesheet" href="/assets/css/nav.css">
+<header class="sn" id="sn">
+  <div class="sn__in">
+    <a class="sn__logo" href="/" aria-current="page" aria-label="Aggelopoulos Carpentry, αρχική σελίδα"><img src="/assets/logo-nav.webp" alt="Aggelopoulos Carpentry" width="428" height="96" decoding="async"></a>
+    <button type="button" class="sn__burger" aria-expanded="false" aria-controls="sn-menu" aria-label="Άνοιγμα μενού"><span></span></button>
+    <nav class="sn__nav" id="sn-menu" aria-label="Κύριο μενού">
+      <ul class="sn__list">
+        <li><a href="/έπιπλα-κουζίνας/">Κουζίνες</a></li>
+        <li><a href="/έπιπλα-υπνοδωμάτιου/">Ντουλάπες</a></li>
+        <li><a href="/έπιπλα-μπάνιου/">Έπιπλα μπάνιου</a></li>
+        <li><a href="/πόρτες-και-κουφώματα/">Πόρτες</a></li>
+        <li><a href="/ειδικές-κατασκευές/">Ειδικές κατασκευές</a></li>
+        <li><a href="/επικοινωνία/">Επικοινωνία</a></li>
+      </ul>
+      <a class="sn__cta" href="tel:+306936815779"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span>Κάλεσε τώρα</span></a>
+    </nav>
+    <div class="sn__scrim" aria-hidden="true"></div>
+  </div>
+</header>
+<script src="/assets/js/nav.js" defer></script>
 
 <div class="aggl">
   <!-- ===== HERO ===== -->
@@ -401,8 +427,8 @@ body{background:#fff;color:#111}
       </div>
     </div>
     <div class="wrap bottom">
-      <span class="year">© Aggelopoulos Carpentry 2025</span>
-      <span class="tag">Φτιαγμένο με μεράκι στην Αθήνα.</span>
+      <span class="year">© Aggelopoulos Carpentry 2026</span>
+      <span class="tag">Φτιαγμένο με μεράκι από την <a class="credit" href="https://horizonwebstudio.online" target="_blank" rel="noopener">Horizon Web Studio</a></span>
     </div>
   </footer>
 </div>
@@ -429,6 +455,7 @@ body{background:#fff;color:#111}
   var ph=document.getElementById('elfsight-container'); if(!ph) return;
   var loaded=false;
   function load(){ if(loaded) return; loaded=true;
+    setTimeout(function(){ if(!ph.querySelector('[class*="eapps"],[class*="es-"]')) ph.style.minHeight='0'; },12000); /* αν δεν φορτώσει το widget, μάζεψε τον δεσμευμένο χώρο */
     var s=document.createElement('script'); s.src='https://elfsightcdn.com/platform.js';
     s.async=true; s.defer=true; document.body.appendChild(s);
   }
