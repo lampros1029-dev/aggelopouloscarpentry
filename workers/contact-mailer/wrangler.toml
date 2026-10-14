@@ -1,0 +1,12 @@
+name = "aggelopoulos-contact-mailer"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+[[send_email]]
+name = "EMAIL"
+destination_address = "basilisangelopoulos1965@gmail.com"
+
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "aggelopoulos-contact-uploads"

@@ -182,11 +182,7 @@ window.axeptioSettings = {
     <section class="card">
       <div id="alert" aria-live="polite"></div>
 
-      <form id="contact" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" novalidate>
-        <input type="hidden" name="access_key" value="e3990b79-e6a8-4d69-8f86-e605c272f526">
-        <input type="hidden" name="from_name" value="Aggelopoulos Carpentry Website">
-        <input type="hidden" name="subject" value="Νέο αίτημα (φόρμα επικοινωνίας)">
-        <input type="hidden" name="replyto" value="email">
+      <form id="contact" action="/api/contact" method="POST" enctype="multipart/form-data" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0" aria-hidden="true">
         <input type="hidden" name="_started" id="started">
 
@@ -204,15 +200,27 @@ window.axeptioSettings = {
         </div>
 
         <div>
-          <label for="email">Email (προαιρετικό)</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com">
-          <div class="err" id="e-email">Το email δεν είναι έγκυρο.</div>
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
+          <div class="err" id="e-email">Δώστε έγκυρο email.</div>
         </div>
 
         <div>
           <label for="message">Μήνυμα *</label>
           <textarea id="message" name="message" rows="6" required placeholder="Περιγράψτε χώρο/διαστάσεις, υλικά, χρόνο παράδοσης κ.λπ."></textarea>
           <div class="err" id="e-message">Γράψτε τουλάχιστον 10 χαρακτήρες.</div>
+        </div>
+
+        <div class="photos-field">
+          <label for="photos">Φωτογραφίες (προαιρετικό)</label>
+          <p class="help" style="margin:0 0 8px">Ανεβάστε φωτογραφίες του χώρου ή σχέδια. Μικραίνουν αυτόματα πριν την αποστολή.</p>
+          <label class="ph-drop" for="photos">
+            <input id="photos" type="file" accept="image/*" multiple>
+            <span>📷 Επιλογή φωτογραφιών</span>
+          </label>
+          <div class="ph-grid" id="phGrid" aria-live="polite"></div>
+          <div class="ph-meta" id="phMeta"></div>
+          <div class="err" id="e-photos"></div>
         </div>
 
         <div class="consent">
@@ -281,6 +289,18 @@ window.axeptioSettings = {
   </div>
 </footer>
 
+<style>
+  .photos-field{margin:4px 0 6px}
+  .ph-drop{display:flex;align-items:center;justify-content:center;gap:8px;border:2px dashed rgba(127,127,127,.45);border-radius:12px;padding:14px;cursor:pointer;font-weight:600;margin:0}
+  .ph-drop:hover{border-color:currentColor}
+  .ph-drop input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  .ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;margin-top:10px}
+  .ph-item{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:rgba(127,127,127,.15)}
+  .ph-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph-item button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:#fff;font-size:16px;line-height:26px;cursor:pointer;padding:0}
+  .ph-item .ph-busy{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px}
+  .ph-meta{font-size:.9em;opacity:.8;margin-top:6px}
+</style>
 <script>
 (function(){
   const form = document.getElementById('contact');
@@ -292,12 +312,12 @@ window.axeptioSettings = {
   started.value = String(Date.now());
 
   function showError(id, show, msg){const el=document.getElementById(id);if(!el)return; if(msg) el.textContent=msg; el.style.display=show?'block':'none'}
-  const emailOk = v => !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  const emailOk = v => !!v && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const telOk   = v => /^[0-9+ ()-]{8,}$/.test(v||'');
   const minLen  = (v,n) => (v||'').trim().length>=n;
 
   // Renders alert text safely (no innerHTML with dynamic/remote content) to avoid any XSS
-  // vector via a third-party API response, even though web3forms.com is trusted.
+  // vector via the API response.
   function setAlert(kind, text, withPhoneLink){
     alertBox.textContent = '';
     const div = document.createElement('div');
@@ -311,6 +331,51 @@ window.axeptioSettings = {
     }
     alertBox.appendChild(div);
   }
+
+  // ===== Φωτογραφίες: συμπίεση στον browser (max 1920px, JPEG 0.8) =====
+  const MAX_PHOTOS = 15, MAX_BYTES = 17.5*1024*1024; // ~24MB email μετά το base64 (όριο Gmail 25MB)
+  const photoInput = document.getElementById('photos');
+  const phGrid = document.getElementById('phGrid'), phMeta = document.getElementById('phMeta');
+  let photos = []; // {id, blob, url}
+  let pending = 0;
+  const mb = b => (b/1024/1024).toFixed(1).replace('.', ',') + ' MB';
+  function renderMeta(){
+    const total = photos.reduce((s,p)=>s+p.blob.size,0);
+    phMeta.textContent = photos.length ? `${photos.length} φωτογραφ${photos.length===1?'ία':'ίες'} · ${mb(total)} από ${mb(MAX_BYTES)}` : '';
+  }
+  async function compress(file){
+    let src;
+    try { src = await createImageBitmap(file, { imageOrientation:'from-image' }); }
+    catch(_){ src = await new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=URL.createObjectURL(file); }); }
+    const w0 = src.width || src.naturalWidth, h0 = src.height || src.naturalHeight;
+    const k = Math.min(1, 1920/Math.max(w0,h0));
+    const c = document.createElement('canvas'); c.width=Math.round(w0*k); c.height=Math.round(h0*k);
+    const ctx = c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(src,0,0,c.width,c.height);
+    if (src.close) src.close();
+    return await new Promise((res,rej)=>c.toBlob(b=>b?res(b):rej(new Error('toBlob')),'image/jpeg',0.8));
+  }
+  function addTile(p){
+    const d=document.createElement('div'); d.className='ph-item';
+    const img=document.createElement('img'); img.src=p.url; img.alt='Φωτογραφία';
+    const x=document.createElement('button'); x.type='button'; x.textContent='×'; x.setAttribute('aria-label','Αφαίρεση φωτογραφίας');
+    x.onclick=()=>{ photos=photos.filter(q=>q!==p); URL.revokeObjectURL(p.url); d.remove(); showError('e-photos',false); renderMeta(); };
+    d.append(img,x); phGrid.appendChild(d);
+  }
+  photoInput.addEventListener('change', async ()=>{
+    const files=[...photoInput.files]; photoInput.value=''; showError('e-photos',false);
+    for (const f of files){
+      if (!/^image\//.test(f.type) && !/\.(heic|heif)$/i.test(f.name)) { showError('e-photos',true,`Το «${f.name}» δεν είναι εικόνα.`); continue; }
+      if (photos.length + pending >= MAX_PHOTOS){ showError('e-photos',true,`Μπορείτε να στείλετε έως ${MAX_PHOTOS} φωτογραφίες.`); break; }
+      pending++;
+      try{
+        const blob = await compress(f);
+        const total = photos.reduce((s,p)=>s+p.blob.size,0);
+        if (total + blob.size > MAX_BYTES){ showError('e-photos',true,'Οι φωτογραφίες ξεπερνούν το όριο των '+mb(MAX_BYTES)+'. Αφαιρέστε κάποια ή στείλτε τις υπόλοιπες σε δεύτερο μήνυμα.'); continue; }
+        const p={blob,url:URL.createObjectURL(blob)}; photos.push(p); addTile(p);
+      }catch(_){ showError('e-photos',true,`Δεν ήταν δυνατή η επεξεργασία του «${f.name}». Δοκιμάστε JPG ή PNG.`); }
+      finally{ pending--; renderMeta(); }
+    }
+  });
 
   form.addEventListener('submit', async (e)=>{
     e.preventDefault(); alertBox.textContent='';
@@ -328,6 +393,8 @@ window.axeptioSettings = {
     if (tookMs < 2500) { ok = false; setAlert('fail', 'Πολύ γρήγορη υποβολή. Παρακαλώ ξαναδοκιμάστε.', false); }
 
     if(!ok) return;
+    if(pending){ setAlert('fail','Περιμένετε να ολοκληρωθεί η επεξεργασία των φωτογραφιών.', false); return; }
+    photos.forEach((p,i)=>fd.append('photos', p.blob, `photo-${i+1}.jpg`));
 
     btn.disabled = true; const old = btn.textContent; btn.textContent='Αποστολή…';
     try{
@@ -335,6 +402,7 @@ window.axeptioSettings = {
       const data = await resp.json().catch(()=>({}));
       if(resp.ok){
         form.reset(); started.value=String(Date.now());
+        photos.forEach(p=>URL.revokeObjectURL(p.url)); photos=[]; phGrid.textContent=''; renderMeta();
         setAlert('success', 'Ελήφθη! Θα επικοινωνήσουμε σύντομα.', false);
       }else{
         const msg=(data&&typeof data.message==='string' ? data.message : 'Κάτι πήγε στραβά.')+' Δοκιμάστε ξανά ή καλέστε στο ';
