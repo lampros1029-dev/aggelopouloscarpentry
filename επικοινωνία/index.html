@@ -263,7 +263,13 @@ window.axeptioSettings = {
 <main class="wrap">
   <div class="grid">
     <section class="card">
-      <div id="alert" aria-live="polite"></div>
+      <div id="alert" aria-live="polite" tabindex="-1"></div>
+      <div id="sent" class="sent" role="status" aria-live="polite" tabindex="-1" hidden>
+        <div class="sent__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2>Ευχαριστούμε, λάβαμε το μήνυμά σας.</h2>
+        <p>Θα επικοινωνήσουμε μαζί σας το συντομότερο. Για κάτι επείγον, καλέστε μας στο <a href="tel:+306936815779">693 681 5779</a>.</p>
+        <button class="pill" id="sendAgain" type="button">Αποστολή νέου μηνύματος</button>
+      </div>
 
       <form id="contact" action="/api/contact" method="POST" enctype="multipart/form-data" novalidate>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0" aria-hidden="true">
@@ -383,6 +389,19 @@ window.axeptioSettings = {
   .ph-item button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:#fff;font-size:16px;line-height:26px;cursor:pointer;padding:0}
   .ph-item .ph-busy{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px}
   .ph-meta{font-size:.9em;opacity:.8;margin-top:6px}
+  #alert .fail{display:block;background:#fdecee;border:1px solid rgba(176,0,32,.25);color:#7a0016;border-radius:14px;padding:12px 14px;margin:0 0 16px;font-weight:600;animation:fbIn .25s ease-out}
+  #alert .fail a{color:inherit;font-weight:800;white-space:nowrap}
+  #alert:focus,.sent:focus{outline:none}
+  .sent{text-align:center;padding:26px 8px 10px;animation:fbIn .3s ease-out;scroll-margin-top:96px}
+  .sent[hidden],#contact[hidden]{display:none!important}
+  .sent__ico{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:rgba(46,125,50,.12);color:#2e7d32;display:flex;align-items:center;justify-content:center}
+  .sent__ico svg{width:34px;height:34px}
+  .sent h2{margin:0 0 8px;font-size:clamp(20px,3.4vw,26px);line-height:1.25}
+  .sent p{margin:0 auto 18px;max-width:440px;color:var(--muted)}
+  .sent p a{color:var(--accent);font-weight:800;white-space:nowrap}
+  #alert{scroll-margin-top:96px}
+  @keyframes fbIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.sent,#alert .fail{animation:none}}
 </style>
 <script>
 (function(){
@@ -401,6 +420,17 @@ window.axeptioSettings = {
 
   // Renders alert text safely (no innerHTML with dynamic/remote content) to avoid any XSS
   // vector via the API response.
+  const sentBox = document.getElementById('sent');
+  const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function failAlert(prefix){
+    setAlert('fail', prefix+'Η αποστολή δεν ολοκληρώθηκε. Δοκιμάστε ξανά ή καλέστε μας στο ', true);
+    alertBox.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+    alertBox.focus({preventScroll:true});
+  }
+  document.getElementById('sendAgain').addEventListener('click', ()=>{
+    sentBox.hidden=true; form.hidden=false; started.value=String(Date.now());
+    document.getElementById('name').focus();
+  });
   function setAlert(kind, text, withPhoneLink){
     alertBox.textContent = '';
     const div = document.createElement('div');
@@ -487,13 +517,16 @@ window.axeptioSettings = {
         form.reset(); started.value=String(Date.now());
         photos.forEach(p=>URL.revokeObjectURL(p.url)); photos=[]; phGrid.textContent=''; renderMeta();
         window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:'form_submit_success'});
-        setAlert('success', 'Ελήφθη! Θα επικοινωνήσουμε σύντομα.', false);
+        alertBox.textContent='';
+        form.hidden=true; sentBox.hidden=false;
+        sentBox.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+        sentBox.focus({preventScroll:true});
       }else{
-        const msg=(data&&typeof data.message==='string' ? data.message : 'Κάτι πήγε στραβά.')+' Δοκιμάστε ξανά ή καλέστε στο ';
-        setAlert('fail', msg, true);
+        const pre=(resp.status>=400 && resp.status<500 && data && typeof data.message==='string' && data.message) ? data.message+' ' : '';
+        failAlert(pre);
       }
     }catch(err){
-      setAlert('fail', 'Αποτυχία δικτύου. Δοκιμάστε ξανά ή καλέστε στο ', true);
+      failAlert('');
     }finally{
       btn.disabled=false; btn.textContent=old;
     }
