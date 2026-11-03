@@ -22,12 +22,16 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": [
+    "LocalBusiness",
+    "HomeAndConstructionBusiness"
+  ],
   "@id": "https://aggelopouloscarpentry.com/#business",
-  "name": "Aggelopoulos Carpentry Solutions",
+  "name": "Aggelopoulos Carpentry",
   "url": "https://aggelopouloscarpentry.com/",
+  "image": "https://aggelopouloscarpentry.com/assets/hero/aggelopoulos-carpentry-hero.webp",
+  "logo": "https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png",
   "telephone": "+30 693 681 5779",
-  "email": "aggelopouloscarpentry@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Χρυσάνθου 58",
@@ -36,9 +40,112 @@
     "postalCode": "12136",
     "addressCountry": "GR"
   },
-  "areaServed": "Athens",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "10:00",
+      "closes": "14:00"
+    }
+  ],
+  "foundingDate": "1960",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Περιστέρι"
+    },
+    {
+      "@type": "City",
+      "name": "Ίλιον"
+    },
+    {
+      "@type": "City",
+      "name": "Πετρούπολη"
+    },
+    {
+      "@type": "City",
+      "name": "Αιγάλεω"
+    },
+    {
+      "@type": "City",
+      "name": "Χαϊδάρι"
+    },
+    {
+      "@type": "City",
+      "name": "Άγιοι Ανάργυροι"
+    },
+    {
+      "@type": "City",
+      "name": "Αγία Βαρβάρα"
+    },
+    {
+      "@type": "City",
+      "name": "Κορυδαλλός"
+    }
+  ],
   "priceRange": "€€",
-  "sameAs": []
+  "sameAs": [
+    "https://maps.app.goo.gl/VRRLghdGCoTDPAek7"
+  ],
+  "email": "info@aggelopouloscarpentry.com"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Έπιπλα κουζίνας κατά παραγγελία",
+  "serviceType": "Έπιπλα κουζίνας κατά παραγγελία",
+  "url": "https://aggelopouloscarpentry.com/έπιπλα-κουζίνας/",
+  "provider": {
+    "@id": "https://aggelopouloscarpentry.com/#business"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Περιστέρι"
+    },
+    {
+      "@type": "City",
+      "name": "Ίλιον"
+    },
+    {
+      "@type": "City",
+      "name": "Πετρούπολη"
+    },
+    {
+      "@type": "City",
+      "name": "Αιγάλεω"
+    },
+    {
+      "@type": "City",
+      "name": "Χαϊδάρι"
+    },
+    {
+      "@type": "City",
+      "name": "Άγιοι Ανάργυροι"
+    },
+    {
+      "@type": "City",
+      "name": "Αγία Βαρβάρα"
+    },
+    {
+      "@type": "City",
+      "name": "Κορυδαλλός"
+    }
+  ]
 }
 </script>
 
@@ -72,6 +179,16 @@
 }
 </script>
 
+<!-- Consent Mode v2 default (runs BEFORE GTM) + internal-traffic flag -->
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+(function(){try{
+  if(/[?&]internal=1(?:&|$)/.test(location.search)){document.cookie='internal=1; max-age=31536000; path=/; SameSite=Lax';}
+  if(/(?:^|;\s*)internal=1(?:;|$)/.test(document.cookie)){dataLayer.push({traffic_type:'internal'});}
+}catch(e){}})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -80,18 +197,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NQ462JWK');</script>
 <!-- End Google Tag Manager -->
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKKBBQTQ5Z">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JKKBBQTQ5Z');
-  gtag('config', 'AW-16501494063');
-</script>
-<script src="/assets/js/call-tracker.js"></script>
+<script src="/assets/js/call-tracker.js?v=20261103" defer></script>
 
 <script>
 window.axeptioSettings = {
@@ -473,8 +579,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="ba-wrap" id="ba-wrap" aria-label="Σύγκριση Πριν / Μετά">
-      <img class="ba-before" src="/assets/kouzines/aggelopoulos-epipla-kouzinas-before.webp" alt="Κουζίνα πριν την ανακαίνιση" loading="lazy" decoding="async">
-      <img class="ba-after"  src="/assets/kouzines/aggelopoulos-epipla-kouzinas-after.webp"  alt="Κουζίνα μετά την ολοκλήρωση" loading="lazy" decoding="async">
+      <img width="1024" height="1024" class="ba-before" src="/assets/kouzines/aggelopoulos-epipla-kouzinas-before.webp" alt="Κουζίνα πριν την ανακαίνιση" loading="lazy" decoding="async">
+      <img width="1024" height="1024" class="ba-after"  src="/assets/kouzines/aggelopoulos-epipla-kouzinas-after.webp"  alt="Κουζίνα μετά την ολοκλήρωση" loading="lazy" decoding="async">
       <span class="ba-handle" id="ba-handle"></span>
       <span class="ba-knob" id="ba-knob" aria-hidden="true"></span>
     </div>

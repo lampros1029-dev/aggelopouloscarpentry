@@ -13,7 +13,7 @@
   "name": "Aggelopoulos Carpentry Solutions",
   "url": "https://aggelopouloscarpentry.com/",
   "telephone": "+30 693 681 5779",
-  "email": "aggelopouloscarpentry@gmail.com",
+  "email": "info@aggelopouloscarpentry.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Χρυσάνθου 58",
@@ -58,6 +58,16 @@
 }
 </script>
 
+<!-- Consent Mode v2 default (runs BEFORE GTM) + internal-traffic flag -->
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+(function(){try{
+  if(/[?&]internal=1(?:&|$)/.test(location.search)){document.cookie='internal=1; max-age=31536000; path=/; SameSite=Lax';}
+  if(/(?:^|;\s*)internal=1(?:;|$)/.test(document.cookie)){dataLayer.push({traffic_type:'internal'});}
+}catch(e){}})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -66,18 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-NQ462JWK');</script>
 <!-- End Google Tag Manager -->
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKKBBQTQ5Z">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-JKKBBQTQ5Z');
-  gtag('config', 'AW-16501494063');
-</script>
-<script src="/assets/js/call-tracker.js"></script>
+<script src="/assets/js/call-tracker.js?v=20261103" defer></script>
 
 <script>
 window.axeptioSettings = {
