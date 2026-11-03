@@ -4,7 +4,7 @@ import { EmailMessage } from 'cloudflare:email';
 
 const FROM = 'info@aggelopouloscarpentry.com';
 const FROM_NAME = 'Aggelopoulos Carpentry Website';
-const TO = 'basilisangelopoulos1965@gmail.com';
+const TO = 'info@aggelopouloscarpentry.com';
 
 const enc = new TextEncoder();
 function b64(bytes) {
