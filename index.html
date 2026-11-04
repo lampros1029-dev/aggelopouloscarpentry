@@ -68,7 +68,7 @@ window.axeptioSettings = {
 <meta name="twitter:image" content="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/0-02-05-dba3eacdcd4c341fcc8d85ec135e8d3010c0fb17d5d6bc4b7be373533acae7e8_4cff8454.jpg">
 
 <!-- LCP hint: preload hero image (keeps same visual; speeds up paint) -->
-<link rel="preload" as="image" href="/assets/hero/aggelopoulos-carpentry-hero.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="/assets/kouzines/aggelopoulos-epipla-kouzinas-1.5.webp" type="image/webp" fetchpriority="high" />
 
 <style>
 /* ====== RESET ====== */
@@ -92,15 +92,29 @@ body{background:#fff;color:#111}
 .btn:focus{outline:2px solid rgba(93,78,55,.45);outline-offset:2px;border-radius:999px}
 
 /* ====== HERO ====== */
-.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:var(--accent)}
-.hero .inner{min-height:clamp(260px,50vh,540px);display:flex;align-items:center;justify-content:center;padding:36px 20px;background:linear-gradient(0deg,rgba(0,0,0,.62),rgba(0,0,0,.62)), var(--hero-img) center 55%/cover no-repeat}
-.hero .content{max-width:1200px;margin:0 auto;text-align:center;color:#fff;padding:0 18px}
-.hero .logo{width:min(340px,68%);height:auto;display:block;margin:0 auto 10px}
-.hero h1{margin:6px auto 8px;font-size:clamp(24px,4.2vw,46px);line-height:1.18;max-width:980px}
-.hero h1 span.nb{white-space:nowrap}
-.hero p{margin:0 auto 16px;max-width:1000px;font-size:clamp(14px,2.1vw,19px);line-height:1.55}
-.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.hero .badge{background:#fff;color:#000;display:inline-block;margin:12px auto 0;padding:8px 14px;border-radius:12px;font-size:14px;font-weight:700}
+/* Hero v2: real project photo, left-aligned copy, call-first CTA */
+.hero{position:relative;width:100vw;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:#14100a;color:#fff;overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:0;z-index:-2;margin:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 58%;display:block}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,16,10,.94) 0%,rgba(20,16,10,.84) 42%,rgba(20,16,10,.45) 75%,rgba(20,16,10,.25) 100%)}
+.hero .inner{max-width:1100px;margin:0 auto;min-height:clamp(460px,68vh,620px);display:flex;align-items:center;padding:56px 24px}
+.hero .content{max-width:640px;text-align:left}
+.hero__eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;color:#cdb68f;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.hero__eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:#c9a46a}
+.hero h1{margin:0 0 14px;font-size:clamp(32px,4.4vw,54px);line-height:1.1;letter-spacing:-.01em;color:#fff}
+.hero p.hero__lead{margin:0 0 24px;font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:#efe8dc}
+.hero p.hero__lead strong{color:#fff}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin:0}
+.hero .cta .btn{min-height:48px;display:inline-flex;align-items:center;justify-content:center;padding:13px 26px;font-size:17px;background:transparent;border:2px solid rgba(255,255,255,.75)}
+.aggl .hero .cta a[href^="tel:"]{order:-1;background:#c9a46a;border-color:#c9a46a;color:#22190f !important}
+.aggl .hero .cta a[href^="tel:"]::before{content:"";width:18px;height:18px;margin-right:8px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E") center/contain no-repeat}
+.aggl .hero .cta a[href^="tel:"]:hover{background:#d8b77f}
+.hero .cta .btn:focus-visible{outline:3px solid #cdb68f;outline-offset:3px}
+.hero__trust{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin:26px 0 0;padding:18px 0 0;border-top:1px solid rgba(205,182,143,.35);font-size:15px;color:#efe8dc}
+.hero__trust li{display:flex;align-items:baseline;gap:6px}
+.hero__trust b{color:#fff;font-size:18px}
+.hero__trust .star{color:#fbbc04}
+@media (prefers-reduced-motion:no-preference){.hero__media img{animation:heroZoom 1.4s ease-out both}@keyframes heroZoom{from{transform:scale(1.05)}to{transform:none}}}
 
 /* ====== SERVICES ====== */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:stretch}
@@ -208,12 +222,15 @@ body{background:#fff;color:#111}
   .aggl .wrap{padding:0 12px}
   .section-gap{height:26px}
   .section-gap.s-tight{height:10px}
-  .hero .inner{min-height:320px;padding:26px 14px}
-  .hero .logo{width:72%;margin-bottom:8px}
-  .hero h1{font-size:clamp(22px,7vw,30px);line-height:1.2;margin-bottom:6px}
-  .hero p{font-size:15px;line-height:1.55}
-  .hero .cta{gap:10px}
-  .hero .btn{padding:11px 18px}
+  .hero::before{background:linear-gradient(180deg,rgba(20,16,10,.78) 0%,rgba(20,16,10,.88) 55%,rgba(20,16,10,.95) 100%)}
+  .hero .inner{min-height:0;padding:30px 16px 28px}
+  .hero__eyebrow{font-size:12.5px;margin-bottom:10px}
+  .hero h1{font-size:clamp(28px,8vw,34px);margin-bottom:10px}
+  .hero p.hero__lead{font-size:15.5px;line-height:1.55;margin-bottom:18px}
+  .hero .cta{flex-direction:column;gap:10px}
+  .hero .cta .btn{width:100%;padding:12px 18px}
+  .hero__trust{gap:6px 14px;margin-top:18px;padding-top:14px;font-size:14px}
+  .hero__trust b{font-size:16px}
   .btn{min-width:auto}
   .aggl .svc-grid{grid-template-columns:1fr !important;gap:14px !important}
   .aggl .steps-grid{grid-template-columns:1fr !important;gap:14px !important}
@@ -295,16 +312,21 @@ body{background:#fff;color:#111}
 
 <div class="aggl">
   <!-- ===== HERO ===== -->
-  <section class="hero" style="--hero-img:url(/assets/hero/aggelopoulos-carpentry-hero.webp)">
+  <section class="hero" aria-labelledby="hero-title">
+    <figure class="hero__media"><img src="/assets/kouzines/aggelopoulos-epipla-kouzinas-1.5.webp" alt="Κουζίνα κατασκευασμένη από το ξυλουργείο Aggelopoulos Carpentry" width="1600" height="1064" fetchpriority="high" loading="eager"></figure>
     <div class="inner"><div class="content">
-      <img class="logo" src="https://aggelopoulosmycanva.wordpress.com/wp-content/uploads/2024/03/aggelopoulos-carpentry-logo-hd.png" alt="Aggelopoulos Carpentry — από το 1960" width="1656" height="602" fetchpriority="high">
-      <h1>Ξυλουργικές Λύσεις στην Αθήνα <span class="nb">(Περιστέρι)</span></h1>
-      <p>Κουζίνες, Ντουλάπες, Μπάνια, Πόρτες &amp; Ειδικές Κατασκευές. <strong>Blum &amp; FGV</strong> μηχανισμοί, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/περιστρεφόμενος μύλος), <strong>LED</strong>, <strong>πάγκοι 3–4 εκ.</strong>. <strong>Παράδοση 10–20 ημέρες</strong>.</p>
+      <p class="hero__eyebrow">Ξυλουργείο στο Περιστέρι · από το 1960</p>
+      <h1 id="hero-title">Ξυλουργικές Λύσεις στην Αθήνα</h1>
+      <p class="hero__lead">Κουζίνες, ντουλάπες, έπιπλα μπάνιου, πόρτες &amp; ειδικές κατασκευές. <strong>Blum &amp; FGV</strong> μηχανισμοί, <strong>Gola</strong> ή πόμολο μπάρα, λύσεις γωνίας (Magic Corner/περιστρεφόμενος μύλος), <strong>LED</strong> και <strong>πάγκοι 3–4 εκ.</strong> <strong>Παράδοση σε 10–20 ημέρες.</strong></p>
       <div class="cta">
         <a href="https://aggelopouloscarpentry.com/επικοινωνία/" class="btn">Ζητήστε Δωρεάν Μέτρηση</a>
         <a href="tel:+306936815779" class="btn">Κάλεσε Τώρα</a>
       </div>
-      <div class="badge">60+ έτη εμπειρίας • 50+ έργα/έτος • 4.9★ αξιολογήσεις</div>
+      <ul class="hero__trust" aria-label="Εμπειρία και αξιολογήσεις">
+        <li><b>4.9<span class="star" aria-hidden="true">★</span></b> αξιολογήσεις</li>
+        <li><b>60+</b> έτη εμπειρίας</li>
+        <li><b>50+</b> έργα/έτος</li>
+      </ul>
     </div></div>
   </section>
 
