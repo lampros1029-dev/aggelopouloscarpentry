@@ -1,7 +1,7 @@
 /* Cookie consent banner — Aggelopoulos Carpentry theme */
 :root{--cc-font:inherit;--cc-ink:#111;--cc-muted:#555;--cc-bg:#fff;--cc-row-bg:#f7f8fb;--cc-line:rgba(93,78,55,.22);--cc-accent:#5D4E37;--cc-on-accent:#fff;--cc-off:#c9c2b6;--cc-link:#5D4E37;--cc-focus:rgba(93,78,55,.6);--cc-radius:16px;--cc-btn-radius:999px}
 /* Mobile: sit above the sticky "Κάλεσε Τώρα" bar instead of covering it */
-@media (max-width:768px){body.has-callbar .cc{bottom:calc(62px + env(safe-area-inset-bottom))}body.has-callbar .cc__box{max-height:calc(100dvh - 100px)}}
+@media (max-width:768px){body.has-callbar .cc{bottom:calc(72px + env(safe-area-inset-bottom))}body.has-callbar .cc__box{max-height:calc(100dvh - 100px)}}
 .cc{position:fixed;left:16px;bottom:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2147483000;width:min(400px,calc(100vw - 32px));font-family:var(--cc-font);color:var(--cc-ink)}
 .cc[hidden]{display:none}
 .cc__box{box-sizing:border-box;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;background:var(--cc-bg);color:var(--cc-ink);border:1px solid var(--cc-line);border-radius:var(--cc-radius);box-shadow:0 4px 16px rgba(0,0,0,.12);padding:14px 16px;contain:layout paint style;animation:cc-in .2s ease-out}
