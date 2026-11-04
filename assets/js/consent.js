@@ -82,6 +82,11 @@
     box.appendChild(h); box.appendChild(p); box.appendChild(prefs); box.appendChild(act);
     root.appendChild(box);
     root.addEventListener('keydown', function (e) { if (e.key === 'Escape' && read()) close(); });
+    // Keep pointer/wheel/touch gestures on the banner from reaching page-level scroll/animation drivers
+    // (e.g. a hero scrubbed by pointermove): the banner must never steer or stall the page animation.
+    ['pointermove', 'mousemove', 'pointerdown', 'touchstart'].forEach(function (t) {
+      root.addEventListener(t, function (e) { e.stopPropagation(); }, { passive: true });
+    });
     d.body.appendChild(root);
   }
   function showPrefs(on) {
@@ -115,5 +120,7 @@
     }
     if (!read()) open(false, false);
   }
-  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init); else init();
+  // Build the banner after first paint, when the main thread is idle, so it never competes with page start-up animation.
+  function later() { (w.requestIdleCallback || function (f) { setTimeout(f, 300); })(init, { timeout: 2000 }); }
+  if (d.readyState === 'complete') later(); else w.addEventListener('load', later);
 })();
