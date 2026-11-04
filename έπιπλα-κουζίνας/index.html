@@ -179,11 +179,16 @@
 }
 </script>
 
-<!-- Consent Mode v2 default (runs BEFORE GTM) + internal-traffic flag -->
+<!-- Consent Mode v2 default + stored choice (runs BEFORE GTM) + internal-traffic flag. Banner: /assets/js/consent.js -->
 <script>
 window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+gtag('set','ads_data_redaction',true);
+(function(){try{var c=JSON.parse(localStorage.getItem('cc_consent')||'null');
+  if(c&&c.v===1&&typeof c.ts==='number'&&Date.now()-c.ts<182*864e5){var m=c.m?'granted':'denied';
+    gtag('consent','update',{analytics_storage:c.a?'granted':'denied',ad_storage:m,ad_user_data:m,ad_personalization:m});}
+}catch(e){}})();
 (function(){try{
   if(/[?&]internal=1(?:&|$)/.test(location.search)){document.cookie='internal=1; max-age=31536000; path=/; SameSite=Lax';}
   if(/(?:^|;\s*)internal=1(?:;|$)/.test(document.cookie)){dataLayer.push({traffic_type:'internal'});}
@@ -199,27 +204,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <script src="/assets/js/call-tracker.js?v=20261103" defer></script>
 
-<script>
-window.axeptioSettings = {
-  clientId: "68fb7726a7452f7c0fefd320",
-  cookiesVersion: "43bf0ead-38d0-46dd-a658-2c89b37ebdad",
-  googleConsentMode: {
-    default: {
-      analytics_storage: "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      wait_for_update: 500
-    }
-  }
-};
- 
-(function(d, s) {
-  var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-  e.async = true; e.src = "//static.axept.io/sdk.js";
-  t.parentNode.insertBefore(e, t);
-})(document, "script");
-</script>
+<link rel="stylesheet" href="/assets/css/consent.css?v=20261104">
+<script src="/assets/js/consent.js?v=20261104" defer></script>
 
 <script src="/assets/js/favicon-injector.js"></script>
 <style>
@@ -678,6 +664,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap bottom">
       <span class="year">© Aggelopoulos Carpentry 2026</span>
       <span class="tag">Φτιαγμένο με μεράκι από την <a class="credit" href="https://horizonwebstudio.online" target="_blank" rel="noopener">Horizon Web Studio</a></span>
+      <span class="tag"><button type="button" class="cc-footer-link" data-cc-open>Ρυθμίσεις cookies</button></span>
     </div>
   </footer>
 </div>
