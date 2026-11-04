@@ -1,5 +1,5 @@
 /* Cookie consent — Aggelopoulos Carpentry: neutral light glass, warm ink */
-:root{--cc-font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--cc-ink:#1f1a14;--cc-muted:#2e2822;--cc-glass:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,255,255,.54));--cc-solid:#f7f5f2;--cc-blur:18px;--cc-line:rgba(0,0,0,.08);--cc-focus:rgba(93,78,55,.6)}
+:root{--cc-font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--cc-ink:#0e0b08;--cc-muted:#14110d;--cc-glass:rgba(255,255,255,.5);--cc-solid:#f7f5f2;--cc-blur:18px;--cc-line:rgba(0,0,0,.08);--cc-focus:rgba(93,78,55,.6)}
 @media (max-width:768px){body.has-callbar .cc{bottom:calc(72px + env(safe-area-inset-bottom))}body.has-callbar .cc__box{max-height:calc(100dvh - 100px)}}
 /* Cookie consent — frosted-glass card (owner's reference). Own implementation. */
 .cc{position:fixed;left:20px;bottom:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:2147483000;width:min(420px,calc(100vw - 40px));font-family:var(--cc-font);color:var(--cc-ink);-webkit-font-smoothing:antialiased}
