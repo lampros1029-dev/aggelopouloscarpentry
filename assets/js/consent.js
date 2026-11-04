@@ -1,5 +1,4 @@
-/* Cookie consent banner. Layout inspired by orestbida/cookieconsent v3 'cloud inline' + equalWeightButtons
-   (MIT, https://github.com/orestbida/cookieconsent). Own implementation; no code copied.
+/* Cookie consent banner — frosted-glass card (owner's reference design), equal-prominence Reject/Accept.
    Cookie consent + Google Consent Mode v2. Vanilla, no dependencies, no external requests.
    The inline <head> snippet sets the 'default' (denied) and re-applies a stored choice before GTM loads.
    This file renders the banner/settings panel and sends gtag('consent','update') on a choice. */
@@ -11,14 +10,14 @@
   function gtag() { w.dataLayer.push(arguments); }
   var en = /^en/i.test(d.documentElement.lang || '');
   var T = en ? {
-    title: 'Cookies', desc: 'We use cookies for analytics and advertising.',
-    accept: 'Accept', reject: 'Reject', settings: 'Settings', save: 'Save',
+    title: 'We value your privacy', desc: 'We use cookies for analytics and advertising. You can change your choice anytime in ', descL: 'Cookie settings', descE: '.',
+    accept: 'Accept all', reject: 'Reject all', settings: 'Customize', save: 'Save',
     nec: 'Necessary', necD: 'Required for the site to work.',
     an: 'Analytics', anD: 'Visitor statistics.',
     ad: 'Advertising', adD: 'Google Ads measurement.'
   } : {
-    title: 'Cookies', desc: 'Χρησιμοποιούμε cookies για στατιστικά και διαφήμιση.',
-    accept: 'Αποδοχή', reject: 'Απόρριψη', settings: 'Ρυθμίσεις', save: 'Αποθήκευση',
+    title: 'Σεβόμαστε το απόρρητό σας', desc: 'Χρησιμοποιούμε cookies για στατιστικά και διαφήμιση. Μπορείτε να αλλάξετε την επιλογή σας οποιαδήποτε στιγμή στις ', descL: 'Ρυθμίσεις cookies', descE: '.',
+    accept: 'Αποδοχή όλων', reject: 'Απόρριψη', settings: 'Ρυθμίσεις', save: 'Αποθήκευση',
     nec: 'Απαραίτητα', necD: 'Για να λειτουργεί ο ιστότοπος.',
     an: 'Στατιστικά', anD: 'Μέτρηση επισκεψιμότητας.',
     ad: 'Διαφήμιση', adD: 'Μέτρηση διαφημίσεων Google.'
@@ -59,14 +58,14 @@
     root = el('div', 'cc'); root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'false');
     root.setAttribute('aria-labelledby', 'cc-title'); root.setAttribute('aria-describedby', 'cc-desc');
     var box = el('div', 'cc__box');
-    var h = el('h2', 'cc__title cc-vh', T.title); h.id = 'cc-title';
-    var p = el('p', 'cc__desc', T.desc); p.id = 'cc-desc';
+    var h = el('h2', 'cc__title', T.title); h.id = 'cc-title';
+    var p = el('p', 'cc__desc', T.desc), inl = el('button', 'cc-inl', T.descL); inl.type = 'button'; inl.onclick = function () { showPrefs(true); }; p.appendChild(inl); p.appendChild(d.createTextNode(T.descE)); p.id = 'cc-desc';
     prefs = el('div', 'cc__prefs'); prefs.id = 'cc-prefs'; prefs.hidden = true;
     var n = row('nec', T.nec, T.necD, true), a = row('an', T.an, T.anD), m = row('ad', T.ad, T.adD);
     cbA = a.cb; cbM = m.cb;
     prefs.appendChild(n.row); prefs.appendChild(a.row); prefs.appendChild(m.row);
     var act = el('div', 'cc__actions');
-    var rej = el('button', 'cc-btn', T.reject), acc = el('button', 'cc-btn', T.accept);
+    var rej = el('button', 'cc-btn cc-btn--rej', T.reject), acc = el('button', 'cc-btn cc-btn--acc', T.accept);
     setBtn = el('button', 'cc-link', T.settings); saveBtn = el('button', 'cc-btn cc-btn--save', T.save);
     [rej, acc, setBtn, saveBtn].forEach(function (b) { b.type = 'button'; });
     rej.setAttribute('data-cc', 'reject'); acc.setAttribute('data-cc', 'accept');
@@ -76,8 +75,7 @@
     acc.onclick = function () { apply(true, true); };
     saveBtn.onclick = function () { apply(cbA.checked, cbM.checked); };
     setBtn.onclick = function () { showPrefs(prefs.hidden); };
-    act.appendChild(rej); act.appendChild(acc); act.appendChild(saveBtn);
-    p.appendChild(d.createTextNode(' ')); p.appendChild(setBtn);
+    act.appendChild(setBtn); act.appendChild(rej); act.appendChild(acc); act.appendChild(saveBtn);
     box.appendChild(h); box.appendChild(p); box.appendChild(prefs); box.appendChild(act);
     root.appendChild(box);
     root.addEventListener('keydown', function (e) { if (e.key === 'Escape' && read()) close(); });
