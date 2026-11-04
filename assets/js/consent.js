@@ -1,4 +1,6 @@
-/* Cookie consent + Google Consent Mode v2. Vanilla, no dependencies, no external requests.
+/* Cookie consent banner. Layout inspired by orestbida/cookieconsent v3 'cloud inline' + equalWeightButtons
+   (MIT, https://github.com/orestbida/cookieconsent). Own implementation; no code copied.
+   Cookie consent + Google Consent Mode v2. Vanilla, no dependencies, no external requests.
    The inline <head> snippet sets the 'default' (denied) and re-applies a stored choice before GTM loads.
    This file renders the banner/settings panel and sends gtag('consent','update') on a choice. */
 (function () {
@@ -9,21 +11,17 @@
   function gtag() { w.dataLayer.push(arguments); }
   var en = /^en/i.test(d.documentElement.lang || '');
   var T = en ? {
-    title: 'Cookies & privacy',
-    desc: 'We use cookies so the website works properly and, with your consent, for visitor statistics and to measure our Google ads. You can change your choice at any time from \u201cCookie settings\u201d at the bottom of the page.',
-    accept: 'Accept all', reject: 'Reject', settings: 'Settings', save: 'Save choices',
-    nec: 'Necessary', necD: 'Needed for the website to work and to remember your choice. Always on.',
-    an: 'Statistics', anD: 'Help us understand how the website is used (e.g. Google Analytics).',
-    ad: 'Advertising', adD: 'Let us measure and improve our Google ads (e.g. Google Ads).',
-    on: 'Always on', close: 'Close'
+    title: 'Cookies', desc: 'We use cookies for analytics and advertising.',
+    accept: 'Accept', reject: 'Reject', settings: 'Settings', save: 'Save',
+    nec: 'Necessary', necD: 'Required for the site to work.',
+    an: 'Analytics', anD: 'Visitor statistics.',
+    ad: 'Advertising', adD: 'Google Ads measurement.'
   } : {
-    title: 'Cookies & απόρρητο',
-    desc: 'Χρησιμοποιούμε cookies για να λειτουργεί σωστά ο ιστότοπος και, με τη συγκατάθεσή σας, για στατιστικά επισκεψιμότητας και μέτρηση των διαφημίσεων Google. Μπορείτε να αλλάξετε την επιλογή σας οποτεδήποτε από τις \u00abΡυθμίσεις cookies\u00bb στο κάτω μέρος της σελίδας.',
-    accept: 'Αποδοχή όλων', reject: 'Απόρριψη', settings: 'Ρυθμίσεις', save: 'Αποθήκευση επιλογών',
-    nec: 'Απαραίτητα', necD: 'Χρειάζονται για να λειτουργεί ο ιστότοπος και για να θυμάται την επιλογή σας. Είναι πάντα ενεργά.',
-    an: 'Στατιστικά', anD: 'Μας βοηθούν να καταλάβουμε πώς χρησιμοποιείται ο ιστότοπος (π.χ. Google Analytics).',
-    ad: 'Διαφήμιση', adD: 'Επιτρέπουν τη μέτρηση και βελτίωση των διαφημίσεων Google (π.χ. Google Ads).',
-    on: 'Πάντα ενεργά', close: 'Κλείσιμο'
+    title: 'Cookies', desc: 'Χρησιμοποιούμε cookies για στατιστικά και διαφήμιση.',
+    accept: 'Αποδοχή', reject: 'Απόρριψη', settings: 'Ρυθμίσεις', save: 'Αποθήκευση',
+    nec: 'Απαραίτητα', necD: 'Για να λειτουργεί ο ιστότοπος.',
+    an: 'Στατιστικά', anD: 'Μέτρηση επισκεψιμότητας.',
+    ad: 'Διαφήμιση', adD: 'Μέτρηση διαφημίσεων Google.'
   };
 
   function read() {
@@ -61,7 +59,7 @@
     root = el('div', 'cc'); root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'false');
     root.setAttribute('aria-labelledby', 'cc-title'); root.setAttribute('aria-describedby', 'cc-desc');
     var box = el('div', 'cc__box');
-    var h = el('h2', 'cc__title', T.title); h.id = 'cc-title';
+    var h = el('h2', 'cc__title cc-vh', T.title); h.id = 'cc-title';
     var p = el('p', 'cc__desc', T.desc); p.id = 'cc-desc';
     prefs = el('div', 'cc__prefs'); prefs.id = 'cc-prefs'; prefs.hidden = true;
     var n = row('nec', T.nec, T.necD, true), a = row('an', T.an, T.anD), m = row('ad', T.ad, T.adD);
@@ -78,7 +76,8 @@
     acc.onclick = function () { apply(true, true); };
     saveBtn.onclick = function () { apply(cbA.checked, cbM.checked); };
     setBtn.onclick = function () { showPrefs(prefs.hidden); };
-    act.appendChild(rej); act.appendChild(acc); act.appendChild(setBtn); act.appendChild(saveBtn);
+    act.appendChild(rej); act.appendChild(acc); act.appendChild(saveBtn);
+    p.appendChild(d.createTextNode(' ')); p.appendChild(setBtn);
     box.appendChild(h); box.appendChild(p); box.appendChild(prefs); box.appendChild(act);
     root.appendChild(box);
     root.addEventListener('keydown', function (e) { if (e.key === 'Escape' && read()) close(); });
