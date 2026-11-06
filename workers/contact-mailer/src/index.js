@@ -2,7 +2,7 @@
 // workers_dev=false και χωρίς route → δεν είναι προσβάσιμος από το internet.
 import { EmailMessage } from 'cloudflare:email';
 
-const FROM = 'info@aggelopouloscarpentry.com';
+const FROM = 'noreply@aggelopouloscarpentry.com';
 const FROM_NAME = 'Aggelopoulos Carpentry Website';
 const TO = 'info@aggelopouloscarpentry.com';
 
